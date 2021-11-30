@@ -1,0 +1,149 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "KeyValueStore",
+  "description": "[KeyValueStore]s can be used to store and retrieve user data.\n",
+  "blocks": [
+    {
+      "text": "[KeyValueStore]s can be used to store and retrieve user data.\n\nYou can use several [KeyValueStore]s, they will all be scoped to your [World].\n\nFor example, you can use a [Player.UserID] to store data that belongs to a one [Player]:\n"
+    },
+    {
+      "code": "Server.DidReceiveEvent = function(event)\n  \n  if event.action == \"getXP\" then\n\n    -- retrieve and return player's experience:\n    local store = KeyValueStore(event.Sender.UserID) -- use UserID as store name\n\n    -- get value for \"xp\" key\n    store:Get(\"xp\", function(success, results)\n        if success then\n          local response = Event()\n          response.xp = results.xp\n          response:SendTo(event.Sender)\n        end\n    end)\n  end\nend\n"
+    },
+    {
+      "text": "⚠️ Currently, [KeyValueStore]s can only be used by the [Server]. You will need to use [Event]s to ask the [Server] to store and retrieve data. It's a bit cumbersome, but it will be possible to use this from [Client]s too real soon.\n\n⚠️ It's possible to save high scores (sorted data) using a [KeyValueStore], but [SortedSets] (coming soon) will be a better option for this.\n"
+    }
+  ],
+  "constructors": [
+    {
+      "description": "Creates a [KeyValueStore] with given store name.\n\nSeveral stores can be used in one single [World], it's useful to scope your data.\n",
+      "arguments": [
+        {
+          "name": "storeName",
+          "type": "string"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local store = KeyValueStore(\"settings\")\nstore:Get(\"currentChallenge\", \"jumpStrength\", function(success, results)\n    if success then\n      -- do something with results.currentChallenge\n      -- and results.jumpStrength\n    end\nend)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Name",
+      "read-only": true,
+      "types": [
+        "string"
+      ],
+      "description": "[KeyValueStore]'s name.\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "Set",
+      "argument-sets": [
+        [
+          {
+            "name": "key1",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "string"
+          },
+          {
+            "name": "... ",
+            "type": ""
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true
+          }
+        ],
+        [
+          {
+            "name": "key1",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "number"
+          },
+          {
+            "name": "... ",
+            "type": ""
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true
+          }
+        ],
+        [
+          {
+            "name": "key1",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "type": "boolean"
+          },
+          {
+            "name": "... ",
+            "type": ""
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true
+          }
+        ]
+      ],
+      "description": "Sets values for given keys.\n\nCurrently, values can be [string]s, [number]s or [boolean]s. More types are going to be supported soon.\n\nThough the operation is supposed to be real quick, it can't be instantaneous. That's why you need to supply a callback function to get the response.\n\nThe callback function only takes one argument:\n- a [boolean], indicating if the operation was successful (it could fail because of network issues).\n",
+      "samples": [
+        {
+          "code": "local store = KeyValueStore(\"settings\")\nstore:Set(\"currentChallenge\", \"halloween\", \"jumpStrength\", 10, function(success)\n    if success then\n      -- operation was successful\n    end\nend)\n"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "argument-sets": [
+        [
+          {
+            "name": "key1",
+            "type": "string"
+          },
+          {
+            "name": "key2",
+            "type": "string"
+          },
+          {
+            "name": "... ",
+            "type": ""
+          },
+          {
+            "name": "callback",
+            "type": "function"
+          }
+        ]
+      ],
+      "description": "Gets values for given keys.\n\nThough the operation is supposed to be real quick, it can't be instantaneous. That's why you need to supply a callback function to get the response.\n\nThe callback function only takes 2 arguments: \n- A [boolean], indicating if the operation was successful (it could fail because of network issues).\n- A [table] containing values for requested keys.\n",
+      "samples": [
+        {
+          "code": "local store = KeyValueStore(\"settings\")\nstore:Get(\"currentChallenge\", \"jumpStrength\", function(success, results)\n    if success then\n      -- do something with results.currentChallenge\n      -- and results.jumpStrength\n    end\nend)\n"
+        }
+      ]
+    }
+  ]
+}

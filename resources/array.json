@@ -1,0 +1,46 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "array",
+  "basic-type": true,
+  "description": "Arrays in Lua simply are [table]s indexed with [integer]s.\n",
+  "blocks": [
+    {
+      "text": "Arrays in Lua simply are [table]s indexed with [integer]s. Therefore, arrays do not have a fixed size, they grow as needed.\n"
+    },
+    {
+      "code": "local arr = {} -- new array, same as empty table\n"
+    },
+    {
+      "text": "An array can be initialized with values:\n"
+    },
+    {
+      "code": "local days = {\"Sunday\", \"Monday\", \"Tuesday\",\n\"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"}\n\nprint(days[1]) -- prints \"Sunday\"\n"
+    },
+    {
+      "text": "You can use `#` prefix to return the size of an array:\n"
+    },
+    {
+      "code": "print(#days) -- prints \"7\"\n"
+    },
+    {
+      "text": "⚠️ In Lua, array indexes start at `1` !\n"
+    },
+    {
+      "code": "local arr = {}\narr[1] = \"hello\"\narr[2] = \"world\" -- or table.insert(arr, \"world\")\n\nprint(#arr) -- prints \"2\"\n\narr[0] = \"something\"\n\nprint(#arr) -- still prints \"2\", because index 0 is not considered\n"
+    },
+    {
+      "text": "This is how you can you loop over all values in an array:\n"
+    },
+    {
+      "code": "local arr = {\"hello\", \"world\", \"!\"}\n\nfor index in pairs(arr) do\n  print(arr[index])\nend\n-- prints \"hello\", \"world\" & \"!\"\n\n-- OR\n\nfor index, value in ipairs(arr) do -- using ipairs to get index & value\n  print(value)\nend\n-- also prints \"hello\", \"world\" & \"!\"\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Items",
+  "description": "Items is a shortcut to [Config].Items.\n",
+  "blocks": [
+    {
+      "text": "Items is a shortcut to [Config].Items.\n\nIt's basically an [array] of of [string]s, indexed in different ways once items are loaded.\n\nItems can be used to instanciate [Shape]s and [MutableShape]s.\n\nAn item is always identified by its repository and its name: `repo_name.item_name`.\n\nThe repository name usually corresponds to the author's username.\n\nNOTE: The repository name can be ommited for official items: `Items.official.sword == Items.sword`.\n"
+    },
+    {
+      "subtitle": "How to load items for your game?"
+    },
+    {
+      "code": "Config = {\n  Items = {\"aduermael.pumpkin\", \"aduermael.tomato\"}\n}\n-- also works this way:\nConfig.Items = {\"aduermael.pumpkin\", \"aduermael.tomato\"}\n-- or \nItems = {\"aduermael.pumpkin\", \"aduermael.tomato\"}\n"
+    },
+    {
+      "text": "(See [Config] for more details)\n"
+    },
+    {
+      "subtitle": "How to use loaded items?"
+    },
+    {
+      "text": "Once the game is loaded (after [Client].[OnStart](/reference/client#property-onstart) has been called), [Items] can be used to instanciate [Shape]s or [MutableShape]s:\n"
+    },
+    {
+      "code": "local s = Shape(Items.aduermael.pumpkin)\n-- or\nlocal s = Shape(Items[\"aduermael.pumpkin\"])\n-- or even this way, if you know the index:\nlocal s = Shape(Items[1])\n"
+    }
+  ]
+}

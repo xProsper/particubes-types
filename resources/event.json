@@ -1,0 +1,78 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Event",
+  "description": "Events are useful to establish communication between the [Server] and all connected [Player]s.\n",
+  "blocks": [
+    {
+      "text": "Events are useful to establish communication between the [Server] and all connected [Player]s. \n\nHere's a simple example:\n"
+    },
+    {
+      "code": "local e = Event()\ne.someMessage = \"Something I'd like to say!\"\ne.someNumber = 42\ne:SendTo(Server) -- send to Server\n\n-- other possible recipients:\ne:SendTo(Players) -- send to all players\ne:SendTo(Players[2]) -- send to player 2\ne:SendTo(OtherPlayers) -- send to all players but self\n"
+    },
+    {
+      "text": "Events trigger the `DidReceiveEvent` function for each recipient (see [Client.DidReceiveEvent](/reference/client#property-didreceiveevent) & [Server.DidReceiveEvent](/reference/server#property-didreceiveevent)).\n"
+    },
+    {
+      "code": "Server.DidReceiveEvent = function(event)\n  -- `action` here is a custom field set by the developer\n  if event.action == \"ping\" then\n\n    local response = Event()\n    response.action = \"pong\"\n    response:SendTo(event.Sender)\n\n  end\nend\n"
+    }
+  ],
+  "constructors": [
+    {
+      "description": "Creates an empty event.\n\nCustom fields can then be set with [string], [number] and [boolean] values. (more value types will be supported soon)\n",
+      "samples": [
+        {
+          "code": "local e = Event()\ne.someMessage = \"Something I'd like to say!\"\ne.someNumber = 42\ne:SendTo(OtherPlayers)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Sender",
+      "read-only": true,
+      "types": [
+        "Server",
+        "Player"
+      ],
+      "description": "Who sent the event. A useful property when you want to send a response:\n",
+      "samples": [
+        {
+          "code": "Server.DidReceiveEvent = function(event)\n  -- `action` here is a custom field set by the developer\n  if event.action == \"ping\" then\n\n    local response = Event()\n    response.action = \"pong\"\n    response:SendTo(event.Sender)\n\n  end\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Recipients",
+      "read-only": true,
+      "type": "array",
+      "description": "An array containing all recipients for that event.\nRecipients can contain individual [Player]s, [OtherPlayers], [Players] or [Server].\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "SendTo",
+      "argument-sets": [
+        [
+          {
+            "name": "...",
+            "type": "recipients"
+          }
+        ]
+      ],
+      "description": "Sends the [Event] to recipients in parameters.\n\nRecipients can be individual [Player]s, [OtherPlayers], [Players] or [Server].\n",
+      "samples": [
+        {
+          "code": "local e = Event()\ne.someMessage = \"Something I'd like to say!\"\ne:SendTo(Player[2], Player[3]) -- send to player 2 & 3\n"
+        }
+      ]
+    }
+  ]
+}

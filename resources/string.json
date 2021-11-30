@@ -1,0 +1,28 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "string",
+  "basic-type": true,
+  "description": "A string is a basic Lua type, it represents a sequence of characters.\n",
+  "blocks": [
+    {
+      "text": "A string is a basic Lua type, it represents a sequence of characters. They are initialized with double quotes framing characters.\n"
+    },
+    {
+      "code": "local s = \"hello world\"\n\nprint(s) -- prints \"hello world\"\n"
+    },
+    {
+      "text": "Strings can be concatenated with the `..` operator.\n"
+    },
+    {
+      "code": "local a = \"hello\"\nlocal b = \"world\"\nlocal c = a .. \" \" .. b\n\nprint(c) -- prints \"hello world\"\n"
+    }
+  ]
+}

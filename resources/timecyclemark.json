@@ -1,0 +1,67 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "TimeCycleMark",
+  "description": "TimeCycleMark exposes properties for each mark in the [TimeCycle].\n",
+  "constructors": [
+    {
+      "arguments": [
+        {
+          "name": "time",
+          "type": "Time"
+        }
+      ],
+      "description": "Creates a new TimeCycleMark at given [Time] and adds it in the [TimeCycle].Marks array.\n",
+      "samples": [
+        {
+          "code": "local mark = TimeCycleMark(Time(9, 0, 0)) -- 9am's mark\nmark.SkyColor = Color(255, 0, 0)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Name",
+      "hide": true,
+      "type": "string",
+      "description": "Mark's name.\n"
+    },
+    {
+      "name": "AbyssColor",
+      "type": "Color",
+      "description": "Mark's sky [Color].\n"
+    },
+    {
+      "name": "AmbientLightColor",
+      "type": "Color",
+      "description": "Mark's ambient light [Color].\n"
+    },
+    {
+      "name": "HorizonColor",
+      "type": "Color",
+      "description": "Mark's sky [Color].\n"
+    },
+    {
+      "name": "SkyColor",
+      "type": "Color",
+      "description": "Mark's sky [Color].\n"
+    },
+    {
+      "name": "SkyLightColor",
+      "type": "Color",
+      "description": "Mark's sky light [Color].\n"
+    },
+    {
+      "name": "Time",
+      "type": "Time",
+      "description": "Mark's [Time].\n"
+    }
+  ]
+}

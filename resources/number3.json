@@ -1,0 +1,175 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Number3",
+  "description": "A Number3 contains 3 [number] values (X, Y & Z). It can represent different things in 3D space (points, vectors, forces).",
+  "constructors": [
+    {
+      "description": "Creates a Number3 with values x, y and z.",
+      "arguments": [
+        {
+          "name": "x",
+          "type": "number"
+        },
+        {
+          "name": "y",
+          "type": "number"
+        },
+        {
+          "name": "z",
+          "type": "number"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local myNumber3 = Number3(1, 2, 3)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "X",
+      "type": "number",
+      "description": "X value of the Number3.",
+      "samples": [
+        {
+          "code": "myNumber3.X = 42\nprint(myNumber3.X)\n"
+        }
+      ]
+    },
+    {
+      "name": "Y",
+      "type": "number",
+      "description": "Y value of the Number3.",
+      "samples": [
+        {
+          "code": "myNumber3.Y = 42\nprint(myNumber3.Y)\n"
+        }
+      ]
+    },
+    {
+      "name": "Z",
+      "type": "number",
+      "description": "Z value of the Number3.",
+      "samples": [
+        {
+          "code": "myNumber3.Z = 42\nprint(myNumber3.Z)\n"
+        }
+      ]
+    },
+    {
+      "name": "Length",
+      "type": "number",
+      "description": "`Number3`'s length.\nTechnically, the square root of the sum of [X](/reference/number3#property-x), [Y](/reference/number3#property-y) & [Z](/reference/number3#property-z) components.\n",
+      "samples": [
+        {
+          "code": "number3 = Number3(3,4,12)\nprint(number3.Length) -- prints 13\n-- sqrt(3*3 + 4*4 + 12*12) = 13\n"
+        }
+      ]
+    },
+    {
+      "name": "SquaredLength",
+      "type": "number",
+      "description": "Reading `Number3.SquaredLength` is faster than reading `Number3.Length`.\nThis is the main reason why this attribute is exposed. \nIt can be used when comparing distances.\n",
+      "samples": [
+        {
+          "code": "-- compare distances between objects\nlocal d2 = o1.Position - o2.Position\nlocal d3 = o1.Position - o3.Position\n\nif d2.SquaredLength < d3.SquaredLength then\n  print(\"o1 is closer to o2\")\nelse\n  print(\"o1 is closer to o3\")\nend\n-- Using Length instead of SquaredLength would give the same results,\n-- but it would have to internally compute 2 square roots for nothing.\n"
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "Copy",
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ],
+      "arguments": [
+        {
+          "name": "n",
+          "type": "Number3"
+        }
+      ],
+      "description": "Returns a copy of the [Number3].\n",
+      "samples": [
+        {
+          "code": "local n1 = Number3(1, 0, 0)\nlocal n2 = n1 -- n2 is not a copy but a direct reference to n1\nn2.X = 10\nprint(n1.X) -- now n1.X == 10\n\n-- using Copy:\nlocal n1 = Number3(1, 0, 0)\nlocal n2 = n1:Copy() -- n2 is a copy of n1, they're not the same Number3\nn2.X = 10\nprint(n1.X) -- n1.X is still 1\n"
+        }
+      ]
+    },
+    {
+      "name": "Cross",
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ],
+      "arguments": [
+        {
+          "name": "n",
+          "type": "Number3"
+        }
+      ],
+      "description": "Returns the cross product of both [Number3]s.\n",
+      "samples": [
+        {
+          "code": "local n1 = Number3(1, 0, 0)\nlocal n2 = Number3(1, 0, 0)\nlocal n3 = n1:Cross(n2)\n"
+        }
+      ]
+    },
+    {
+      "name": "Dot",
+      "return": [
+        {
+          "type": "number"
+        }
+      ],
+      "arguments": [
+        {
+          "name": "n",
+          "type": "Number3"
+        }
+      ],
+      "description": "Returns the dot product of both [Number3]s.\n",
+      "samples": [
+        {
+          "code": "local n1 = Number3(1, 0, 0)\nlocal n2 = Number3(1, 0, 0)\nlocal dot = n1:Dot(n2)\n"
+        }
+      ]
+    },
+    {
+      "name": "Rotate",
+      "description": "Rotates the `Number3` using euler angles in parameters (in radians).\n",
+      "arguments": [
+        {
+          "name": "angles",
+          "type": "Number3"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local someNumber3 = Number3(0,0,1)\nlocal pi = 3.1415\nsomeNumber3:Rotate(Number3(0,pi,0))\n-- someNumber3 == Number3(0,0,-1), after a PI rotation around Y axis (180°)\n"
+        }
+      ]
+    },
+    {
+      "name": "Normalize",
+      "description": "Normalizes the `Number3`.\nScales [X](/reference/number3#property-x), [Y](/reference/number3#property-y) & [Z](/reference/number3#property-z) for the [Length](/reference/number3#property-length) to be `1.0`.\n",
+      "samples": [
+        {
+          "code": "local someNumber3 = Number3(10,0,0)\nsomeNumber3:Normalize()\n-- someNumber3 == 1 now\n\n-- NOTE: this also achieves normalization:\nsomeNumber3.Length = 1.0\n"
+        }
+      ]
+    }
+  ]
+}

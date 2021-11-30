@@ -1,0 +1,116 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "PointerEvent",
+  "creatable": true,
+  "blocks": [
+    {
+      "text": "An event that's generated when using the [Pointer]. (see [Pointer].[Down](/reference/pointer#property-down) or [Pointer].[Up](/reference/pointer#property-up))\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "CastRay",
+      "argument-sets": [
+        null,
+        [
+          {
+            "name": "filterIn",
+            "type": "CollisionGroups"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "Shape"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "nil"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "CollisionGroups"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "Shape"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ]
+      ],
+      "return": [
+        {
+          "type": "Impact"
+        }
+      ],
+      "description": "Casts a ray from [PointerEvent] screen coordinates and returns an [Impact] (can be [nil]).\n\nThe [Impact] contains information about the kind of thing that's been hit.\n\n💡 Calls [Ray].[Cast](/reference/ray#functions-cast) under the hood. See [Ray].[Cast](/reference/ray#functions-cast) definition for more details about possible filters.\n",
+      "samples": [
+        {
+          "code": "Pointer.Down = function( pointerEvent )\n    local impact = pointerEvent:CastRay()\n    if impact.Block ~= nil then\n      print(\"block hit:\", impact.Block)\n    end\n\n    -- this can also be done using a Ray object:\n    local ray = Ray(pointerEvent.Position, pointerEvent.Direction)\n    impact = ray:Cast()\n    if impact.Block ~= nil then\n      print(\"block hit:\", impact.Block)\n    end\nend\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "X",
+      "type": "number",
+      "description": "Horizontal position of the pointer when the event happens, in screen coordinates. `{0,0}` represents the bottom left of the screen, and `{1,1}` the top right. `X` is close to `0.5` when pointing the horizontal center.\n"
+    },
+    {
+      "name": "Y",
+      "type": "number",
+      "description": "Vertical position of the pointer when the event happens, in screen coordinates. `{0,0}` represents the bottom left of the screen, and `{1,1}` the top right. `Y` is close to `0.5` when pointing the vertical center.\n"
+    },
+    {
+      "name": "DX",
+      "type": "number",
+      "description": "Horizontal delta, not `0` when moving the pointer (see [Pointer].[Drag](/reference/pointer#property-drag) or [Pointer].[Drag2](/reference/pointer#property-drag2))\n"
+    },
+    {
+      "name": "DY",
+      "type": "number",
+      "description": "Vertical delta, not `0` when moving the pointer (see [Pointer].[Drag](/reference/pointer#property-drag) or [Pointer].[Drag2](/reference/pointer#property-drag2))\n"
+    },
+    {
+      "name": "Position",
+      "type": "Number3",
+      "description": "[PointerEvent]'s location, in world coordinate system.\n"
+    },
+    {
+      "name": "Direction",
+      "type": "Number3",
+      "description": "The direction in which a ray would go based on the [PointerEvent].\n"
+    },
+    {
+      "name": "Down",
+      "type": "boolean",
+      "description": "Indicates whether the [This] represents a touch/click \"down\" event. If false, it represents a \"up\" event.\n"
+    }
+  ]
+}

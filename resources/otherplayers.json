@@ -1,0 +1,21 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "OtherPlayers",
+  "description": "OtherPlayers is an array of Players that contains all players except the local one.",
+  "blocks": [
+    {
+      "text": "[OtherPlayers] is an array of [Player]s that contains all players except the local one.\n\n[OtherPlayers] is not available to the [Server], because it just wouldn't make sense! 🙂\n\n[Player]s are indexed by their \"player ID\". Player IDs range from 0 to 15.\n"
+    },
+    {
+      "code": "for id, player in pairs(OtherPlayers) do\n  print(id, player.Username)\nend\n"
+    }
+  ]
+}

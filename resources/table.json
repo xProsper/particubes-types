@@ -1,0 +1,34 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "table",
+  "basic-type": true,
+  "description": "A table is a basic Lua type, it implements associative arrays.\n",
+  "blocks": [
+    {
+      "text": "A table is a basic Lua type, it implements associative arrays.\n\nAn associative array is an array that can be indexed not only with [number]s, but also with [string]s or any other value of the language, except [nil].\n"
+    },
+    {
+      "code": "local t = {} -- create an empty table\n\nt[\"x\"] = 10 -- set value == 10 for \"x\" key\nt.x = 10 -- does the exact same thing\n\n-- ⚠️ --\nlocal x = \"aKey\"\nt[x] = 10 -- this sets a value for the \"aKey\" key\n"
+    },
+    {
+      "text": "A table may store values with different types of indices and it grows as it needs to accommodate new entries:\n"
+    },
+    {
+      "code": "local t = {} \nt.foo = \"bar\"\nt[2] = 10\nt[\"test\"] = true\n\n-- go through all key/value pairs of t\nfor key, value in pairs(t) do\n  print(key, value)\nend\n-- prints \"foo bar\", \"2 10\", \"test true\" in an unspecified order\n"
+    },
+    {
+      "text": "A table can be initialized with values:\n"
+    },
+    {
+      "code": "local days = {\"Sunday\", \"Monday\", \"Tuesday\",\n\"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"}\n-- days[1] == \"Sunday\"\n-- days[2] == \"Monday\"\n-- ...\n\nlocal position = {x=1, y=2}\n-- position.x == 1\n-- position.y == 2\n"
+    }
+  ]
+}

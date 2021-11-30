@@ -1,0 +1,14 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Palette",
+  "creatable": true,
+  "description": "A Palette is an [array] of [BlockProperties].\n"
+}

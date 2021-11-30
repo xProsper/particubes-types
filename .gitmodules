@@ -1,0 +1,3 @@
+[submodule "particubes"]
+	path = particubes
+	url = https://github.com/voxowl/particubes.git

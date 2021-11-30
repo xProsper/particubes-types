@@ -1,0 +1,67 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Config",
+  "description": "Config holds the configuration for your game. The items it depends on, the map that should be used and other important things.",
+  "blocks": [
+    {
+      "text": "Config holds the configuration for your game. The items it depends on, the map that should be used and other important things.\n\nYou'll usually see it defined at the top of most game scripts.\n"
+    },
+    {
+      "code": "Config = {\n  Items = {\"aduermael.pumpkin\", \"aduermael.tomato\"},\n  Map = \"gdevillele.pirate_ship\"\n}\n\n-- also works this way:\nConfig.Items = {\"aduermael.pumpkin\", \"aduermael.tomato\"}\nConfig.Map = \"gdevillele.pirate_ship\"\n"
+    }
+  ],
+  "properties": [
+    {
+      "name": "ChatAvailable",
+      "type": "boolean",
+      "description": "When set to `true`, the users are able to use the chat. If set to `false` they cannot talk.\n\n`true` by default.\n"
+    },
+    {
+      "name": "ConstantAcceleration",
+      "type": "Number3",
+      "description": "Acceleration applied to all physically simulated [Object]s in the scene. \n\nBy default, it represents the gravity.\n",
+      "samples": [
+        {
+          "code": "-- turn off gravity:\nConfig.ConstantAcceleration = {0, 0, 0}\n-- or\nConfig.ConstantAcceleration.Y = 0\n"
+        },
+        {
+          "code": "-- turn off gravity for one Object only:\nmyObject.Acceleration = -Config.ConstantAcceleration\n-- myObject's acceleration is now the invert of \n-- Config.ConstantAcceleration, cancelling it.\n"
+        }
+      ]
+    },
+    {
+      "name": "Map",
+      "type": "string",
+      "description": "Indicates the map that should be loaded."
+    },
+    {
+      "name": "Items",
+      "type": "array",
+      "description": "A list of items ([string] references) that should be loaded.\n\nYou'll be able to use thoses items to create [Shape]s, [MutableShape]s and other things.\n\nSee [Items] for more details.\n"
+    },
+    {
+      "name": "MapPaletteOverrides",
+      "type": "table",
+      "description": "A collection of [Map] [Palette] indexes that you want to override in the game.\n",
+      "samples": {
+        "code": "-- override Block properties at index 3 in map's palette\nConfig.MapPaletteOverrides[3].Color = Color(255, 0, 0)\nConfig.MapPaletteOverrides[3].Light = true\n"
+      }
+    },
+    {
+      "name": "PointerToggleAvailable",
+      "type": "boolean",
+      "description": "Allows the users to change the pointer mode by pressing on TAB or clicking on the pointer mode button.\n\nThe function `[Pointer]:Show()` and `[Pointer]:Hide()` can still be used.\n\n`false` by default.\n",
+      "samples": {
+        "code": "Config.PointerToggleAvailable = false -- disable TAB / pointer button\nClient.Action2 = function()\n  Pointer:Show() -- enables the pointer mode\nend\n"
+      }
+    }
+  ]
+}

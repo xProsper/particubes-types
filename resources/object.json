@@ -1,0 +1,607 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "object",
+    "voxel"
+  ],
+  "type": "Object",
+  "description": "An `Object` is the most basic thing that can be added to the game 3D scene.\n\nIt has a position, a rotation and a scale and can contain child [Object]s, including [Object] extensions like [Shape].\n\nAn object by itself does not render anything on screen, but it can contain [Shape]s and thus become a parent coordinate system for them.\n\nAn `Object` can also take part in the physics simulation when setting [Object.Physics](#property-physics) to `true`.\n",
+  "constructors": [
+    {
+      "description": "Creates an Object.",
+      "samples": [
+        {
+          "code": "local o = Object()\nWorld:AddChild(o) -- adds o to the [World] (top level object in the game scene)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Acceleration",
+      "type": "Number3",
+      "description": "[This]'s constant acceleration in world coordinates per second squared.\n\n⚠️ `Acceleration` will only affect [This]'s position while [This].[Physics](#property-physics) is `true`.\n",
+      "samples": [
+        {
+          "code": "-- Acceleration can be used to compensate gravity: \nmyObject.Acceleration = -Config.ConstantAcceleration\n-- myObject's acceleration is now the invert of \n-- Config.ConstantAcceleration, cancelling it.\n"
+        }
+      ]
+    },
+    {
+      "name": "CollisionGroups",
+      "type": "CollisionGroups",
+      "description": "Collision groups the [This] belongs to. \n\n⚠️ It doesn't mean the [This] will collide with other [Object]s in these groups. \n\nIf the [This] belongs to group number `3` for example, it means all [Object]s that have group number `3` in their [Object].[CollidesWithGroups](#property-collideswithgroups) property will collide with it.\n\nBy default:\n- [Object]s collide with the [Map] and other [Object]s\n- [Player]s collide with the [Map] only\n\nThat can all be configured differently depening on your needs.\n",
+      "samples": [
+        {
+          "code": "local object1 = Object()\nlocal object2 = Object()\n-- It's not mandatory to set Physics to true\n-- An object with Physics set to false contributes to the\n-- physics simulation as a static item (can't be moved)\nobject1.Physics = true\nobject2.Physics = true\n\n-- making sure 2 objects collide with each other\n-- NOTE: by default:\n-- Map.CollisionGroups == {1},\n-- Player.CollisionGroups == {2},\n-- Object.CollisionGroups == {3}\nobject1.CollisionGroups = {5}\nobject2.CollisionGroups = {5}\nobject1.CollidesWithGroups = {1, 5} -- collides with Map + objects in group 5\nobject2.CollidesWithGroups = {1, 5} -- collides with Map + objects in group 5\n\n-- would also work this way if you don't \n-- remember Map's group (which can be changed too by the way)\nobject1.CollidesWithGroups = Map.CollisionGroups + {5}\n\n-- making an object collides with the Map and Players\nlocal object = Object()\nobject.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups\n\n-- for Player (local player) to collide with other players and the Map\nPlayer.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups\n"
+        }
+      ]
+    },
+    {
+      "name": "CollidesWithGroups",
+      "type": "CollisionGroups",
+      "description": "Collision groups the [This] collides with. \n\nBy default:\n- [Object]s collide with the [Map] and other [Object]s\n- [Player]s collide with the [Map] only\n\nThat can all be configured differently depening on your needs.\n",
+      "samples": [
+        {
+          "code": "local object = Object()\n-- It's not mandatory to set Physics to true\n-- An object with Physics set to false contributes to the\n-- physics simulation as a static item (can't be moved)\nobject.Physics = true\n\n-- making an object collide with the Map and Players\nobject.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups\n\n-- for an Object to collide with other objects only\n-- (won't collide with the map)\nobject.CollidesWithGroups = object.CollisionGroups\n\n-- for Player (local player) to collide with other players and the Map\nPlayer.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups\n\n-- making sure 2 objects collide with each others\n-- NOTE: by default:\n-- Map.CollisionGroups == {1},\n-- Player.CollisionGroups == {2},\n-- Object.CollisionGroups == {3}\nlocal object1 = Object()\nlocal object2 = Object()\nobject1.CollisionGroups = {5}\nobject2.CollisionGroups = {5}\nobject1.CollidesWithGroups = {1, 5} -- collides with Map + objects in group 5\nobject2.CollidesWithGroups = {1, 5} -- collides with Map + objects in group 5\n\n-- would also work this way if you don't \n-- remember Map's group (which can be changed too by the way)\nobject1.CollidesWithGroups = Map.CollisionGroups + {5}\n"
+        }
+      ]
+    },
+    {
+      "name": "Physics",
+      "type": "boolean",
+      "description": "Turns physic simulation on/off when set.\n\n⚠️ When turned off, [This].[Velocity](#property-velocity) & [This].[Motion](#property-motion) are set to `{0,0,0}`.\n"
+    },
+    {
+      "name": "OnCollision",
+      "type": "function",
+      "description": "[nil] by default. Can be set to a function that will be triggered when the [This] collides with another [Object].\n\nThe function is called with 3 parameters: the object the callback was set for, the other actor in the collision and the [Face] of the first actor that's in contact.\n\nNote: it's not necessary to do use all 3 parameters.\n",
+      "samples": [
+        {
+          "code": "object.OnCollision = function(o1, o2)\n  -- `o1` is `object` here\n  print(\"collision detected between\", o1, \"and\", o2)\nend\n\nobject.OnCollision = function(o1, o2, face)\n  -- `o1` is `object` here\n  print(\"collision detected between\", o1, \"'s\", face, \"and\", o2)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnCollisionEnd",
+      "type": "function",
+      "description": "[nil] by default. Can be set to a function that will be triggered when the [This] ends colliding with another [Object].\n\nThe function is called with 2 parameters: the object the callback was set for and the other actor in the collision.\n",
+      "samples": [
+        {
+          "code": "object.OnCollisionEnd = function(o1, o2)\n  -- `o1` is `object` here\n  print(\"collision ended between\", o1, \"and\", o2)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnPointerDrag",
+      "type": "function",
+      "description": "Executed when the [Pointer] is dragged (moved while down). Receives a [PointerEvent] parameter, just like [Pointer.Drag](/reference/pointer#property-drag).\n\n([nil] by default)\n",
+      "samples": [
+        {
+          "code": "myObject.OnPointerDrag = function(pointerEvent)\n  print(\"dx:\", pointerEvent.DX, \"dy:\", pointerEvent.DY)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Position",
+      "type": "Number3",
+      "description": "Position of the [This] in the world.\n",
+      "samples": [
+        {
+          "code": "local o = Object()\n-- places the object where the local player is\no.Position = Player.Position\n"
+        }
+      ]
+    },
+    {
+      "name": "IsOnGround",
+      "type": "boolean",
+      "read-only": true,
+      "description": "`true` when the [This] is not falling.\n\n⚠️ `IsOnGround` only makes sense when [This].Physics is `true`.\n"
+    },
+    {
+      "name": "IsHidden",
+      "type": "boolean",
+      "description": "Can be set to `true` for the [This] to be hidden.\nNothing else changes, the [This] remains in the scene and it keeps being affected by the simulation (collisions, etc.).\n"
+    },
+    {
+      "name": "LocalPosition",
+      "type": "Number3",
+      "description": "Position of the [This] in its parent.\nIn other words, `LocalPosition` refers to the position of the [This] relative to the `{0,0,0}` position of its parent.\n"
+    },
+    {
+      "name": "Rotation",
+      "type": "Number3",
+      "description": "Rotation of the [This] in the world (as seen on screen).\n\nWhile it usually works for simple operations (like `Rotation.X = Rotation.X + someAngle`), we advise you to use [Number3].[Rotate](/reference/number3#functions-rotate) to rotate an object around X, Y & Z axis.\n\nYou can also set unit vectors like [This].[Up](#property-up), [This].[Right](#property-right) or [This].[Forward](#property-forward) to orient your object.\n",
+      "samples": [
+        {
+          "code": "local o = Object()\no.Rotation = {0, math.pi, 0}\n-- o revolved half a turn on Y axis\n\n-- another way to rotate the object:\no.Forward:Rotate({0, 0, math.pi / 2})\no.Forward = Camera.Forward\n"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "type": "function",
+      "description": "Tick is a [function] executed ~30 times per second when set ([nil] by default). Provides the [This] and elapsed time in seconds as parameters.\n",
+      "samples": [
+        {
+          "code": "-- executed ~30 times per second on each user device\nmyObject.Tick = function(object, dt)\n  print(\"elapsed:\", dt, \"seconds\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "LocalRotation",
+      "type": "Number3",
+      "description": "Rotation of the [This] in its parent.\n\nNested [Object] local rotations are combined to obtain the \"world rotation\" ([Object.Rotation](#property-rotation)), the [Object]'s final on-screen rotation.\n"
+    },
+    {
+      "name": "Velocity",
+      "type": "Number3",
+      "description": "Velocity of the [This] in world coordinates per second.\n\n⚠️ `Velocity` will only affect [This]'s position while [This].[Physics](#property-physics) is `true`. Whenever it is set to `false`, `Velocity` is set to `{0,0,0}`.\n",
+      "samples": [
+        {
+          "code": "-- makes myObject jump:\nmyObject.Velocity.Y = 100\n"
+        }
+      ]
+    },
+    {
+      "name": "Motion",
+      "type": "Number3",
+      "description": "Be aware, this `Motion` property is a hack regarding laws of physics. (sorry Isaac)\n\nBut it's very practical to move objects without worrying about forces at play.\n\nThis is what's being used by default when you're moving around with your avatar (see [Client.DirectionalPad](/reference/client#property-directionalpad)). It's the reason why you can stop moving horizontally while in the air.\n\nBasically, `Motion` is an instantaneous displacement that contributes to moving [This] every frame, without changing [This].[Velocity](#property-velocity) directly.\n\n`Motion` is expressed in world coordinates per second.\n\n⚠️ `Motion` will only affect [This]'s position while [This].[Physics](#property-physics) is `true`. Whenever it is set to `false`, `Motion` is set to `{0,0,0}`.\n",
+      "samples": [
+        {
+          "code": "local speed = 10\nmyObject.Motion = Camera.Forward * speed\n-- myObject will move in the same direction the camera is currently facing.\n-- If the Camera rotates after this, it won't change where myObject is heading.\n"
+        }
+      ]
+    },
+    {
+      "name": "LocalScale",
+      "type": "number",
+      "description": "Scale of the [Object], in its parent.\n\nNested [Object] local scales are combined to obtain the \"world scale\" ([Object.LossyScale](#property-lossyscale)), the [Object]'s final scale.\n",
+      "samples": [
+        {
+          "code": "myObject.LocalScale = 2 -- the Object is now 2 times bigger\n"
+        },
+        {
+          "code": "topLevelObject.LocalScale = 2\nlocal o = Object()\no.LocalScale = 0.5\ntopLevelObject:AddChild(o) -- o becomes a child of topLevelObject\n-- o ends up being displayed with a scale of 1\n"
+        }
+      ]
+    },
+    {
+      "name": "LossyScale",
+      "read-only": true,
+      "type": "number",
+      "description": "Convenience property that attempts to match the actual world scale as much as it can. Note that [Object]s that have multiple levels of nested rotations and scales will return a skewed lossy scale.\n"
+    },
+    {
+      "name": "Mass",
+      "type": "number",
+      "description": "The mass of the [Object] determines how much a given force can move it and whether or not another object can be pushed by it. It cannot be zero, a neutral mass is a mass of 1.\n"
+    },
+    {
+      "name": "Friction",
+      "type": "number",
+      "description": "The combined friction of 2 [Object]s in contact represents how much the moving [Object] will be able to slide along the colliding [Object]. It is a rate between 0 (full stop on contact) and 1 (full slide, no friction), values higher than 1 are allowed and will create an increasing momentum, like sliding on ice.\n"
+    },
+    {
+      "name": "Bounciness",
+      "type": "number",
+      "description": "The combined bounciness of 2 [Object]s in contact represents how much of the moving [Object]'s velocity is produced after being in contact with colliding [Object], it is a rate between 0 (no bounce) and 1 (100% of the velocity bounced). Values higher than 1 are allowed and will create an increasing momentum at each bounce (try at your own risk).\n"
+    },
+    {
+      "name": "CollisionBox",
+      "type": "Box",
+      "description": "All [Object]s have a collision box that represents the space occupied in the scene with regards to collisions. For [Shape]s and [Player]s, the collision box is updated with their bounding box. For [Object]s, it is a 1-cube by default after physics was enabled for the first time.\n"
+    },
+    {
+      "name": "ChildrenCount",
+      "read-only": true,
+      "type": "integer",
+      "description": "Returns number of child [Object]s.\n"
+    },
+    {
+      "name": "Up",
+      "type": "Number3",
+      "description": "`Up` is a unit vector (vector with a length of 1). It determines which direction is \"up\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    },
+    {
+      "name": "Right",
+      "type": "Number3",
+      "description": "`Right` is a unit vector (vector with a length of 1). It determines which direction is \"right\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    },
+    {
+      "name": "Forward",
+      "type": "Number3",
+      "description": "`Forward` is a unit vector (vector with a length of 1). It determines which direction is \"forward\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    },
+    {
+      "name": "Left",
+      "type": "Number3",
+      "description": "`Left` is a unit vector (vector with a length of 1). It determines which direction is \"left\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    },
+    {
+      "name": "Down",
+      "type": "Number3",
+      "description": "`Down` is a unit vector (vector with a length of 1). It determines which direction is \"down\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    },
+    {
+      "name": "Backward",
+      "type": "Number3",
+      "description": "`Backward` is a unit vector (vector with a length of 1). It determines which direction is \"backward\" for the [This].\n\nSetting it is a way to rotate the [This].\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "AddChild",
+      "argument-sets": [
+        [
+          {
+            "name": "child",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "child",
+            "type": "Object"
+          },
+          {
+            "name": "keepWorld",
+            "type": "boolean"
+          }
+        ]
+      ],
+      "description": "Adds given [Object] as a child.\n\n[Object] extensions like [Shape] or [MutableShape] are naturally accepted too.\n\nBy default, when using AddChild, the child maintains it's [LocalPosition](/reference/object#property-localposition). But since the local position remains the same in the new parent, it means the child's world position may change.\n\nThe `keepWorld` optional parameter, `false` by default, can be used to maintain the child's [Position](/reference/object#property-position) (world position) instead. \n\nIt's also a good practice to set child/parent relationships before setting positions.\n",
+      "samples": [
+        {
+          "code": "local o = Object()\nlocal myShape = Shape(Items.someuser.someitem)\no:AddChild(myShape)\n"
+        }
+      ]
+    },
+    {
+      "name": "RemoveChild",
+      "description": "Unsets parent/child relationship with child parameter. The child ends up being deleted if it has no other references.",
+      "arguments": [
+        {
+          "name": "child",
+          "type": "Object"
+        }
+      ],
+      "samples": [
+        {
+          "code": "o:RemoveChild(someChildObject)\n"
+        }
+      ]
+    },
+    {
+      "name": "RemoveChildren",
+      "description": "Unsets parent/child relationship with all children. Individual children end up being deleted if they have no other references.",
+      "samples": [
+        {
+          "code": "o:RemoveChildren()\n"
+        }
+      ]
+    },
+    {
+      "name": "GetChild",
+      "description": "Get child [Object] at index.",
+      "arguments": [
+        {
+          "name": "index",
+          "type": "integer"
+        }
+      ],
+      "samples": [
+        {
+          "code": "if o.ChildrenCount > 0 then\n  print(o:GetChild(1)) -- prints first child\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "GetParent",
+      "description": "Get [This]'s parent.",
+      "samples": [
+        {
+          "code": "print(myObject:GetParent())\n"
+        }
+      ]
+    },
+    {
+      "name": "SetParent",
+      "description": "Sets parent/child relationship with parent parameter. [nil] can be used to remove the [Object] from its parent.\n\nBy default, when using SetParent, the child maintains it's [LocalPosition](/reference/object#property-localposition). But since the local position remains the same in the new parent, it means the child's world position may change.\n\nThe `keepWorld` optional parameter, `false` by default, can be used to maintain the child's [Position](/reference/object#property-position) (world position) instead. \n\nIt's also a good practice to set child/parent relationships before setting positions.\n",
+      "argument-sets": [
+        [
+          {
+            "name": "parent",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "parent",
+            "type": "Object"
+          },
+          {
+            "name": "keepWorld",
+            "type": "boolean"
+          }
+        ]
+      ],
+      "samples": [
+        {
+          "code": "local o = Object()\no:SetParent(Map) -- o is now a child of the map\n-- (Map is an extension of Object)\n"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFromParent",
+      "description": "Removes the [This] from its parent. Doesn't do anything if the [This] has no parent.",
+      "samples": [
+        {
+          "code": "o:RemoveFromParent()\n"
+        }
+      ]
+    },
+    {
+      "name": "PositionLocalToWorld",
+      "description": "Converts a local position to world coordinate system.",
+      "arguments": [
+        {
+          "name": "p",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local p = Number3(1, 2, 3)\nlocal pInWorldCoords = myObject:PositionLocalToWorld(p)\n"
+        }
+      ]
+    },
+    {
+      "name": "PositionWorldToLocal",
+      "description": "Converts a world position to local coordinate system.",
+      "arguments": [
+        {
+          "name": "p",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local p = Number3(1, 2, 3)\nlocal pInLocalCoords = myObject:PositionWorldToLocal(p)\n"
+        }
+      ]
+    },
+    {
+      "name": "RotateLocal",
+      "description": "Object:RotateLocal(number3) -- euler angles\nObject:RotateLocal(number3, number) -- axis angle",
+      "argument-sets": [
+        [
+          {
+            "name": "angles",
+            "type": "Number3"
+          }
+        ],
+        [
+          {
+            "name": "axis",
+            "type": "Number3"
+          },
+          {
+            "name": "angle",
+            "type": "number"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "RotateWorld",
+      "description": "Object:RotateWorld(number3) -- euler angles\nObject:RotateWorld(number3, number) -- axis angle",
+      "argument-sets": [
+        [
+          {
+            "name": "angles",
+            "type": "Number3"
+          }
+        ],
+        [
+          {
+            "name": "axis",
+            "type": "Number3"
+          },
+          {
+            "name": "angle",
+            "type": "number"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "RotationLocalToWorld",
+      "description": "Converts a local rotation to world coordinate system.",
+      "arguments": [
+        {
+          "name": "p",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "RotationWorldToLocal",
+      "description": "Converts a world rotation to local coordinate system.",
+      "arguments": [
+        {
+          "name": "p",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "TextBubble",
+      "description": "Adds a text bubble at [Object]'s position. For a [Shape] or [Player], the text bubble will appear above its bounding box.\n\nYou may use a duration of `-1` to set a permanent text bubble.\n",
+      "argument-sets": [
+        [
+          {
+            "name": "text",
+            "type": "string"
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "name": "color",
+            "type": "Color"
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "name": "color",
+            "type": "Color"
+          },
+          {
+            "name": "bgColor",
+            "type": "Color"
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          },
+          {
+            "name": "color",
+            "type": "Color"
+          },
+          {
+            "name": "bgColor",
+            "type": "Color"
+          },
+          {
+            "name": "tail",
+            "type": "boolean"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "CollidesWith",
+      "description": "Returns `true` if the two [Object]s may collide with each other.",
+      "arguments": [
+        {
+          "name": "self",
+          "type": "Object"
+        },
+        {
+          "name": "other",
+          "type": "Object"
+        }
+      ],
+      "return": [
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "ApplyForce",
+      "description": "Apply a force to [Object], taking into account its [Mass](/reference/object#property-mass).",
+      "arguments": [
+        {
+          "name": "self",
+          "type": "Object"
+        },
+        {
+          "name": "value",
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "ClearTextBubble",
+      "description": "Instantaneously remove any ongoing text bubble.",
+      "arguments": [
+        {
+          "name": "self",
+          "type": "Object"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Time",
+  "description": "Time represents a ingame time of day.\n",
+  "constructors": [
+    {
+      "description": "Creates a Time object with given hours and minutes.",
+      "arguments": [
+        {
+          "name": "hours",
+          "type": "integer"
+        },
+        {
+          "name": "minutes",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "description": "Creates a Time object with given hours.",
+      "arguments": [
+        {
+          "name": "hours",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "description": "Creates a Time object with given hours, minutes and seconds.",
+      "arguments": [
+        {
+          "name": "hours",
+          "type": "integer"
+        },
+        {
+          "name": "minutes",
+          "type": "integer"
+        },
+        {
+          "name": "seconds",
+          "type": "integer"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local myTime = Time(12, 30)"
+        }
+      ]
+    }
+  ],
+  "built-ins": [
+    {
+      "name": "Current",
+      "type": "Time",
+      "description": "Current ingame day time.\nShortcut to [TimeCycle].[CurrentTime](/reference/timecycle#property-currenttime).\n",
+      "samples": [
+        {
+          "code": "-- sets time to noon for everyone\nTime.Current = Time.Noon\n-- same as:\nCurrentTime.CurrentTime = Time.Noon\n"
+        }
+      ]
+    },
+    {
+      "name": "Dawn",
+      "type": "Time",
+      "description": "Dawn time."
+    },
+    {
+      "name": "Dusk",
+      "type": "Time",
+      "description": "Dusk time."
+    },
+    {
+      "name": "Midnight",
+      "type": "Time",
+      "description": "Midnight time."
+    },
+    {
+      "name": "Noon",
+      "type": "Time",
+      "description": "Noon time."
+    }
+  ],
+  "properties": [
+    {
+      "name": "Hour",
+      "type": "integer",
+      "description": "Hour represents the hour within [Time], in the range [0,23].\n",
+      "samples": [
+        {
+          "code": "local t = Time.Noon\nprint(t.Hours) -- prints \"12\"\n"
+        }
+      ]
+    },
+    {
+      "name": "H",
+      "type": "integer",
+      "description": "`H` is a shortcut to [Hour](/reference/time#property-hour).\n",
+      "samples": [
+        {
+          "code": "local t = Time.Noon\nprint(t.H) -- prints \"12\"\n"
+        }
+      ]
+    },
+    {
+      "name": "Minute",
+      "type": "integer",
+      "description": "Minute represents the minute offset within the hour of [Time], in the range [0,59].\n",
+      "samples": [
+        {
+          "code": "local t = Time(12, 30, 45)\nprint(t.Minute) -- prints \"30\"\n"
+        }
+      ]
+    },
+    {
+      "name": "M",
+      "type": "integer",
+      "description": "`M` is a shortcut to [Minute](/reference/time#property-minute).\n",
+      "samples": [
+        {
+          "code": "local t = Time(12, 30, 45)\nprint(t.M) -- prints \"30\"\n"
+        }
+      ]
+    },
+    {
+      "name": "Second",
+      "type": "integer",
+      "description": "Second represents the second within the minute of [Time], in the range [0,59].\n",
+      "samples": [
+        {
+          "code": "local t = Time(12, 30, 45)\nprint(t.Second) -- prints \"45\"\n"
+        }
+      ]
+    },
+    {
+      "name": "S",
+      "type": "integer",
+      "description": "`S` is a shortcut to [Second](/reference/time#property-second).\n",
+      "samples": [
+        {
+          "code": "local t = Time(12, 30, 45)\nprint(t.S) -- prints \"45\"\n"
+        }
+      ]
+    }
+  ]
+}

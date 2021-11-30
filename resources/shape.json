@@ -1,0 +1,193 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Shape",
+  "extends": "Object",
+  "description": "A [Shape] is an [Object] that carries and displays a set of [Block]s.",
+  "constructors": [
+    {
+      "description": "Creates a Shape with imported [Item].",
+      "arguments": [
+        {
+          "name": "item",
+          "type": "Item"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local myShape = Shape(Items.someuser.someitem)\nmyShape.Position = { Map.Width * 0.5, Map.Height, Map.Depth * 0.5 }\nMap:AddChild(myShape) -- adds created shape in the map\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Pivot",
+      "type": "Number3",
+      "description": "`Pivot` is a point that you set as a way to specify what part of the [Shape] will be used when setting its [Position](/reference/shape#property-position).\n\nA [Shape] rotates around this point. The Pivot point can be outside your shape.\n\n`Pivot` coordinates are local to the [Shape].\n\nAs a convenience, `Pivot` can be set to a [Block], the [Number3] value is then set to represent its center.\n",
+      "samples": [
+        {
+          "code": "-- Anchor at the center of a 3x3x3 shape:\nmyShape.Anchor = {1.5, 1.5, 1.5}\n-- same result:\nmyShape.Anchor = myShape:GetBlock(1,1,1)\n"
+        }
+      ]
+    },
+    {
+      "name": "Depth",
+      "read-only": true,
+      "type": "number",
+      "description": "Returns [This]'s depth, measured in cubes."
+    },
+    {
+      "name": "Height",
+      "read-only": true,
+      "type": "number",
+      "description": "Returns [This]'s height, measured in cubes."
+    },
+    {
+      "name": "Width",
+      "read-only": true,
+      "type": "number",
+      "description": "Returns [This]'s width, measured in cubes."
+    },
+    {
+      "name": "BoundingBox",
+      "read-only": true,
+      "type": "Box",
+      "description": "The BoundingBox represents the bounds of the [This]. It is the limits of the Shape's blocks.\n"
+    },
+    {
+      "name": "Min",
+      "read-only": true,
+      "type": "Number3",
+      "description": "The coordinates of the min limit of the [This]'s BoundingBox.\n"
+    },
+    {
+      "name": "Center",
+      "read-only": true,
+      "type": "Number3",
+      "description": "The coordinates of the center of the [This]'s BoundingBox.\n"
+    },
+    {
+      "name": "Max",
+      "read-only": true,
+      "type": "Number3",
+      "description": "The coordinates of the max limit of the [This]'s BoundingBox.\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "GetBlock",
+      "description": "Gets a [Block] from the [Shape].\nReturned [Block] is read-only because [Shape] is immutable, unlike [MutableShape].\nReturns [nil] if there is no [Block] at those coordinates (i. e. if it's \"air\").\n",
+      "argument-sets": [
+        [
+          {
+            "name": "X",
+            "type": "number"
+          },
+          {
+            "name": "Y",
+            "type": "number"
+          },
+          {
+            "name": "Z",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "coordinates",
+            "type": "Number3"
+          }
+        ]
+      ],
+      "return": [
+        {
+          "type": "Block"
+        }
+      ]
+    },
+    {
+      "name": "BlockToWorld",
+      "description": "Converts Block coordinates to world coordinate system.",
+      "argument-sets": [
+        [
+          {
+            "name": "b",
+            "type": "Block"
+          }
+        ],
+        [
+          {
+            "name": "n",
+            "type": "Number3"
+          }
+        ]
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "BlockToLocal",
+      "description": "Converts Block coordinates to local coordinate system.",
+      "argument-sets": [
+        [
+          {
+            "name": "b",
+            "type": "Block"
+          }
+        ],
+        [
+          {
+            "name": "n",
+            "type": "Number3"
+          }
+        ]
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "WorldToBlock",
+      "description": "Converts world coordinates to Block coordinate system.",
+      "arguments": [
+        {
+          "name": "n",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    },
+    {
+      "name": "LocalToBlock",
+      "description": "Converts local coordinates to Block coordinate system.",
+      "arguments": [
+        {
+          "name": "n",
+          "type": "Number3"
+        }
+      ],
+      "return": [
+        {
+          "type": "Number3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "nil",
+  "basic-type": true,
+  "description": "Nil is a type with a single value, nil.\n",
+  "blocks": [
+    {
+      "text": "Nil is a type with a single value, nil.\n\nA variable has a nil value by default.\n"
+    },
+    {
+      "code": "local a\nprint(a) -- prints: nil\n"
+    },
+    {
+      "code": "local f = function()\n  -- do not return anything\nend\n\nlocal a = f()\n-- nothing returned, a == nil\nprint(a)\n"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Client",
+  "description": "Client is storing variables and running functions on all connected user devices (clients). It contains everything needed for the local simulation.\n\nClient is nil in the [Server] execution context.\n",
+  "functions": [
+    {
+      "name": "OpenChatInput",
+      "description": "Opens the chat input.\n"
+    },
+    {
+      "name": "OpenGameMenu",
+      "description": "Shows the game menu.\n\nFrom there, players can exit or resume the game.\n"
+    }
+  ],
+  "properties": [
+    {
+      "name": "DidReceiveEvent",
+      "type": "function",
+      "description": "This function is triggered when receiving an [Event].\n\nEvents are useful to establish communication between the [Server] and all connected [Player]s.\n",
+      "samples": [
+        {
+          "code": "Client.DidReceiveEvent = function(event)\n  -- do something with the event\n\n  -- respond (if it makes sense in the situation)\n  local response = Event()\n  response.content = \"Here's my response!\"\n  response:SendTo(event.Sender)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action1",
+      "type": "function",
+      "description": "Triggered when pressing action 1 button. (space bar by default with a keyboard)\n",
+      "samples": [
+        {
+          "code": "Client.Action1 = function()\n  print(\"action1\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action1Release",
+      "type": "function",
+      "description": "Triggered when releasing action 1 button. (space bar by default with a keyboard)\n",
+      "samples": [
+        {
+          "code": "Client.Action1Release = function()\n  print(\"action1 released\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action2",
+      "type": "function",
+      "description": "Triggered when pressing action 2 button. (left click by default when using a mouse)\n\n(turned off when [Pointer] is hidden)\n",
+      "samples": [
+        {
+          "code": "Client.Action2 = function()\n  print(\"action2\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action2Release",
+      "type": "function",
+      "description": "Triggered when releasing action 2 button. (left click by default when using a mouse)\n\n(turned off when [Pointer] is hidden)\n",
+      "samples": [
+        {
+          "code": "Client.Action2Release = function()\n  print(\"action2 released\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action3",
+      "type": "function",
+      "description": "Triggered when pressing action 3 button. (right click by default when using a mouse)\n\n(turned off when [Pointer] is hidden)\n",
+      "samples": [
+        {
+          "code": "Client.Action3 = function()\n  print(\"action3\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Action3Release",
+      "type": "function",
+      "description": "Triggered when releasing action 3 button. (left click by default when using a mouse)\n\n(turned off when [Pointer] is hidden)\n",
+      "samples": [
+        {
+          "code": "Client.Action3Release = function()\n  print(\"action3 released\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Camera",
+      "type": "Camera",
+      "description": "See [Camera]."
+    },
+    {
+      "name": "Clouds",
+      "type": "Clouds",
+      "description": "See [Clouds]."
+    },
+    {
+      "name": "DirectionalPad",
+      "type": "function",
+      "description": "Triggered when what we call the \"directional pad\" or \"D-pad\" is activated. \n\nThe D-pad maps to the direction keys when using a keyboard (WASD by default).\n\nWhen using a touch screen, the D-pad is by default represented by the virtual pad that's on the left side of the screen.\n\nThe function receives 2 arguments `x` & `y` to represent 8 possible directions or the idle state:\n\n`0,0 -> IDLE`\n`0,1 -> UP`, `1,0 -> RIGHT`, `0,-1 -> DOWN`, `-1,0 -> LEFT`\n`√2,√2 -> UP/RIGHT`, `√2,-√2 -> DOWN/RIGHT`, `-√2,-√2 -> DOWN/LEFT`, `-√2,√2 -> UP/LEFT`\n\nThe norm (or length) of the (x,y) vector is always `1.0`, or `0.0` when idle.\n",
+      "samples": [
+        {
+          "code": "-- DEFAULT IMPLEMENTATION\n-- (those functions can be redefined)\n\nClient.DirectionalPad = function(x, y)\n    -- storing globals here for AnalogPad\n    -- to update Player.Motion\n    dpadX = x dpadY = y\n    Player.Motion = (Player.Forward * y + Player.Right * x) * 10\nend\n\nClient.AnalogPad = function(dx, dy)\n    Player.LocalRotation.Y = Player.LocalRotation.Y + dx * 0.01\n    Player.LocalRotation.X = Player.LocalRotation.X + -dy * 0.01\n\n    if dpadX ~= nil and dpadY ~= nil then\n        Player.Motion = (Player.Forward * dpadY + Player.Right * dpadX) * 10\n    end\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "DPad",
+      "type": "function",
+      "description": "Shortcut to [DirectionalPad](/reference/client#property-directionalpad).\n"
+    },
+    {
+      "name": "AnalogPad",
+      "type": "function",
+      "description": "Triggered when what we call the \"analog pad\" or \"A-pad\" is activated. \n\nThe A-pad maps to the mouse mouvements when using a mouse.\n\nWhen using a touch screen, the A-pad is activated when moving the finger after a touch down from anywhere outside the [DirectionalPad](/reference/client#property-directionalpad).\n\nThe function receives 2 arguments `dx` & `dy` to represent the delta compared to the previous position. When both `dx` & `dy` are equal to `0.0`, it means the pad is back to idle state.\n\n(turned off when [Pointer] is hidden)\n",
+      "samples": [
+        {
+          "code": "-- DEFAULT IMPLEMENTATION\n-- (those functions can be redefined)\n\nClient.AnalogPad = function(dx, dy)\n    Player.LocalRotation.Y = Player.LocalRotation.Y + dx * 0.01\n    Player.LocalRotation.X = Player.LocalRotation.X + -dy * 0.01\n\n    if dpadX ~= nil and dpadY ~= nil then\n        Player.Motion = (Player.Forward * dpadY + Player.Right * dpadX) * 10\n    end\nend\n\nClient.DirectionalPad = function(x, y)\n    -- storing globals here for AnalogPad\n    -- to update Player.Motion\n    dpadX = x dpadY = y\n    Player.Motion = (Player.Forward * y + Player.Right * x) * 10\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "APad",
+      "coming-soon": true,
+      "type": "function",
+      "description": "Shortcut to [AnalogPad](/reference/client#property-analogpad).\n"
+    },
+    {
+      "name": "Fog",
+      "type": "Fog",
+      "description": "See [Fog]."
+    },
+    {
+      "name": "Inputs",
+      "type": "Inputs",
+      "description": "See [Inputs]."
+    },
+    {
+      "name": "OnChat",
+      "type": "function",
+      "description": "Triggered when a message is submitted through the chat input. Receives the message ([string]) in parameter.\n\nIn the default implementation, messages aren't sent to other connected users.\nBut it's easy to do using [Event] and [Client.DidReceiveEvent](/reference/client#property-didreceiveevent).\n",
+      "samples": [
+        {
+          "code": "-- the default implementation does this:\nClient.OnChat = function(message)\n    print(Player.Username .. \": \" .. message)\n    Player:TextBubble(message, 3, true)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnPlayerJoin",
+      "type": "function",
+      "description": "Triggered when a player joins the game.\n\nIt doens't mean the [Player] has spawned, just that there's a new connection.\n",
+      "samples": [
+        {
+          "code": "Client.OnPlayerJoin = function(player)\n  print(player.Username .. \" joined the game!\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnPlayerLeave",
+      "type": "function",
+      "description": "Triggered when a player leaves the game.\n",
+      "samples": [
+        {
+          "code": "Client.OnPlayerLeave = function(player)\n  print(\"So long \" .. player.Username .. \"!\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnStart",
+      "type": "function",
+      "description": "Triggered when the game starts.\n\nThis is the very first Lua function to be called, a good place to initialize variables.\n",
+      "samples": [
+        {
+          "code": "Client.OnStart = function()\n  -- add local Player to the World and place it above the center of the map\n  World:AddChild(Player)\n  Player.Position = {Map.Width / 2, Map.Height + 10, Map.Depth / 2}\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Player",
+      "type": "Player",
+      "description": "See [Player]."
+    },
+    {
+      "name": "Tick",
+      "type": "function",
+      "description": "Executed ~30 times per second. Provides the elapsed time in seconds as parameter.\n",
+      "samples": [
+        {
+          "code": "-- executed ~30 times per second on each user device\nClient.Tick = function(dt)\n  print(\"elapsed:\", dt, \"seconds\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "UI",
+      "type": "UI",
+      "description": "See [UI]."
+    },
+    {
+      "name": "Pointer",
+      "type": "Pointer",
+      "description": "See [Pointer]."
+    },
+    {
+      "name": "WillOpenGameMenu",
+      "type": "function",
+      "description": "This function is triggered when the user is about to open the menu that offers to resume or leave the experience.\n",
+      "samples": [
+        {
+          "code": "Client.WillOpenGameMenu = function()\n  -- possible things to do:\n  -- - save user data\n  -- - inform other users\n  -- - if in a chat experience, set status as \"away from keyboard\" or something\nend\n"
+        }
+      ]
+    }
+  ]
+}

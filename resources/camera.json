@@ -1,0 +1,334 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Camera",
+  "extends": "Object",
+  "description": "Camera is a shortcut to [Client].[Camera].\n\nControls camera movement and position.\n\nAll camera modes listed on this page are implemented in Lua, it's totally possible to implement custom ones.\n",
+  "properties": [
+    {
+      "name": "ChildrenCount",
+      "hide": true
+    },
+    {
+      "name": "LocalScale",
+      "hide": true
+    },
+    {
+      "name": "Physics",
+      "hide": true
+    },
+    {
+      "name": "Velocity",
+      "hide": true
+    },
+    {
+      "name": "Motion",
+      "hide": true
+    },
+    {
+      "name": "FieldOfView",
+      "type": "number",
+      "description": "Can be set to change Camera's vertical field of view.\n\nThe default value is 60 degrees.\n",
+      "samples": [
+        {
+          "code": "Camera.FieldOfView = 40.0\n"
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "AddChild",
+      "hide": true
+    },
+    {
+      "name": "GetChild",
+      "hide": true
+    },
+    {
+      "name": "PositionLocalToWorld",
+      "hide": true
+    },
+    {
+      "name": "PositionWorldToLocal",
+      "hide": true
+    },
+    {
+      "name": "RemoveChild",
+      "hide": true
+    },
+    {
+      "name": "RemoveChildren",
+      "hide": true
+    },
+    {
+      "name": "RemoveFromParent",
+      "hide": true
+    },
+    {
+      "name": "RotationLocalToWorld",
+      "hide": true
+    },
+    {
+      "name": "RotationWorldToLocal",
+      "hide": true
+    },
+    {
+      "name": "SetParent",
+      "hide": true
+    },
+    {
+      "name": "ClearTextBubble",
+      "hide": true
+    },
+    {
+      "name": "TextBubble",
+      "hide": true
+    },
+    {
+      "name": "Show",
+      "arguments": [
+        {
+          "name": "o",
+          "type": "Object"
+        }
+      ],
+      "description": "Shows an object that's been hidden to the local camera with [Camera:Hide](/reference/camera#functions-hide)\n"
+    },
+    {
+      "name": "Hide",
+      "arguments": [
+        {
+          "name": "o",
+          "type": "Object"
+        }
+      ],
+      "description": "Hides an object for the local camera only. Other players will still be able to see it if `object.IsHidden` remains `false`.\n\nIt's usefull when implementing a first person camera for example, to hide local player's body parts.\n"
+    },
+    {
+      "name": "CastRay",
+      "argument-sets": [
+        null,
+        [
+          {
+            "name": "filterIn",
+            "type": "CollisionGroups"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "Shape"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "nil"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "CollisionGroups"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "filterIn",
+            "type": "Shape"
+          },
+          {
+            "name": "filterOut",
+            "type": "Object"
+          }
+        ]
+      ],
+      "return": [
+        {
+          "type": "Impact"
+        }
+      ],
+      "description": "Casts a ray and returns an [Impact] (can be [nil]).\n\nThe [Impact] contains information about the kind of thing that's been hit.\n\n💡 Calls [Ray].[Cast](/reference/ray#functions-cast) under the hood. See [Ray].[Cast](/reference/ray#functions-cast) definition for more details about possible filters.\n",
+      "samples": [
+        {
+          "code": "local impact = Camera:CastRay()\nif impact.Block ~= nil then\n  print(\"block hit:\", impact.Block)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "SetModeFirstPerson",
+      "argument-sets": [
+        null,
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          },
+          {
+            "name": "offset",
+            "type": "Number3"
+          }
+        ]
+      ],
+      "description": "Puts Camera in \"first person\" mode. Looking at the world from `target`'s perspective.\n\nWhen calling `SetModeFirstPerson` without parameters, the target defaults to [Player] (local player).\n\nWhen `offset` is set to an [number], the offset is set on the vertical axis only, (`Number3(0, offset, 0)`)\n",
+      "samples": [
+        {
+          "code": "Camera:SetModeFirstPerson(Player, 3.0)\n"
+        }
+      ]
+    },
+    {
+      "name": "SetModeThirdPerson",
+      "argument-sets": [
+        null,
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          },
+          {
+            "name": "minDist",
+            "type": "number"
+          },
+          {
+            "name": "maxDist",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          },
+          {
+            "name": "minDist",
+            "type": "number"
+          },
+          {
+            "name": "maxDist",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "type": "Number3"
+          }
+        ]
+      ],
+      "description": "Puts Camera in \"third person\" mode. (looking at Camera's target, from a behind-the-shoulder perspective)\n\nWhen calling `SetModeThirdPerson` without parameters, the target defaults to [Player] (local player).\n\nBy default, the Camera is placed beind its target. But it's then possible to change its [LocalRotation](#property-localrotation) to look at the target from a different angle.\n\n`minDist`, `maxDist` and `offset` settings are optional but can be provided to tweak positioning.\n",
+      "samples": [
+        {
+          "code": "Camera:SetModeThirdPerson()\n\nCamera:SetModeThirdPerson(someShape)\n"
+        }
+      ]
+    },
+    {
+      "name": "SetModeSatellite",
+      "argument-sets": [
+        null,
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Number3"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Object"
+          },
+          {
+            "name": "distance",
+            "type": "number"
+          }
+        ],
+        [
+          {
+            "name": "target",
+            "type": "Number3"
+          },
+          {
+            "name": "distance",
+            "type": "number"
+          }
+        ]
+      ],
+      "description": "When in that mode, the camera rotates around its target, maintaining its distance from it.\n\nWhen calling `SetModeSatellite` without parameters, the target defaults the current position of the camera.\n\n`SetModeSatellite` can be called several time to update the `distance`.\n\nOnce the \"satellite mode\" is set, [Camera.LocalRotation](#property-localrotation) can be used to rotate around the target.\n",
+      "samples": [
+        {
+          "code": "Camera:SetModeSatellite(Player, 10.0)\n"
+        }
+      ]
+    },
+    {
+      "name": "FitToScreen",
+      "description": "Fits the target to the screen.\n\n`screenRatio` indicates the percentage of the screen that should be covered by the target.\n\nWhen `spherize` is `true`, a sphere that contains the target is used to place the camera.\n",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "Shape"
+        },
+        {
+          "name": "screenRatio",
+          "type": "number"
+        },
+        {
+          "name": "spherize",
+          "type": "boolean"
+        }
+      ],
+      "samples": [
+        {
+          "code": "local myShape = Shape(R.usename.myShape)\nMap:AddChild(myShape)\nCamera:FitToScreen(myShape, 0.6, false)\n-- the shape now covers 60% of the screen\n"
+        }
+      ]
+    }
+  ]
+}

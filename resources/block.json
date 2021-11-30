@@ -1,0 +1,173 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Block",
+  "description": "A `Block` represents one block in a [Shape] or [MutableShape] (like the [Map]).\n\nA `Block` can be built with one of the [constructors](/reference/block#constructors), but it can also be obtained from a [Shape] or [MutableShape] with [Shape.GetBlock](/reference/shape#functions-getblock) or [MutableShape.GetBlock](/reference/mutableshape#functions-getblock).\n\n⚠️ A `Block` obtained from an immutable object (like [Shape]) is in fact `read-only`, none of its properties can be set in that case.\n",
+  "constructors": [
+    {
+      "description": "Creates a `Block` with `{0,0,0}` coordinates. ([Block.Position](#property-position))\n\n[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).\n",
+      "arguments": [
+        {
+          "name": "paletteIndex",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "description": "Creates a `Block` with `{x,y,z}` coordinates. ([Block.Position](#property-position))\n\n[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).\n",
+      "arguments": [
+        {
+          "name": "paletteIndex",
+          "type": "integer"
+        },
+        {
+          "name": "x",
+          "type": "number"
+        },
+        {
+          "name": "y",
+          "type": "number"
+        },
+        {
+          "name": "z",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "description": "Creates a `Block` with `position` coordinates. ([Block.Position](#property-position))\n\n[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).\n",
+      "arguments": [
+        {
+          "name": "paletteIndex",
+          "type": "integer"
+        },
+        {
+          "name": "position",
+          "type": "Number3"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "PaletteIndex",
+      "type": "integer",
+      "description": "Block's palette index. (first index is `1`)\n\n⚠️ [Block.Properties](#property-properties) remains [nil] if the block does not belong to a [Shape] or [MutableShape] (instances owning a [Palette]).\n",
+      "samples": [
+        {
+          "code": "local b = someMutableShape:GetBlock(1, 2, 3)\nif b ~= nil then\n  -- changes block's properties\n  -- using different palette index\n  b.PaletteIndex = 10 \nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Coordinates",
+      "read-only": true,
+      "type": "Number3",
+      "description": "Block's coordinates in [Shape] or [MutableShape].\n",
+      "samples": [
+        {
+          "code": "local b = someShape:GetBlock(1, 2, 3)\nif b ~= nil then\n  print(b.Coordinates) -- prints \"[Number3 X: 1 Y: 2 Z: 3]\"\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Coords",
+      "read-only": true,
+      "type": "Number3",
+      "description": "Shortcut to [Coordinates](/reference/block#property-coordinates).\n"
+    },
+    {
+      "name": "Position",
+      "read-only": true,
+      "type": "Number3",
+      "description": "Position of [Block]'s negative X-Y-Z corner in world coordinates.\n",
+      "samples": [
+        {
+          "code": "local b = someShape:GetBlock(1, 2, 3)\nif b ~= nil then\n  print(b.Position)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Pos",
+      "read-only": true,
+      "type": "Number3",
+      "description": "Shortcut to [Position](/reference/block#property-position).\n"
+    },
+    {
+      "name": "LocalPosition",
+      "read-only": true,
+      "type": "Number3",
+      "description": "Position of [Block]'s center in local coordinates (local to parent [Shape] or [MutableShape])\n",
+      "samples": [
+        {
+          "code": "local b = someShape:GetBlock(1, 2, 3)\nif b ~= nil then\n  print(b.LocalPosition)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "read-only": true,
+      "type": "BlockProperties",
+      "description": "Returns Block's [BlockProperties].\n\n[nil] if the [Block] does not belong to a [Shape] or [MutableShape].\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "AddNeighbor",
+      "description": "Adds a [Block], adjacent to the face passed as parameter.\n\nReturns created [Block] (or [nil] if it fails).\n\n⚠️ Won't work with `read-only` Blocks.\n",
+      "arguments": [
+        {
+          "name": "block",
+          "type": "Block"
+        },
+        {
+          "name": "face",
+          "type": "Face"
+        }
+      ],
+      "return": [
+        {
+          "type": "Block"
+        }
+      ],
+      "samples": [
+        {
+          "code": "-- add block when Action2 is triggered\nClient.Action2 = function()\n  -- cast a ray, see if it touches a block\n  local impact = Player:CastRay()\n  if impact.Block ~= nil then\n    -- add block, adjacent to the face that's been touched\n    impact.Block:AddNeighbor(Block(1), impact.FaceTouched)\n  end\nend\n",
+          "media": "/media/block-add-neighbor.mp4"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "description": "Removes the `Block` from its parent [MutableShape].\n\n⚠️ Won't work with `read-only` Blocks.\n",
+      "samples": [
+        {
+          "code": "-- remove block when Action2 is triggered\nClient.Action2 = function()\n  -- cast a ray, see if it touches a block\n  local impact = Player:CastRay()\n  -- won't do anything if impact.Block is nil\n  impact.Block:Remove()\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Replace",
+      "blocks": null,
+      "description": "Replaces the `Block` with the one passed as parameter. The position remains the same, [Block.PaletteIndex](#property-paletteindex) is the only property being set.\n\n`block:Replace(otherBlock)` actually has the same effect as `block.PaletteIndex = otherBlock.PaletteIndex`\n\n⚠️ Won't work with `read-only` Blocks.\n",
+      "arguments": [
+        {
+          "name": "block",
+          "type": "Block"
+        }
+      ],
+      "samples": [
+        {
+          "code": "-- replace block when Action2 is triggered\nClient.Action2 = function()\n  -- cast a ray, see if it touches a block\n  local impact = Player:CastRay()\n  -- won't do anything if impact.Block is nil\n  impact.Block:Replace(Block(1)) -- make it a block with PaletteIndex == 1\nend\n"
+        }
+      ]
+    }
+  ]
+}

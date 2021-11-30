@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "yaml2json ./particubes/lua-docs/content/reference --pretty --save --recursive",
+    "move": "mv ./particubes/lua-docs/content/reference/*.json ./reference",
+    "up": "git stash && git pull --rebase --recurse-submodules && git stash pop"
+  },
+  "dependencies": {
+    "yamljs": "^0.3.0"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "number",
+  "basic-type": true,
+  "description": "A number is a basic Lua type, it represents real numbers.\n",
+  "blocks": [
+    {
+      "text": "A number is a basic Lua type, it represents real numbers.\n"
+    },
+    {
+      "code": "local a = 10\nlocal b = 10\nlocal c = a + b\n\nprint(c) -- prints 20\n"
+    },
+    {
+      "code": "local a = 10\nlocal b = 1.5\nlocal c = a * b\n\nprint(c) -- prints 15.0\n"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Dev",
+  "description": "Dev contains handy functions and attributes for developers.",
+  "blocks": [
+    {
+      "text": "Dev contains handy functions and attributes for developers.\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "SetGameThumbnail",
+      "description": "Takes a screenshot and sets it as a thumbnail for the game.\n",
+      "samples": [
+        {
+          "code": "Client.Action3 = function()\n    Dev:SetGameThumbnail()\nend\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "DisplayBoxes",
+      "type": "boolean",
+      "description": "Displays [Shape]s' bounding boxes when set to `true`. (`false` by default)\n"
+    },
+    {
+      "name": "DisplayColliders",
+      "type": "boolean",
+      "description": "Displays collision boxes when set to `true`. (`false` by default)\n"
+    }
+  ]
+}

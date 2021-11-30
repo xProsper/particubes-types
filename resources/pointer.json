@@ -1,0 +1,113 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Pointer",
+  "description": "Pointer is a shortcut to [Client].[Pointer].\n\nPointer allows to catch user pointer events. Mouse events or touch events depending on the device.\n\nThe goal is to create an abstraction for world inputs to work on any platform. A world that's been developped on PC should work great on mobile, and the developer shouldn't have to worry about this.\n",
+  "blocks": [
+    {
+      "text": "Pointer is a shortcut to [Client].[Pointer].\n\nPointer allows to catch user pointer events. Mouse events or touch events depending on the device.\n\nThe goal is to create an abstraction for world inputs to work on any platform. A world that's been developped on PC should work great on mobile, and the developer shouldn't have to worry about this. \n\nSo even if there's no such thing as a visual pointer on a touch screen, we do consider 2 modes: `pointer shown` and `pointer hidden`.\n"
+    },
+    {
+      "subtitle": "Pointer shown"
+    },
+    {
+      "text": "Switching to that mode when calling [Pointer:Show()](/reference/pointer#functions-show).\n\nWhen the pointer is shown, users can activate UI buttons.\n\n[Pointer.Down](/reference/pointer#property-down) and [Pointer.Up](/reference/pointer#property-up) functions are called on left clicks or one finger touches (when the action is not cached by a button or other UI input first).\n\n[Pointer.Drag](/reference/pointer#property-drag) is called when moving the mouse or finger between `down` and `up` events.\n\n[Pointer.Drag2](/reference/pointer#property-drag) is called when moving the mouse while pressing right click, or moving on a touch screen with 2 fingers down. (we don't support right click up/down events because we can't get the same level of precision on a touch screen)\n\n[Pointer.Zoom](/reference/pointer#property-drag) is called scrolling with the mouse wheel or pinching in/out with 2 fingers.\n\nSome actions are disabled when the pointer is shown (like [Client.AnalogPad](/reference/client#property-analogpad), [Client.Action2](/reference/client#property-action2), [Client.Action2Release](/reference/client#property-action2release), [Client.Action3](/reference/client#property-action3), [Client.Action3Release](/reference/client#property-action3release))\n\nBut [Client.DirectionalPad](/reference/client#property-directionalpad), [Client.Action1](/reference/client#property-action1) & [Client.Action1](/reference/client#property-action1release) remain available.\n"
+    },
+    {
+      "subtitle": "Pointer hidden"
+    },
+    {
+      "text": "Switching to that mode when calling [Pointer:Hide()](/reference/pointer#functions-hide).\n\nWhen the pointer is hidden, you can't select things in the 3D scene with the mouse cursor or fingers. But you other actions are available:\n\n[Client.DirectionalPad](/reference/client#property-directionalpad) is called when activating directional keys (WASD keys on a QWERTY keyboard by default) or the directional pad on touch screens (available in both modes).\n\n[Client.AnalogPad](/reference/client#property-analogpad) is called when moving the mouse or moving on a touch screen with one finger down. It's often used to control the camera.\n\nAll 3 action buttons are available: [Client.Action1](/reference/client#property-action1), [Client.Action1Release](/reference/client#property-action1release), [Client.Action2](/reference/client#property-action2), [Client.Action2Release](/reference/client#property-action2release), [Client.Action3](/reference/client#property-action3), [Client.Action3Release](/reference/client#property-action3release)\n"
+    }
+  ],
+  "functions": [
+    {
+      "name": "Show",
+      "description": "[Pointer] callbacks start being triggered on mouse and touch events.\n\nUser interface elements such as [Button]s become active.\n",
+      "samples": [
+        {
+          "code": "Pointer:Show()\n"
+        }
+      ]
+    },
+    {
+      "name": "Hide",
+      "description": "Virtual game pads appear on touch screens. \n\nDirection keys and gamepad start triggering [Client.DirectionDidChange](/reference/client#property-directiondidchange) \n\nThe pointer is hidden by default.\n",
+      "samples": [
+        {
+          "code": "Pointer:Hide()\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Down",
+      "type": "function",
+      "description": "Triggered when pressing the pointer. (left click or one finger touch down)",
+      "samples": [
+        {
+          "code": "Pointer.Down = function( pointerEvent )\n  \nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Drag",
+      "type": "function",
+      "description": "Triggered when the pointer is dragged (moved while down).",
+      "samples": [
+        {
+          "code": "Pointer.Drag = function( pointerEvent )\n    print(pointerEvent.DX, pointerEvent.DY)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Drag2",
+      "type": "function",
+      "description": "Triggered when the pointer is moved with right mouse button or 2 touch fingers down.",
+      "samples": [
+        {
+          "code": "Pointer.Drag2 = function( pointerEvent )\n    print(pointerEvent.DX, pointerEvent.DY)\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Up",
+      "type": "function",
+      "description": "Triggered when the pointer is released.",
+      "samples": [
+        {
+          "code": "Pointer.Up = function( pointerEvent )\n\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Zoom",
+      "type": "function",
+      "description": "Triggered when scrolling with mouse or pinching in/out with 2 fingers.",
+      "samples": [
+        {
+          "code": "Pointer.Zoom = function( pointerEvent )\n\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "IsHidden",
+      "type": "boolean",
+      "read-only": true,
+      "description": "True if the [Pointer] is hidden, false otherwise.\n",
+      "samples": [
+        {
+          "code": "Pointer:Show()\nprint(Pointer.IsHidden) -- false\nPointer:Hide()\nprint(Pointer.IsHidden) -- true\n"
+        }
+      ]
+    }
+  ]
+}

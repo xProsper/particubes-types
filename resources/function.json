@@ -1,0 +1,34 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "function",
+  "basic-type": true,
+  "description": "A function is a basic Lua type. A function is a module of code that accomplishes a specific task.\n",
+  "blocks": [
+    {
+      "text": "A function is a basic Lua type. A function is a module of code that accomplishes a specific task."
+    },
+    {
+      "code": "Client.Action1 = function()\n  -- everything in this function is executed when action 1 is triggered\n  if Player.IsOnGround then\n    Player.Velocity.Y = 30\n  end\nend\n"
+    },
+    {
+      "text": "A function can return one or several values:"
+    },
+    {
+      "code": "-- a function that returns one value\nlocal f1 = function()\n  return \"hello\"\nend\n\n-- call f1\nlocal value = f1()\nprint(value) -- prints \"hello\"\n\n-- a function that returns two values\nlocal f2 = function()\n  return \"hello\", \"world\"\nend\n\n-- call f2\nlocal v1, v2 = f2()\nprint(v1 .. \" \" .. v2) -- prints \"hello world\"\n"
+    },
+    {
+      "text": "A function can take parameters:"
+    },
+    {
+      "code": "-- a function that takes 1 argument\nlocal f3 = function(message)\n  print(message)\nend\n\n-- call f3\nf3(\"hello world\") -- prints \"hello world\"\n\n-- a function that takes 2 arguments\nlocal f4 = function(message, count)\n  local str = \"\"\n  for i = 1, count do\n    str = str .. message .. \" \"\n  end\n  print(str)\nend\n\n-- call f4\nf4(\"hello\", 2) -- prints \"hello hello \"\n"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Label",
+  "description": "Label is a shortcut to [Client].[UI].[Label].\n\nAllows adding text on the interface.\n\nLabels are automatically displayed on the screen upon creation.\n",
+  "constructors": [
+    {
+      "description": "Creates a Label with optional parameters:\n- `text` displayed text\n- `horizontal_anchor` possible values: `Anchor.Left`, `Anchor.HCenter`, `Anchor.Right` (defaut)\n- `vertical_anchor` possible values: `Anchor.Top` (defaut), `Anchor.VCenter`, `Anchor.Bottom`\n",
+      "arguments": [
+        {
+          "name": "text",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hAnchor",
+          "type": "Anchor",
+          "optional": true
+        },
+        {
+          "name": "vAnchor",
+          "type": "Anchor",
+          "optional": true
+        }
+      ],
+      "samples": [
+        {
+          "code": "local myLabel = Label(\"❤❤❤\")"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Text",
+      "type": "string",
+      "description": "Text that's being displayed by the Label.",
+      "samples": [
+        {
+          "code": "-- update displayed text\nmyLabel.Text = \"❤❤\"\n"
+        }
+      ]
+    },
+    {
+      "name": "TextColor",
+      "type": "Color",
+      "description": "Label's text color.",
+      "samples": [
+        {
+          "code": "myLabel.TextColor = Color(255, 0, 0)\n"
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "Remove",
+      "description": "Removes the Label.",
+      "samples": [
+        {
+          "code": "myLabel:Remove()"
+        }
+      ]
+    },
+    {
+      "name": "Add",
+      "description": "Displays a label that has been removed.\nBy default, original anchors are kepts, but it's possible to supply new ones.\n\nCalling `Add` for a label that's already displayed has no effect.\n",
+      "arguments": [
+        {
+          "name": "hAnchor",
+          "type": "Anchor",
+          "optional": true
+        },
+        {
+          "name": "vAnchor",
+          "type": "Anchor",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}

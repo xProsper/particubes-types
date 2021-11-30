@@ -1,0 +1,124 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "Button",
+  "description": "Buttons are user interface elements allowing users to take actions.\n\nButton is a shortcut to [Client].[UI].[Button].\n\nButtons are automatically displayed on the screen upon creation.\n",
+  "constructors": [
+    {
+      "description": "Creates a Button with optional parameters:\n- `text` displayed text\n- `horizontal_anchor` possible values: `Anchor.Left`, `Anchor.HCenter`, `Anchor.Right` (defaut)\n- `vertical_anchor` possible values: `Anchor.Top` (defaut), `Anchor.VCenter`, `Anchor.Bottom`\n",
+      "arguments": [
+        {
+          "name": "text",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hAnchor",
+          "type": "Anchor",
+          "optional": true
+        },
+        {
+          "name": "vAnchor",
+          "type": "Anchor",
+          "optional": true
+        }
+      ],
+      "samples": [
+        {
+          "code": "-- adds a button at top right of the screen\nlocal btn1 = Button(\"I'm a button\")\n-- adds a button at the center of the screen\nlocal btn2 = Button(\"I'm a button\", Anchor.HCenter, Anchor.VCenter)\n"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "Color",
+      "type": "Color",
+      "description": "Button's color.",
+      "samples": [
+        {
+          "code": "-- set button color\nlocal btn = Button(\"test button\")\nbtn.Color = Color(255, 0, 0) -- make it red\n"
+        }
+      ]
+    },
+    {
+      "name": "OnPress",
+      "type": "function",
+      "description": "Function triggered when pressing the button.",
+      "samples": [
+        {
+          "code": "-- set button's press callback\nlocal btn = Button(\"test button\")\nbtn.OnPress = function()\n  print(\"button pressed\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "OnRelease",
+      "type": "function",
+      "description": "Function triggered when releasing the button.",
+      "samples": [
+        {
+          "code": "-- set button's release callback\nlocal btn = Button(\"test button\")\nbtn.OnRelease = function()\n  print(\"button released\")\nend\n"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "string",
+      "description": "Text being displayed by the Button.",
+      "samples": [
+        {
+          "code": "-- update displayed text\nlocal btn = Button()\nbtn.Text = \"test button\"\n"
+        }
+      ]
+    },
+    {
+      "name": "TextColor",
+      "type": "Color",
+      "description": "Button's text color.",
+      "samples": [
+        {
+          "code": "-- set button text color\nlocal btn = Button()\nbtn.TextColor = Color(100, 0, 0)\n"
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "Remove",
+      "description": "Removes the Button.",
+      "samples": [
+        {
+          "code": "-- removes button from screen\nbtn:Remove()\n"
+        }
+      ]
+    },
+    {
+      "name": "Add",
+      "description": "Displays a button that has been removed.\nBy default, original anchors are kepts, but it's possible to supply new ones.\n\nCalling `Add` for a button that's already displayed has no effect.\n",
+      "arguments": [
+        {
+          "name": "hAnchor",
+          "type": "Anchor",
+          "optional": true
+        },
+        {
+          "name": "vAnchor",
+          "type": "Anchor",
+          "optional": true
+        }
+      ],
+      "samples": [
+        {
+          "code": "myButton = Button(\"do something\")\n-- by default, the button is displayed upon creation\n-- let's remove it:\nmyButton:Remove()\n-- we can add it back with different anchors: \nbtn:Add(Anchor.Center, Anchor.Bottom)\n"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "keywords": [
+    "particubes",
+    "game",
+    "mobile",
+    "scripting",
+    "cube",
+    "voxel",
+    "world"
+  ],
+  "type": "BlockProperties",
+  "creatable": true,
+  "description": "`BlockProperties` describes possible properties for a [Block].\n\nIn most cases, [BlockProperties] are `read-only`.\n\nExcept entries in [Config.MapPaletteOverrides](/reference/config#property-mappaletteoverrides), to override map block properties for a game.\n\n[BlockProperties] in [Map.LocalPalette](/reference/map#property-localpalette) can also be set at any time as long as the block is opaque and not light emissive.\n",
+  "properties": [
+    {
+      "name": "Color",
+      "type": "Color",
+      "description": "[Block]'s color.\n"
+    },
+    {
+      "name": "Light",
+      "type": "boolean",
+      "description": "Indicates if the [Block] is light emissive. Light color is tight to the color of the [Block]."
+    },
+    {
+      "name": "ID",
+      "type": "number",
+      "description": "BlockProperties' index in the [Palette] or [array] it belongs to."
+    }
+  ]
+}
