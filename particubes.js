@@ -1,12 +1,61 @@
 import { readdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 
-const getTypeTemplate = r =>`declare namespace ${r.type} {
+const getTypeTemplate = ({
+  description: d,
+  type: t,
+  constructors: c,
+  builtIns: b
+}) => 
+[
+d ?
+`
+/**
+${d}
+*/
+` : ``
+,
+t ? `declare namespace ${t} {`: ``
+,
+c ? c.map(({ description, arguments: args }) => [
+description ? `
+/**
+${description}
+*/
+` : ``
+,
+args ? `const constructor = (` : ``
+,
+args ? args.map(({name, type}, index) => [
+name && type && index > 0 ? `, ` : ``
+,
+name && type ? `${name}: ${type}` : ``
+].join("")).join("") : ``
+,
+args ? `) => ${t};
+` : ``
+].join("")).join("") : ``
+,
+b ? b.map(({ name, type, readOnly, description }) => [
+description ? `
+/**
+${description}
+*/
+` : ``
+,
+readOnly ? `readonly ` : ``
+,
+name ? `const ${name}: ` : ``
+,
+type ? `${type};
+` : ``
+].join("")).join("") : ``
+,
+t ? `}` : ``
+].join("\n");
 
-}`;
 
-const getIndexTemplate = r => `
-${getModules(r).join("\n")}
+const getIndexTemplate = r => `${getModules(r).join("\n")}
 `;
 
 const getModules = ({ blocks }) => blocks
@@ -16,7 +65,9 @@ const getModules = ({ blocks }) => blocks
 readdirSync("./resources").forEach(file => {
   const r = JSON
     .parse(readFileSync(path.join("./resources", file), "utf8")
-    .replace(/built-ins/gi, "builtIns"));
+    .replace(/built-ins/gi, "builtIns")
+    .replace(/read-only/gi, "readOnly")
+    .replace(/"type": "integer"/gi, `"type": "number"`));
 
   const typeTemplate = getTypeTemplate(r);
 
