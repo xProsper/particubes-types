@@ -127,7 +127,8 @@ if impact ~= nil then
 end
 
 */
-CastRay(): Impact;
+Impact;
+CastRay(): void;
 CastRay (filterIn: CollisionGroups): Impact;
 CastRay (filterIn: Shape): Impact;
 CastRay (filterIn: nil, filterOut: Object): Impact;

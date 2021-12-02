@@ -11,7 +11,7 @@ All camera modes listed on this page are implemented in Lua, it's totally possib
 declare interface Camera {
 
 
-ChildrenCount: LocalScale: Physics: Velocity: Motion: 
+
 /**
 Can be set to change Camera's vertical field of view.
 
@@ -60,7 +60,8 @@ if impact.Block ~= nil then
 end
 
 */
-CastRay(): Impact;
+Impact;
+CastRay(): void;
 CastRay (filterIn: CollisionGroups): Impact;
 CastRay (filterIn: Shape): Impact;
 CastRay (filterIn: nil, filterOut: Object): Impact;
@@ -81,7 +82,8 @@ Camera:SetModeFirstPerson(Player, 3.0)
 
 
 */
-SetModeFirstPerson(): SetModeFirstPerson (target: Object): void;
+SetModeFirstPerson(): void;
+SetModeFirstPerson (target: Object): void;
 SetModeFirstPerson (target: Object, offset: number): void;
 SetModeFirstPerson (target: Object, offset: Number3): void;
 
@@ -103,7 +105,8 @@ Camera:SetModeThirdPerson()
 Camera:SetModeThirdPerson(someShape)
 
 */
-SetModeThirdPerson(): SetModeThirdPerson (target: Object): void;
+SetModeThirdPerson(): void;
+SetModeThirdPerson (target: Object): void;
 SetModeThirdPerson (target: Object, minDist: number, maxDist: number, offset: number): void;
 SetModeThirdPerson (target: Object, minDist: number, maxDist: number, offset: Number3): void;
 
@@ -123,7 +126,8 @@ Camera:SetModeSatellite(Player, 10.0)
 
 
 */
-SetModeSatellite(): SetModeSatellite (target: Object): void;
+SetModeSatellite(): void;
+SetModeSatellite (target: Object): void;
 SetModeSatellite (target: Number3): void;
 SetModeSatellite (target: Object, distance: number): void;
 SetModeSatellite (target: Number3, distance: number): void;

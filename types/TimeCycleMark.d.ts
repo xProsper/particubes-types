@@ -22,13 +22,6 @@ constructor: (time: Time) => TimeCycleMark;
 
 
 /**
-Mark's name.
-
-
-*/
-Name: string;
-
-/**
 Mark's sky [Color].
 
 

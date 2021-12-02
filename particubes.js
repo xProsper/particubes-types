@@ -73,7 +73,7 @@ type ? `${type};
 ].join("")).join("") : ``
 ,
 // properties
-p ? p.map(({ name, type, description, samples }) => [
+p ? p.map(({ name, type, description, samples, hide }) => !hide ? [
 description ? `
 /**
 ${description}
@@ -96,10 +96,10 @@ name ? `${name}: ` : ``
 ,
 type ? `${type};
 ` : ``
-].join("")).join("") : ``
+].join("") : ``).join("") : ``
 ,
 // functions
-f ? f.map(({ name, return: returns, arguments: args, description, samples }) => [
+f ? f.map(({ name, return: returns, arguments: args, description, samples, hide }) => !hide ? [
 description ? `
 /**
 ${description}
@@ -122,9 +122,10 @@ description ? `
 ,
 !args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
 ,
-args && args.some(arg => arg === null) ? `${name}(): ` : ``
-,
 args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type};
+` : ``
+,
+args && args.some(arg => arg === null) ? `${name}(): void;
 ` : ``
 ,
 args ? args.filter((arg => arg !== null)).map((argSet, index, arr) => 
@@ -159,7 +160,7 @@ returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
 `;
 `
 ].join("")).join("") : ``
-].join("")).join("") : ``
+].join("") : ``).join("") : ``
 ,
 t ? `}
 
@@ -176,7 +177,8 @@ const getIndexTemplate = r => `${getModules(r).join("\n")}
 
 const getModules = ({ blocks }) => blocks
   .filter(block => Object.keys(block).includes("list"))[0]
-  .list.map(item => `/// <reference path="./${item.replace(/<[^>]+>/gi, "")}.d.ts" />`);
+  // .list.map(item => `/// <reference path="./${item.replace(/<[^>]+>/gi, "")}.d.ts" />`);
+  .list.map(item => `export * from "./types/${item.replace(/<[^>]+>/gi, "")}.d.ts";`);
 
 readdirSync("./resources").forEach(file => {
   const r = JSON
@@ -189,7 +191,7 @@ readdirSync("./resources").forEach(file => {
 
   const typeTemplate = getTypeTemplate(r);
   if (!r.type) {
-    writeFileSync(`./types/index.d.ts`, getIndexTemplate(r));
+    writeFileSync(`./index.d.ts`, getIndexTemplate(r));
   } else {
     if (r.type.substring(0, 1) === r.type.substring(0, 1).toUpperCase())
       writeFileSync(`./types/${r.type}.d.ts`, typeTemplate);

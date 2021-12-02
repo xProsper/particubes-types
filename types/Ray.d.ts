@@ -79,7 +79,8 @@ Client.Action3 = function()
 end
 
 */
-Cast(): Impact;
+Impact;
+Cast(): void;
 Cast (filterIn: CollisionGroups): Impact;
 Cast (filterIn: Shape): Impact;
 Cast (filterIn: nil, filterOut: Object): Impact;
