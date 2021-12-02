@@ -79,7 +79,11 @@ Pointer.Down = function( pointerEvent )
 end
 
 */
-const CastRay = () => PointerEvent;
-const CastRay = (filterIn: CollisionGroups, filterIn: Shape, filterIn: nil, filterOut: Object, filterIn: CollisionGroups, filterOut: Object, filterIn: Shape, filterOut: Object) => Impact;
+const CastRay = (): Impact => {};
+const CastRay = (filterIn: CollisionGroups): Impact => {};
+const CastRay = (filterIn: Shape): Impact => {};
+const CastRay = (filterIn: nil, filterOut: Object): Impact => {};
+const CastRay = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
+const CastRay = (filterIn: Shape, filterOut: Object): Impact => {};
 
 }

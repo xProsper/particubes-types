@@ -57,7 +57,10 @@ store:Set("currentChallenge", "halloween", "jumpStrength", 10, function(success)
 end)
 
 */
-const Set = (key1: string, value: string, callback: function, key1: string, value: number, callback: function, key1: string, value: boolean, callback: function) => 
+const Set = (key1: string, value: string, callback: function): void => {};
+const Set = (key1: string, value: number, callback: function): void => {};
+const Set = (key1: string, value: boolean, callback: function): void => {};
+
 /**
 Gets values for given keys.
 
@@ -80,5 +83,6 @@ store:Get("currentChallenge", "jumpStrength", function(success, results)
 end)
 
 */
-const Get = (key1: string, key2: string, callback: function) => 
+const Get = (key1: string, key2: string, callback: function): void => {};
+
 }

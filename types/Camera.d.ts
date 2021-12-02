@@ -32,7 +32,8 @@ Shows an object that's been hidden to the local camera with [Camera:Hide](/refer
 
 
 */
-const Show = (o: Object) => 
+const Show = (o: Object): void => {};
+
 /**
 Hides an object for the local camera only. Other players will still be able to see it if `object.IsHidden` remains `false`.
 
@@ -40,7 +41,8 @@ It's usefull when implementing a first person camera for example, to hide local 
 
 
 */
-const Hide = (o: Object) => 
+const Hide = (o: Object): void => {};
+
 /**
 Casts a ray and returns an [Impact] (can be [nil]).
 
@@ -58,8 +60,12 @@ if impact.Block ~= nil then
 end
 
 */
-const CastRay = () => Camera;
-const CastRay = (filterIn: CollisionGroups, filterIn: Shape, filterIn: nil, filterOut: Object, filterIn: CollisionGroups, filterOut: Object, filterIn: Shape, filterOut: Object) => Impact;
+const CastRay = (): Impact => {};
+const CastRay = (filterIn: CollisionGroups): Impact => {};
+const CastRay = (filterIn: Shape): Impact => {};
+const CastRay = (filterIn: nil, filterOut: Object): Impact => {};
+const CastRay = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
+const CastRay = (filterIn: Shape, filterOut: Object): Impact => {};
 
 /**
 Puts Camera in "first person" mode. Looking at the world from `target`'s perspective.
@@ -75,8 +81,10 @@ Camera:SetModeFirstPerson(Player, 3.0)
 
 
 */
-const SetModeFirstPerson = () => Camera;
-const SetModeFirstPerson = (target: Object, target: Object, offset: number, target: Object, offset: Number3) => 
+const SetModeFirstPerson = (): const SetModeFirstPerson = (target: Object): void => {};
+const SetModeFirstPerson = (target: Object, offset: number): void => {};
+const SetModeFirstPerson = (target: Object, offset: Number3): void => {};
+
 /**
 Puts Camera in "third person" mode. (looking at Camera's target, from a behind-the-shoulder perspective)
 
@@ -95,8 +103,10 @@ Camera:SetModeThirdPerson()
 Camera:SetModeThirdPerson(someShape)
 
 */
-const SetModeThirdPerson = () => Camera;
-const SetModeThirdPerson = (target: Object, target: Object, minDist: number, maxDist: number, offset: number, target: Object, minDist: number, maxDist: number, offset: Number3) => 
+const SetModeThirdPerson = (): const SetModeThirdPerson = (target: Object): void => {};
+const SetModeThirdPerson = (target: Object, minDist: number, maxDist: number, offset: number): void => {};
+const SetModeThirdPerson = (target: Object, minDist: number, maxDist: number, offset: Number3): void => {};
+
 /**
 When in that mode, the camera rotates around its target, maintaining its distance from it.
 
@@ -113,8 +123,11 @@ Camera:SetModeSatellite(Player, 10.0)
 
 
 */
-const SetModeSatellite = () => Camera;
-const SetModeSatellite = (target: Object, target: Number3, target: Object, distance: number, target: Number3, distance: number) => 
+const SetModeSatellite = (): const SetModeSatellite = (target: Object): void => {};
+const SetModeSatellite = (target: Number3): void => {};
+const SetModeSatellite = (target: Object, distance: number): void => {};
+const SetModeSatellite = (target: Number3, distance: number): void => {};
+
 /**
 Fits the target to the screen.
 
@@ -132,5 +145,6 @@ Camera:FitToScreen(myShape, 0.6, false)
 -- the shape now covers 60% of the screen
 
 */
-const FitToScreen = (target: Shape, screenRatio: number, spherize: boolean) => 
+const FitToScreen = (target: Shape, screenRatio: number, spherize: boolean): void => {};
+
 }

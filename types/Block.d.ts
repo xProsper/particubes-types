@@ -149,7 +149,7 @@ Client.Action2 = function()
 end
 
 */
-const AddNeighbor = (block: Block, face: Face) => Block;
+const AddNeighbor = (block: Block, face: Face): Block => {};
 
 /**
 Removes the `Block` from its parent [MutableShape].
@@ -190,5 +190,6 @@ Client.Action2 = function()
 end
 
 */
-const Replace = (block: Block) => 
+const Replace = (block: Block): void => {};
+
 }

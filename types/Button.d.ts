@@ -129,5 +129,6 @@ myButton:Remove()
 btn:Add(Anchor.Center, Anchor.Bottom)
 
 */
-const Add = (hAnchor: Anchor, vAnchor: Anchor) => 
+const Add = (hAnchor: Anchor, vAnchor: Anchor): void => {};
+
 }

@@ -118,21 +118,47 @@ description ? `
 */
 ` : ``
 ,
-args && args.some(arg => arg === null) ? `const ${name} = () => ${t};
+!args && returns && returns[0] && returns[0].type ? `const ${name} = (): ${returns[0].type} => {}` : ``
+,
+!args && returns && returns[0] && returns[0].type ? `const ${name} = (): ${returns[0].type} => {}` : ``
+,
+args && args.some(arg => arg === null) ? `const ${name} = (): ` : ``
+,
+args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type} => {};
 ` : ``
 ,
-args ? `const ${name} = (` : ``
+args ? args.filter((arg => arg !== null)).map((argSet, index, arr) => 
+argSet && argSet.name && argSet.type ? [
+index === 0 ? `const ${name} = (` : ``
 ,
-args ? args.filter((arg => arg !== null)).flat().map(({name, type}, index) => [
-name && type && index > 0 ? `, ` : ``
+index > 0 ? `, ` : ``
 ,
-name && type ? `${name}: ${type}` : ``
+`${argSet.name}: ${argSet.type}`
+,
+index === arr.length -1 ? [`): `
+,
+returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
+,
+` => {};
+`].join("") : ``
+].join("")
+:
+[
+`const ${name} = (`
+,
+argSet.filter((arg => arg !== null)).map(({ name: innerName, type }, innerIndex) => [
+innerName && type && innerIndex > 0 ? `, ` : ``
+,
+innerName && type ? `${innerName}: ${type}` : ``
+].join("")).join("")
+,
+`): `
+,
+returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
+,
+` => {};
+`
 ].join("")).join("") : ``
-,
-args ? `) => ` : ``
-,
-returns && returns[0] && returns[0].type ? `${returns[0].type};
-` : `void` // ...left off here, figure out how to type return void
 ].join("")).join("") : ``
 ,
 t ? `}` : ``

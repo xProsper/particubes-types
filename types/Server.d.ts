@@ -48,6 +48,5 @@ Returns the current UTC time as a Unix Timestamp.
 
 
 */
-number;
-
+const UnixTime = (): number => {}const UnixTime = (): number => {}
 }

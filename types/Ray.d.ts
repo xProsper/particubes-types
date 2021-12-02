@@ -79,7 +79,11 @@ Client.Action3 = function()
 end
 
 */
-const Cast = () => Ray;
-const Cast = (filterIn: CollisionGroups, filterIn: Shape, filterIn: nil, filterOut: Object, filterIn: CollisionGroups, filterOut: Object, filterIn: Shape, filterOut: Object) => Impact;
+const Cast = (): Impact => {};
+const Cast = (filterIn: CollisionGroups): Impact => {};
+const Cast = (filterIn: Shape): Impact => {};
+const Cast = (filterIn: nil, filterOut: Object): Impact => {};
+const Cast = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
+const Cast = (filterIn: Shape, filterOut: Object): Impact => {};
 
 }

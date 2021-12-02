@@ -113,7 +113,7 @@ n2.X = 10
 print(n1.X) -- n1.X is still 1
 
 */
-const Copy = (n: Number3) => Number3;
+const Copy = (n: Number3): Number3 => {};
 
 /**
 Returns the cross product of both [Number3]s.
@@ -127,7 +127,7 @@ local n2 = Number3(1, 0, 0)
 local n3 = n1:Cross(n2)
 
 */
-const Cross = (n: Number3) => Number3;
+const Cross = (n: Number3): Number3 => {};
 
 /**
 Returns the dot product of both [Number3]s.
@@ -141,7 +141,7 @@ local n2 = Number3(1, 0, 0)
 local dot = n1:Dot(n2)
 
 */
-const Dot = (n: Number3) => number;
+const Dot = (n: Number3): number => {};
 
 /**
 Rotates the `Number3` using euler angles in parameters (in radians).
@@ -156,7 +156,8 @@ someNumber3:Rotate(Number3(0,pi,0))
 -- someNumber3 == Number3(0,0,-1), after a PI rotation around Y axis (180°)
 
 */
-const Rotate = (angles: Number3) => 
+const Rotate = (angles: Number3): void => {};
+
 /**
 Normalizes the `Number3`.
 Scales [X](/reference/number3#property-x), [Y](/reference/number3#property-y) & [Z](/reference/number3#property-z) for the [Length](/reference/number3#property-length) to be `1.0`.

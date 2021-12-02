@@ -65,5 +65,6 @@ Calling `Add` for a label that's already displayed has no effect.
 
 
 */
-const Add = (hAnchor: Anchor, vAnchor: Anchor) => 
+const Add = (hAnchor: Anchor, vAnchor: Anchor): void => {};
+
 }

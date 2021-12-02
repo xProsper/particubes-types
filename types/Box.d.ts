@@ -45,6 +45,6 @@ Returns a copy of the [Box].
 
 
 */
-const Copy = (b: Box) => Box;
+const Copy = (b: Box): Box => {};
 
 }

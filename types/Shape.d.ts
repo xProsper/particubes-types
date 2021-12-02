@@ -95,30 +95,33 @@ Returns [nil] if there is no [Block] at those coordinates (i. e. if it's "air").
 
 
 */
-const GetBlock = (X: number, Y: number, Z: number, coordinates: Number3) => Block;
+const GetBlock = (X: number, Y: number, Z: number): Block => {};
+const GetBlock = (coordinates: Number3): Block => {};
 
 /**
 Converts Block coordinates to world coordinate system.
 
 */
-const BlockToWorld = (b: Block, n: Number3) => Number3;
+const BlockToWorld = (b: Block): Number3 => {};
+const BlockToWorld = (n: Number3): Number3 => {};
 
 /**
 Converts Block coordinates to local coordinate system.
 
 */
-const BlockToLocal = (b: Block, n: Number3) => Number3;
+const BlockToLocal = (b: Block): Number3 => {};
+const BlockToLocal = (n: Number3): Number3 => {};
 
 /**
 Converts world coordinates to Block coordinate system.
 
 */
-const WorldToBlock = (n: Number3) => Number3;
+const WorldToBlock = (n: Number3): Number3 => {};
 
 /**
 Converts local coordinates to Block coordinate system.
 
 */
-const LocalToBlock = (n: Number3) => Number3;
+const LocalToBlock = (n: Number3): Number3 => {};
 
 }

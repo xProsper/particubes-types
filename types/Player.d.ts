@@ -127,8 +127,12 @@ if impact ~= nil then
 end
 
 */
-const CastRay = () => Player;
-const CastRay = (filterIn: CollisionGroups, filterIn: Shape, filterIn: nil, filterOut: Object, filterIn: CollisionGroups, filterOut: Object, filterIn: Shape, filterOut: Object) => Impact;
+const CastRay = (): Impact => {};
+const CastRay = (filterIn: CollisionGroups): Impact => {};
+const CastRay = (filterIn: Shape): Impact => {};
+const CastRay = (filterIn: nil, filterOut: Object): Impact => {};
+const CastRay = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
+const CastRay = (filterIn: Shape, filterOut: Object): Impact => {};
 
 /**
 Equips an [Item], [Shape] or [MutableShape] on the back of the [Player].
@@ -136,21 +140,33 @@ You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipBackpack = (item: Item, shape: Shape, shape: MutableShape) => 
+const EquipBackpack = (item: Item): void => {};
+const EquipBackpack = (shape: Shape): void => {};
+const EquipBackpack = (shape: MutableShape): void => {};
+const EquipBackpack = (): void => {};
+
 /**
 Equips an Item, Shape or MutableShape on [Player]'s head.
 You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipHat = (Item: Item, shape: Shape, shape: MutableShape) => 
+const EquipHat = (Item: Item): void => {};
+const EquipHat = (shape: Shape): void => {};
+const EquipHat = (shape: MutableShape): void => {};
+const EquipHat = (): void => {};
+
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s left hand.
 You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipLeftHand = (item: Item, shape: Shape, shape: MutableShape) => 
+const EquipLeftHand = (item: Item): void => {};
+const EquipLeftHand = (shape: Shape): void => {};
+const EquipLeftHand = (shape: MutableShape): void => {};
+const EquipLeftHand = (): void => {};
+
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s right hand.
 You can remove what's been equiped using [nil] argument
@@ -173,7 +189,11 @@ Client.OnStart = function()
 end
 
 */
-const EquipRightHand = (item: Item, shape: Shape, shape: MutableShape) => 
+const EquipRightHand = (item: Item): void => {};
+const EquipRightHand = (shape: Shape): void => {};
+const EquipRightHand = (shape: MutableShape): void => {};
+const EquipRightHand = (): void => {};
+
 /**
 Swaps [Player]'s hand held items.
 If one hand holds nothing, the [Item] switches hands.

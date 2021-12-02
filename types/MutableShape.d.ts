@@ -47,7 +47,9 @@ local newBlock = someMutableShape:AddBlock(block)
 -- but `newBlock` has a parent shape while `block` doesn't.
 
 */
-const AddBlock = (block: Block, paletteIndex: number, position: Number3, paletteIndex: number, X: number, Y: number, Z: number) => Block;
+const AddBlock = (block: Block): Block => {};
+const AddBlock = (paletteIndex: number, position: Number3): Block => {};
+const AddBlock = (paletteIndex: number, X: number, Y: number, Z: number): Block => {};
 
 /**
 Gets a [Block] from the [This]. 
@@ -55,6 +57,6 @@ Returns [nil] if there is no [Block] at the given coordinates (i. e. if it's "ai
 
 
 */
-const GetBlock = (X: number, Y: number, Z: number) => Block;
+const GetBlock = (X: number, Y: number, Z: number): Block => {};
 
 }

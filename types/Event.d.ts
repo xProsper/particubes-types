@@ -67,5 +67,6 @@ e.someMessage = "Something I'd like to say!"
 e:SendTo(Player[2], Player[3]) -- send to player 2 & 3
 
 */
-const SendTo = (...: recipients) => 
+const SendTo = (...: recipients): void => {};
+
 }
