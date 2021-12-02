@@ -13,4 +13,25 @@ Except entries in [Config.MapPaletteOverrides](/reference/config#property-mappal
 declare namespace BlockProperties {
 
 
+
+/**
+[Block]'s color.
+
+
+*/
+const Color: Color;
+
+/**
+Indicates if the [Block] is light emissive. Light color is tight to the color of the [Block].
+
+*/
+const Light: boolean;
+
+/**
+BlockProperties' index in the [Palette] or [array] it belongs to.
+
+*/
+const ID: number;
+
+
 }

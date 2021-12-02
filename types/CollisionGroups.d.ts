@@ -13,13 +13,26 @@ declare namespace CollisionGroups {
 /**
 Creates an empty [CollisionGroups].
 
+
 */
 
 /**
 Creates a [CollisionGroups] with given group numbers.
 
+
+[Samples]
+
+local groups1 = CollisionGroups(1, 2, 3)
+
+local groups2 = CollisionGroups(2, 3, 1)
+if groups1 == groups2 then
+  print("both groups are the same")
+end
+
 */
 const constructor = (group1: number, group2: number, ...: number) => CollisionGroups;
+
+
 
 
 }
