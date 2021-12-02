@@ -3,7 +3,7 @@
 Calls a [function] after a given time.
 */
 
-declare namespace Timer {
+declare interface Timer {
 
 /**
 Creates a [Timer].
@@ -24,7 +24,7 @@ end
 local myTimer2 = Timer(5.0, callback)
 
 */
-const constructor = (time: number, repeat: boolean, callback: function) => Timer;
+constructor: (time: number, repeat: boolean, callback: function) => Timer;
 
 
 
@@ -32,13 +32,13 @@ const constructor = (time: number, repeat: boolean, callback: function) => Timer
 Time remaining before the function is called.
 
 */
-const RemainingTime: number;
+RemainingTime: number;
 
 /**
 Time since the start of the [Timer].
 
 */
-const Time: number;
+Time: number;
 
 
 /**
@@ -47,3 +47,5 @@ Cancels the [Timer].
 */
 
 }
+
+export = Timer;

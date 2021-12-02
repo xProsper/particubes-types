@@ -4,7 +4,7 @@
 
 */
 
-declare namespace KeyValueStore {
+declare interface KeyValueStore {
 
 /**
 Creates a [KeyValueStore] with given store name.
@@ -24,7 +24,7 @@ store:Get("currentChallenge", "jumpStrength", function(success, results)
 end)
 
 */
-const constructor = (storeName: string) => KeyValueStore;
+constructor: (storeName: string) => KeyValueStore;
 
 
 
@@ -33,7 +33,7 @@ const constructor = (storeName: string) => KeyValueStore;
 
 
 */
-const Name: 
+Name: 
 
 /**
 Sets values for given keys.
@@ -57,9 +57,9 @@ store:Set("currentChallenge", "halloween", "jumpStrength", 10, function(success)
 end)
 
 */
-const Set = (key1: string, value: string, callback: function): void => {};
-const Set = (key1: string, value: number, callback: function): void => {};
-const Set = (key1: string, value: boolean, callback: function): void => {};
+Set (key1: string, value: string, callback: function): void;
+Set (key1: string, value: number, callback: function): void;
+Set (key1: string, value: boolean, callback: function): void;
 
 /**
 Gets values for given keys.
@@ -83,6 +83,8 @@ store:Get("currentChallenge", "jumpStrength", function(success, results)
 end)
 
 */
-const Get = (key1: string, key2: string, callback: function): void => {};
+Get (key1: string, key2: string, callback: function): void;
 
 }
+
+export = KeyValueStore;

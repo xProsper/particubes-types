@@ -4,9 +4,11 @@ A Palette is an [array] of [BlockProperties].
 
 */
 
-declare namespace Palette {
+declare interface Palette {
 
 
 
 
 }
+
+export = Palette;

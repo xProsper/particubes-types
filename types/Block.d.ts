@@ -8,7 +8,7 @@ A `Block` can be built with one of the [constructors](/reference/block#construct
 
 */
 
-declare namespace Block {
+declare interface Block {
 
 /**
 Creates a `Block` with `{0,0,0}` coordinates. ([Block.Position](#property-position))
@@ -17,7 +17,7 @@ Creates a `Block` with `{0,0,0}` coordinates. ([Block.Position](#property-positi
 
 
 */
-const constructor = (paletteIndex: number) => Block;
+constructor: (paletteIndex: number) => Block;
 
 /**
 Creates a `Block` with `{x,y,z}` coordinates. ([Block.Position](#property-position))
@@ -26,7 +26,7 @@ Creates a `Block` with `{x,y,z}` coordinates. ([Block.Position](#property-positi
 
 
 */
-const constructor = (paletteIndex: number, x: number, y: number, z: number) => Block;
+constructor: (paletteIndex: number, x: number, y: number, z: number) => Block;
 
 /**
 Creates a `Block` with `position` coordinates. ([Block.Position](#property-position))
@@ -35,7 +35,7 @@ Creates a `Block` with `position` coordinates. ([Block.Position](#property-posit
 
 
 */
-const constructor = (paletteIndex: number, position: Number3) => Block;
+constructor: (paletteIndex: number, position: Number3) => Block;
 
 
 
@@ -56,7 +56,7 @@ if b ~= nil then
 end
 
 */
-const PaletteIndex: number;
+PaletteIndex: number;
 
 /**
 Block's coordinates in [Shape] or [MutableShape].
@@ -71,14 +71,14 @@ if b ~= nil then
 end
 
 */
-const Coordinates: Number3;
+Coordinates: Number3;
 
 /**
 Shortcut to [Coordinates](/reference/block#property-coordinates).
 
 
 */
-const Coords: Number3;
+Coords: Number3;
 
 /**
 Position of [Block]'s negative X-Y-Z corner in world coordinates.
@@ -93,14 +93,14 @@ if b ~= nil then
 end
 
 */
-const Position: Number3;
+Position: Number3;
 
 /**
 Shortcut to [Position](/reference/block#property-position).
 
 
 */
-const Pos: Number3;
+Pos: Number3;
 
 /**
 Position of [Block]'s center in local coordinates (local to parent [Shape] or [MutableShape])
@@ -115,7 +115,7 @@ if b ~= nil then
 end
 
 */
-const LocalPosition: Number3;
+LocalPosition: Number3;
 
 /**
 Returns Block's [BlockProperties].
@@ -124,7 +124,7 @@ Returns Block's [BlockProperties].
 
 
 */
-const Properties: BlockProperties;
+Properties: BlockProperties;
 
 
 /**
@@ -149,7 +149,7 @@ Client.Action2 = function()
 end
 
 */
-const AddNeighbor = (block: Block, face: Face): Block => {};
+AddNeighbor(block: Block, face: Face): Block;
 
 /**
 Removes the `Block` from its parent [MutableShape].
@@ -190,6 +190,8 @@ Client.Action2 = function()
 end
 
 */
-const Replace = (block: Block): void => {};
+Replace(block: Block): void;
 
 }
+
+export = Block;

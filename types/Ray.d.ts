@@ -1,5 +1,5 @@
 
-declare namespace Ray {
+declare interface Ray {
 
 /**
 Creates a Ray with an origin and a direction.
@@ -11,7 +11,7 @@ local ray = Ray(Camera.Position, Camera.Forward)
 local impact = ray:Cast()
 
 */
-const constructor = (origin: Number3, direction: Number3) => Ray;
+constructor: (origin: Number3, direction: Number3) => Ray;
 
 
 
@@ -19,26 +19,26 @@ const constructor = (origin: Number3, direction: Number3) => Ray;
 The origin of the ray, in world coordinate system.
 
 */
-const Origin: Number3;
+Origin: Number3;
 
 /**
 The direction of the ray, in world coordinate system.
 
 */
-const Direction: Number3;
+Direction: Number3;
 
 /**
 Defines items colliding with the ray. [nil] by default, meaning the ray collides with everything.
 
 
 */
-const FilterIn: 
+FilterIn: 
 /**
 [nil] by default. Can be set to an [Object] to filter it out from possible collisions.
 
 
 */
-const FilterOut: 
+FilterOut: 
 
 /**
 Casts a ray and returns an [Impact] (can be [nil]).
@@ -79,11 +79,13 @@ Client.Action3 = function()
 end
 
 */
-const Cast = (): Impact => {};
-const Cast = (filterIn: CollisionGroups): Impact => {};
-const Cast = (filterIn: Shape): Impact => {};
-const Cast = (filterIn: nil, filterOut: Object): Impact => {};
-const Cast = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
-const Cast = (filterIn: Shape, filterOut: Object): Impact => {};
+Cast(): Impact;
+Cast (filterIn: CollisionGroups): Impact;
+Cast (filterIn: Shape): Impact;
+Cast (filterIn: nil, filterOut: Object): Impact;
+Cast (filterIn: CollisionGroups, filterOut: Object): Impact;
+Cast (filterIn: Shape, filterOut: Object): Impact;
 
 }
+
+export = Ray;

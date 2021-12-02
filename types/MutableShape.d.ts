@@ -3,7 +3,7 @@
 A [MutableShape] is an [Object] that carries and displays a set of [Block]s. The difference with [Shape] is that [MutableShape] [Block]s can be modified.
 */
 
-declare namespace MutableShape {
+declare interface MutableShape {
 
 /**
 Creates a MutableShape with imported [Item].
@@ -12,7 +12,7 @@ Creates a MutableShape with imported [Item].
 
 local s = MutableShape(R.username.itemName)
 */
-const constructor = (item: Item) => MutableShape;
+constructor: (item: Item) => MutableShape;
 
 
 
@@ -47,9 +47,9 @@ local newBlock = someMutableShape:AddBlock(block)
 -- but `newBlock` has a parent shape while `block` doesn't.
 
 */
-const AddBlock = (block: Block): Block => {};
-const AddBlock = (paletteIndex: number, position: Number3): Block => {};
-const AddBlock = (paletteIndex: number, X: number, Y: number, Z: number): Block => {};
+AddBlock (block: Block): Block;
+AddBlock (paletteIndex: number, position: Number3): Block;
+AddBlock (paletteIndex: number, X: number, Y: number, Z: number): Block;
 
 /**
 Gets a [Block] from the [This]. 
@@ -57,6 +57,8 @@ Returns [nil] if there is no [Block] at the given coordinates (i. e. if it's "ai
 
 
 */
-const GetBlock = (X: number, Y: number, Z: number): Block => {};
+GetBlock(X: number, Y: number, Z: number): Block;
 
 }
+
+export = MutableShape;

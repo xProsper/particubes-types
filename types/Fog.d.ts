@@ -6,7 +6,7 @@ Fog gives control over distance fog settings.
 
 */
 
-declare namespace Fog {
+declare interface Fog {
 
 
 
@@ -22,7 +22,7 @@ Fog.On = false
 Fog.On = not Fog.On
 
 */
-const On: boolean;
+On: boolean;
 
 /**
 Sets [Fog].[Near](#property-near) while maintaining offset between [Fog].[Near](#property-near) & [Fog].[Far](#property-far)
@@ -32,7 +32,7 @@ Sets [Fog].[Near](#property-near) while maintaining offset between [Fog].[Near](
 
 Fog.Distance = 100
 */
-const Distance: number;
+Distance: number;
 
 /**
 Distance at which Fog starts. (in blocks)
@@ -41,7 +41,7 @@ Distance at which Fog starts. (in blocks)
 
 Fog.Near = 50
 */
-const Near: number;
+Near: number;
 
 /**
 Distance at which Fog ends. (in blocks)
@@ -54,7 +54,7 @@ Fog.Far = 100
 Fog.Near, Fog.Far = 50, 100
 
 */
-const Far: number;
+Far: number;
 
 /**
 Fog absorption factor regarding light emissive blocks.
@@ -67,7 +67,9 @@ Fog absorption factor regarding light emissive blocks.
 
 Fog.LightAbsorption = 0.1
 */
-const LightAbsorption: number;
+LightAbsorption: number;
 
 
 }
+
+export = Fog;

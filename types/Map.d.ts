@@ -3,10 +3,10 @@
 Map is a global variable that represents the game map.
 */
 
-declare namespace Map {
+declare interface Map {
 
 
-const LocalScale: const Physics: const Velocity: const Motion: const Acceleration: const IsOnGround: const CollisionBox: const OnCollision: const Pivot: const Rotation: const LocalRotation: const Position: const LocalPosition: const Right: const Left: const Backward: const Up: const Down: const Forward: 
+LocalScale: Physics: Velocity: Motion: Acceleration: IsOnGround: CollisionBox: OnCollision: Pivot: Rotation: LocalRotation: Position: LocalPosition: Right: Left: Backward: Up: Down: Forward: 
 /**
 Returns an [array] of [BlockProperties] ([Palette])
 
@@ -14,7 +14,9 @@ Note: non-opaque and light emissive block colors can't be changed after game sta
 
 
 */
-const LocalPalette: Palette;
+LocalPalette: Palette;
 
 
 }
+
+export = Map;

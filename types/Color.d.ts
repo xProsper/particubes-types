@@ -3,7 +3,7 @@
 Represents a RGBA color (Red, Green, Blue, Alpha)
 */
 
-declare namespace Color {
+declare interface Color {
 
 /**
 Creates a Color with given red, green, blue and (optional) alpha values.
@@ -19,7 +19,7 @@ local alsoRed = Color(1.0, 0.0, 0.0)
 local semiTransparentRed = Color(1.0, 0.0, 0.0, 0.5)
 
 */
-const constructor = (red: number, green: number, blue: number, alpha: number) => Color;
+constructor: (red: number, green: number, blue: number, alpha: number) => Color;
 
 
 
@@ -27,49 +27,51 @@ const constructor = (red: number, green: number, blue: number, alpha: number) =>
 Color's alpha component.
 
 */
-const Alpha: number;
+Alpha: number;
 
 /**
 Color's alpha component. (shortcut to [Alpha](#property-alpha))
 
 */
-const A: number;
+A: number;
 
 /**
 Color's blue component.
 
 */
-const Blue: number;
+Blue: number;
 
 /**
 Color's blue component. (shortcut to [Blue](#property-blue))
 
 */
-const B: number;
+B: number;
 
 /**
 Color's green component.
 
 */
-const Green: number;
+Green: number;
 
 /**
 Color's green component. (shortcut to [Green](#property-green))
 
 */
-const G: number;
+G: number;
 
 /**
 Color's red component.
 
 */
-const Red: number;
+Red: number;
 
 /**
 Color's red component. (shortcut to [Red](#property-red))
 
 */
-const R: number;
+R: number;
 
 
 }
+
+export = Color;

@@ -3,7 +3,7 @@
 Dev contains handy functions and attributes for developers.
 */
 
-declare namespace Dev {
+declare interface Dev {
 
 
 
@@ -12,14 +12,14 @@ Displays [Shape]s' bounding boxes when set to `true`. (`false` by default)
 
 
 */
-const DisplayBoxes: boolean;
+DisplayBoxes: boolean;
 
 /**
 Displays collision boxes when set to `true`. (`false` by default)
 
 
 */
-const DisplayColliders: boolean;
+DisplayColliders: boolean;
 
 
 /**
@@ -36,3 +36,5 @@ end
 */
 
 }
+
+export = Dev;

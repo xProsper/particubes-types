@@ -4,7 +4,7 @@ Events are useful to establish communication between the [Server] and all connec
 
 */
 
-declare namespace Event {
+declare interface Event {
 
 /**
 Creates an empty event.
@@ -43,14 +43,14 @@ Server.DidReceiveEvent = function(event)
 end
 
 */
-const Sender: 
+Sender: 
 /**
 An array containing all recipients for that event.
 Recipients can contain individual [Player]s, [OtherPlayers], [Players] or [Server].
 
 
 */
-const Recipients: array;
+Recipients: array;
 
 
 /**
@@ -67,6 +67,8 @@ e.someMessage = "Something I'd like to say!"
 e:SendTo(Player[2], Player[3]) -- send to player 2 & 3
 
 */
-const SendTo = (...: recipients): void => {};
+SendTo (...: recipients): void;
 
 }
+
+export = Event;

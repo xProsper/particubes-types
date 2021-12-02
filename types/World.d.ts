@@ -4,9 +4,11 @@
 
 */
 
-declare namespace World {
+declare interface World {
 
 
-const LocalScale: const Physics: const Velocity: const Motion: const Acceleration: const IsOnGround: const CollisionBox: const OnCollision: const Pivot: const Rotation: const LocalRotation: const Position: const LocalPosition: const Right: const Left: const Backward: const Up: const Down: const Forward: const CollisionGroups: const CollidesWithGroups: const IsHidden: const Mass: const Friction: const Bounciness: const Scale: const LossyScale: 
+LocalScale: Physics: Velocity: Motion: Acceleration: IsOnGround: CollisionBox: OnCollision: Pivot: Rotation: LocalRotation: Position: LocalPosition: Right: Left: Backward: Up: Down: Forward: CollisionGroups: CollidesWithGroups: IsHidden: Mass: Friction: Bounciness: Scale: LossyScale: 
 
 }
+
+export = World;

@@ -4,7 +4,7 @@ TimeCycle gives control over game time cycle properties.
 
 */
 
-declare namespace TimeCycle {
+declare interface TimeCycle {
 
 
 
@@ -21,7 +21,7 @@ print(TimeCycle.CurrentTime)
 print(Time.Current)
 
 */
-const CurrentTime: Time;
+CurrentTime: Time;
 
 /**
 Time cycle duration in seconds.
@@ -33,7 +33,7 @@ TimeCycle.Duration = 10 -- from noon to noon in 10 seconds
 
 
 */
-const Duration: number;
+Duration: number;
 
 /**
 Returns an [array] of [TimeCycleMark]s.
@@ -50,7 +50,7 @@ TimeCycle.Marks.Noon.HorizonColor = Color(255, 0, 0)
 TimeCycle.Marks[3].AbyssColor = Color(255, 0, 0)
 
 */
-const Marks: array;
+Marks: array;
 
 /**
 Turns on/off time cycle. Stops at current time when turned off.
@@ -62,7 +62,9 @@ TimeCycle.On = false
 
 
 */
-const On: boolean;
+On: boolean;
 
 
 }
+
+export = TimeCycle;

@@ -8,7 +8,7 @@ Group numbers go from `1` to `8`. The [Map] by default is in group `1`, and by d
 
 */
 
-declare namespace CollisionGroups {
+declare interface CollisionGroups {
 
 /**
 Creates an empty [CollisionGroups].
@@ -30,9 +30,11 @@ if groups1 == groups2 then
 end
 
 */
-const constructor = (group1: number, group2: number, ...: number) => CollisionGroups;
+constructor: (group1: number, group2: number, ...: number) => CollisionGroups;
 
 
 
 
 }
+
+export = CollisionGroups;

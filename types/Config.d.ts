@@ -3,7 +3,7 @@
 Config holds the configuration for your game. The items it depends on, the map that should be used and other important things.
 */
 
-declare namespace Config {
+declare interface Config {
 
 
 
@@ -14,7 +14,7 @@ When set to `true`, the users are able to use the chat. If set to `false` they c
 
 
 */
-const ChatAvailable: boolean;
+ChatAvailable: boolean;
 
 /**
 Acceleration applied to all physically simulated [Object]s in the scene. 
@@ -37,13 +37,13 @@ myObject.Acceleration = -Config.ConstantAcceleration
 -- Config.ConstantAcceleration, cancelling it.
 
 */
-const ConstantAcceleration: Number3;
+ConstantAcceleration: Number3;
 
 /**
 Indicates the map that should be loaded.
 
 */
-const Map: string;
+Map: string;
 
 /**
 A list of items ([string] references) that should be loaded.
@@ -54,14 +54,14 @@ See [Items] for more details.
 
 
 */
-const Items: array;
+Items: array;
 
 /**
 A collection of [Map] [Palette] indexes that you want to override in the game.
 
 
 */
-const MapPaletteOverrides: table;
+MapPaletteOverrides: table;
 
 /**
 Allows the users to change the pointer mode by pressing on TAB or clicking on the pointer mode button.
@@ -72,7 +72,9 @@ The function `[Pointer]:Show()` and `[Pointer]:Hide()` can still be used.
 
 
 */
-const PointerToggleAvailable: boolean;
+PointerToggleAvailable: boolean;
 
 
 }
+
+export = Config;

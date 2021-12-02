@@ -8,7 +8,7 @@ The goal is to create an abstraction for world inputs to work on any platform. A
 
 */
 
-declare namespace Pointer {
+declare interface Pointer {
 
 
 
@@ -23,7 +23,7 @@ Pointer.Down = function( pointerEvent )
 end
 
 */
-const Down: function;
+Down: function;
 
 /**
 Triggered when the pointer is dragged (moved while down).
@@ -36,7 +36,7 @@ Pointer.Drag = function( pointerEvent )
 end
 
 */
-const Drag: function;
+Drag: function;
 
 /**
 Triggered when the pointer is moved with right mouse button or 2 touch fingers down.
@@ -49,7 +49,7 @@ Pointer.Drag2 = function( pointerEvent )
 end
 
 */
-const Drag2: function;
+Drag2: function;
 
 /**
 Triggered when the pointer is released.
@@ -62,7 +62,7 @@ Pointer.Up = function( pointerEvent )
 end
 
 */
-const Up: function;
+Up: function;
 
 /**
 Triggered when scrolling with mouse or pinching in/out with 2 fingers.
@@ -75,7 +75,7 @@ Pointer.Zoom = function( pointerEvent )
 end
 
 */
-const Zoom: function;
+Zoom: function;
 
 /**
 True if the [Pointer] is hidden, false otherwise.
@@ -90,7 +90,7 @@ Pointer:Hide()
 print(Pointer.IsHidden) -- true
 
 */
-const IsHidden: boolean;
+IsHidden: boolean;
 
 
 /**
@@ -122,3 +122,5 @@ Pointer:Hide()
 */
 
 }
+
+export = Pointer;

@@ -8,39 +8,41 @@ A few builtin `Anchor` instances can be used, there's no way to create custom An
 
 */
 
-declare namespace Anchor {
+declare interface Anchor {
 
 
 /**
 Top position Anchor.
 */
-readonly const Top: Anchor;
+readonly Top: Anchor;
 
 /**
 Vertical center position Anchor.
 */
-readonly const VCenter: Anchor;
+readonly VCenter: Anchor;
 
 /**
 Bottom position Anchor.
 */
-readonly const Bottom: Anchor;
+readonly Bottom: Anchor;
 
 /**
 Left position Anchor.
 */
-readonly const Left: Anchor;
+readonly Left: Anchor;
 
 /**
 Horizontal center position Anchor.
 */
-readonly const HCenter: Anchor;
+readonly HCenter: Anchor;
 
 /**
 Right position Anchor.
 */
-readonly const Right: Anchor;
+readonly Right: Anchor;
 
 
 
 }
+
+export = Anchor;

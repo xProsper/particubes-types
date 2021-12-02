@@ -5,7 +5,7 @@ Represents the local Player.
 
 */
 
-declare namespace Player {
+declare interface Player {
 
 
 
@@ -13,43 +13,43 @@ declare namespace Player {
 The [Shape] of the [Player]'s head.
 
 */
-const Head: Shape;
+Head: Shape;
 
 /**
 The [Shape] of the [Player]'s body.
 
 */
-const Body: Shape;
+Body: Shape;
 
 /**
 The [Shape] of the [Player]'s left arm.
 
 */
-const LeftArm: Shape;
+LeftArm: Shape;
 
 /**
 The [Shape] of the [Player]'s right arm.
 
 */
-const RightArm: Shape;
+RightArm: Shape;
 
 /**
 The [Shape] of the [Player]'s left leg.
 
 */
-const LeftLeg: Shape;
+LeftLeg: Shape;
 
 /**
 The [Shape] of the [Player]'s right leg.
 
 */
-const RightLeg: Shape;
+RightLeg: Shape;
 
 /**
 Returns the block on which the Player is standing on.
 
 */
-const BlockUnderneath: Block;
+BlockUnderneath: Block;
 
 /**
 Returns an [array] of [Block]s the player is standing on
@@ -65,43 +65,43 @@ for index, value in ipairs(blocks) do
 end
 
 */
-const BlocksUnderneath: array;
+BlocksUnderneath: array;
 
 /**
 Unique player ID for played game. A different ID can be attributed after reconnection.
 
 */
-const ID: number;
+ID: number;
 
 /**
 Player's account username. Usernames are unique.
 
 */
-const Username: string;
+Username: string;
 
 /**
 Player's account identifier (ID). Identifiers are unique.
 
 */
-const UserID: string;
+UserID: string;
 
 /**
 Absolute world position of the Player.
 
 */
-const Position: Number3;
+Position: Number3;
 
 /**
 Player's rotation. (Y value is not considered)
 
 */
-const Rotation: Number3;
+Rotation: Number3;
 
 /**
 Player's velocity (speed + direction).
 
 */
-const Velocity: Number3;
+Velocity: Number3;
 
 /**
 Indicates whether the [Player] object is the local `Player`.
@@ -109,7 +109,7 @@ This is only valid on the [Client], not on the [Server].
 
 
 */
-const IsLocal: boolean;
+IsLocal: boolean;
 
 
 /**
@@ -127,12 +127,12 @@ if impact ~= nil then
 end
 
 */
-const CastRay = (): Impact => {};
-const CastRay = (filterIn: CollisionGroups): Impact => {};
-const CastRay = (filterIn: Shape): Impact => {};
-const CastRay = (filterIn: nil, filterOut: Object): Impact => {};
-const CastRay = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
-const CastRay = (filterIn: Shape, filterOut: Object): Impact => {};
+CastRay(): Impact;
+CastRay (filterIn: CollisionGroups): Impact;
+CastRay (filterIn: Shape): Impact;
+CastRay (filterIn: nil, filterOut: Object): Impact;
+CastRay (filterIn: CollisionGroups, filterOut: Object): Impact;
+CastRay (filterIn: Shape, filterOut: Object): Impact;
 
 /**
 Equips an [Item], [Shape] or [MutableShape] on the back of the [Player].
@@ -140,10 +140,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipBackpack = (item: Item): void => {};
-const EquipBackpack = (shape: Shape): void => {};
-const EquipBackpack = (shape: MutableShape): void => {};
-const EquipBackpack = (): void => {};
+EquipBackpack (item: Item): void;
+EquipBackpack (shape: Shape): void;
+EquipBackpack (shape: MutableShape): void;
+EquipBackpack (): void;
 
 /**
 Equips an Item, Shape or MutableShape on [Player]'s head.
@@ -151,10 +151,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipHat = (Item: Item): void => {};
-const EquipHat = (shape: Shape): void => {};
-const EquipHat = (shape: MutableShape): void => {};
-const EquipHat = (): void => {};
+EquipHat (Item: Item): void;
+EquipHat (shape: Shape): void;
+EquipHat (shape: MutableShape): void;
+EquipHat (): void;
 
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s left hand.
@@ -162,10 +162,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
-const EquipLeftHand = (item: Item): void => {};
-const EquipLeftHand = (shape: Shape): void => {};
-const EquipLeftHand = (shape: MutableShape): void => {};
-const EquipLeftHand = (): void => {};
+EquipLeftHand (item: Item): void;
+EquipLeftHand (shape: Shape): void;
+EquipLeftHand (shape: MutableShape): void;
+EquipLeftHand (): void;
 
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s right hand.
@@ -189,10 +189,10 @@ Client.OnStart = function()
 end
 
 */
-const EquipRightHand = (item: Item): void => {};
-const EquipRightHand = (shape: Shape): void => {};
-const EquipRightHand = (shape: MutableShape): void => {};
-const EquipRightHand = (): void => {};
+EquipRightHand (item: Item): void;
+EquipRightHand (shape: Shape): void;
+EquipRightHand (shape: MutableShape): void;
+EquipRightHand (): void;
 
 /**
 Swaps [Player]'s hand held items.
@@ -214,3 +214,5 @@ Make [Player]'s left hand swing.
 */
 
 }
+
+export = Player;

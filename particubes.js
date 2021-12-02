@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync, rmSync, mkdirSync } from "fs";
 import path from "path";
 
 const getTypeTemplate = ({
@@ -19,7 +19,7 @@ ${d}
 ` : ``
 ,
 // type
-t ? `declare namespace ${t} {`: ``
+t ? `declare interface ${t} {`: ``
 ,
 // constructors
 c ? c.map(({ description, arguments: args, samples }) => [
@@ -41,10 +41,10 @@ description ? `
 */
 ` : ``
 ,
-args && args.some(arg => arg === null) ? `const constructor = () => ${t};
+args && args.some(arg => arg === null) ? `constructor: () => ${t};
 ` : ``
 ,
-args ? `const constructor = (` : ``
+args ? `constructor: (` : ``
 ,
 args ? args.filter((arg => arg !== null)).flat().map(({name, type}, index) => [
 name && type && index > 0 ? `, ` : ``
@@ -66,7 +66,7 @@ ${description}
 ,
 readOnly ? `readonly ` : ``
 ,
-name ? `const ${name}: ` : ``
+name ? `${name}: ` : ``
 ,
 type ? `${type};
 ` : ``
@@ -92,7 +92,7 @@ description ? `
 */
 ` : ``
 ,
-name ? `const ${name}: ` : ``
+name ? `${name}: ` : ``
 ,
 type ? `${type};
 ` : ``
@@ -118,18 +118,18 @@ description ? `
 */
 ` : ``
 ,
-!args && returns && returns[0] && returns[0].type ? `const ${name} = (): ${returns[0].type} => {}` : ``
+!args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
 ,
-!args && returns && returns[0] && returns[0].type ? `const ${name} = (): ${returns[0].type} => {}` : ``
+!args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
 ,
-args && args.some(arg => arg === null) ? `const ${name} = (): ` : ``
+args && args.some(arg => arg === null) ? `${name}(): ` : ``
 ,
-args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type} => {};
+args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type};
 ` : ``
 ,
 args ? args.filter((arg => arg !== null)).map((argSet, index, arr) => 
 argSet && argSet.name && argSet.type ? [
-index === 0 ? `const ${name} = (` : ``
+index === 0 ? `${name}(` : ``
 ,
 index > 0 ? `, ` : ``
 ,
@@ -139,12 +139,12 @@ index === arr.length -1 ? [`): `
 ,
 returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
 ,
-` => {};
+`;
 `].join("") : ``
 ].join("")
 :
 [
-`const ${name} = (`
+`${name} (`
 ,
 argSet.filter((arg => arg !== null)).map(({ name: innerName, type }, innerIndex) => [
 innerName && type && innerIndex > 0 ? `, ` : ``
@@ -156,14 +156,20 @@ innerName && type ? `${innerName}: ${type}` : ``
 ,
 returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
 ,
-` => {};
+`;
 `
 ].join("")).join("") : ``
 ].join("")).join("") : ``
 ,
-t ? `}` : ``
+t ? `}
+
+export = ${t};` : ``
 ].join("\n");
 
+// Execution starts here
+
+rmSync("./types", {recursive: true});
+mkdirSync("./types");
 
 const getIndexTemplate = r => `${getModules(r).join("\n")}
 `;
@@ -182,7 +188,6 @@ readdirSync("./resources").forEach(file => {
     );
 
   const typeTemplate = getTypeTemplate(r);
-
   if (!r.type) {
     writeFileSync(`./types/index.d.ts`, getIndexTemplate(r));
   } else {

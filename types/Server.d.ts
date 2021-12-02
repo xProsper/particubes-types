@@ -8,7 +8,7 @@ For example, if your game requires a minimum amount of players, it's a good idea
 
 */
 
-declare namespace Server {
+declare interface Server {
 
 
 
@@ -25,7 +25,7 @@ Server.DidReceiveEvent = function(event)
 end
 
 */
-const DidReceiveEvent: function;
+DidReceiveEvent: function;
 
 /**
 Executed ~30 times per second. Provides the elapsed time in seconds as parameter.
@@ -40,7 +40,7 @@ Server.Tick = function(dt)
 end
 
 */
-const Tick: function;
+Tick: function;
 
 
 /**
@@ -48,5 +48,7 @@ Returns the current UTC time as a Unix Timestamp.
 
 
 */
-const UnixTime = (): number => {}const UnixTime = (): number => {}
+UnixTime(): numberUnixTime(): number
 }
+
+export = Server;

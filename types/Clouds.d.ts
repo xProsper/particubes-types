@@ -6,7 +6,7 @@ Clouds gives control over cloud settings.
 
 */
 
-declare namespace Clouds {
+declare interface Clouds {
 
 
 
@@ -22,13 +22,15 @@ Clouds.On = true
 Clouds.On = false
 
 */
-const On: boolean;
+On: boolean;
 
 /**
 Altitude of the clouds in blocks
 
 */
-const Altitude: number;
+Altitude: number;
 
 
 }
+
+export = Clouds;

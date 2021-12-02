@@ -6,7 +6,7 @@ UI contains user interface accessors.
 
 */
 
-declare namespace UI {
+declare interface UI {
 
 
 
@@ -14,13 +14,13 @@ declare namespace UI {
 See [Anchor].
 
 */
-const Anchor: Anchor;
+Anchor: Anchor;
 
 /**
 See [Button].
 
 */
-const Button: Button;
+Button: Button;
 
 /**
 Indicates if the crosshair should be displayed.
@@ -31,25 +31,27 @@ UI.Crosshair = false -- hides the crosshair
 
 
 */
-const Crosshair: boolean;
+Crosshair: boolean;
 
 /**
 See [Label].
 
 */
-const Label: Label;
+Label: Label;
 
 /**
 Coming soon.
 
 */
-const Box: Box;
+Box: Box;
 
 /**
 Top level user interface [Box].
 
 */
-const RootBox: Box;
+RootBox: Box;
 
 
 }
+
+export = UI;

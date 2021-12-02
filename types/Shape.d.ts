@@ -3,7 +3,7 @@
 A [Shape] is an [Object] that carries and displays a set of [Block]s.
 */
 
-declare namespace Shape {
+declare interface Shape {
 
 /**
 Creates a Shape with imported [Item].
@@ -16,7 +16,7 @@ myShape.Position = { Map.Width * 0.5, Map.Height, Map.Depth * 0.5 }
 Map:AddChild(myShape) -- adds created shape in the map
 
 */
-const constructor = (item: Item) => Shape;
+constructor: (item: Item) => Shape;
 
 
 
@@ -39,53 +39,53 @@ myShape.Anchor = {1.5, 1.5, 1.5}
 myShape.Anchor = myShape:GetBlock(1,1,1)
 
 */
-const Pivot: Number3;
+Pivot: Number3;
 
 /**
 Returns [This]'s depth, measured in cubes.
 
 */
-const Depth: number;
+Depth: number;
 
 /**
 Returns [This]'s height, measured in cubes.
 
 */
-const Height: number;
+Height: number;
 
 /**
 Returns [This]'s width, measured in cubes.
 
 */
-const Width: number;
+Width: number;
 
 /**
 The BoundingBox represents the bounds of the [This]. It is the limits of the Shape's blocks.
 
 
 */
-const BoundingBox: Box;
+BoundingBox: Box;
 
 /**
 The coordinates of the min limit of the [This]'s BoundingBox.
 
 
 */
-const Min: Number3;
+Min: Number3;
 
 /**
 The coordinates of the center of the [This]'s BoundingBox.
 
 
 */
-const Center: Number3;
+Center: Number3;
 
 /**
 The coordinates of the max limit of the [This]'s BoundingBox.
 
 
 */
-const Max: Number3;
+Max: Number3;
 
 
 /**
@@ -95,33 +95,35 @@ Returns [nil] if there is no [Block] at those coordinates (i. e. if it's "air").
 
 
 */
-const GetBlock = (X: number, Y: number, Z: number): Block => {};
-const GetBlock = (coordinates: Number3): Block => {};
+GetBlock (X: number, Y: number, Z: number): Block;
+GetBlock (coordinates: Number3): Block;
 
 /**
 Converts Block coordinates to world coordinate system.
 
 */
-const BlockToWorld = (b: Block): Number3 => {};
-const BlockToWorld = (n: Number3): Number3 => {};
+BlockToWorld (b: Block): Number3;
+BlockToWorld (n: Number3): Number3;
 
 /**
 Converts Block coordinates to local coordinate system.
 
 */
-const BlockToLocal = (b: Block): Number3 => {};
-const BlockToLocal = (n: Number3): Number3 => {};
+BlockToLocal (b: Block): Number3;
+BlockToLocal (n: Number3): Number3;
 
 /**
 Converts world coordinates to Block coordinate system.
 
 */
-const WorldToBlock = (n: Number3): Number3 => {};
+WorldToBlock(n: Number3): Number3;
 
 /**
 Converts local coordinates to Block coordinate system.
 
 */
-const LocalToBlock = (n: Number3): Number3 => {};
+LocalToBlock(n: Number3): Number3;
 
 }
+
+export = Shape;

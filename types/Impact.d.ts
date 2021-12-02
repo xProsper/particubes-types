@@ -1,5 +1,5 @@
 
-declare namespace Impact {
+declare interface Impact {
 
 
 
@@ -13,13 +13,13 @@ local impact = Player:CastRay()
 print(impact.Block)	-- prints hit block's id
 
 */
-const Block: Block;
+Block: Block;
 
 /**
 Distance to impact when casting a ray. (see [Camera].[CastRay](/reference/camera#functions-castray), [Player].[CastRay](/reference/player#functions-castray), [PointerEvent].[CastRay](/reference/pointerevent#functions-castray))
 
 */
-const Distance: number;
+Distance: number;
 
 /**
 Not `nil` if the [Impact] represents a [Block].
@@ -28,7 +28,7 @@ Indicates what block face has been touched.
 
 
 */
-const FaceTouched: Face;
+FaceTouched: Face;
 
 /**
 Object touched by the ray.
@@ -42,7 +42,7 @@ Pointer.Down = function(event)
 end
 
 */
-const Object: Object;
+Object: Object;
 
 /**
 Player touched by the ray.
@@ -56,13 +56,15 @@ Pointer.Down = function(event)
 end
 
 */
-const Player: Player;
+Player: Player;
 
 /**
 Shape touched by the ray. Not `nil` if the [Impact] represents a [Shape].
 
 */
-const Shape: Shape;
+Shape: Shape;
 
 
 }
+
+export = Impact;

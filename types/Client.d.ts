@@ -6,7 +6,7 @@ Client is nil in the [Server] execution context.
 
 */
 
-declare namespace Client {
+declare interface Client {
 
 
 
@@ -29,7 +29,7 @@ Client.DidReceiveEvent = function(event)
 end
 
 */
-const DidReceiveEvent: function;
+DidReceiveEvent: function;
 
 /**
 Triggered when pressing action 1 button. (space bar by default with a keyboard)
@@ -43,7 +43,7 @@ Client.Action1 = function()
 end
 
 */
-const Action1: function;
+Action1: function;
 
 /**
 Triggered when releasing action 1 button. (space bar by default with a keyboard)
@@ -57,7 +57,7 @@ Client.Action1Release = function()
 end
 
 */
-const Action1Release: function;
+Action1Release: function;
 
 /**
 Triggered when pressing action 2 button. (left click by default when using a mouse)
@@ -73,7 +73,7 @@ Client.Action2 = function()
 end
 
 */
-const Action2: function;
+Action2: function;
 
 /**
 Triggered when releasing action 2 button. (left click by default when using a mouse)
@@ -89,7 +89,7 @@ Client.Action2Release = function()
 end
 
 */
-const Action2Release: function;
+Action2Release: function;
 
 /**
 Triggered when pressing action 3 button. (right click by default when using a mouse)
@@ -105,7 +105,7 @@ Client.Action3 = function()
 end
 
 */
-const Action3: function;
+Action3: function;
 
 /**
 Triggered when releasing action 3 button. (left click by default when using a mouse)
@@ -121,19 +121,19 @@ Client.Action3Release = function()
 end
 
 */
-const Action3Release: function;
+Action3Release: function;
 
 /**
 See [Camera].
 
 */
-const Camera: Camera;
+Camera: Camera;
 
 /**
 See [Clouds].
 
 */
-const Clouds: Clouds;
+Clouds: Clouds;
 
 /**
 Triggered when what we call the "directional pad" or "D-pad" is activated. 
@@ -174,14 +174,14 @@ Client.AnalogPad = function(dx, dy)
 end
 
 */
-const DirectionalPad: function;
+DirectionalPad: function;
 
 /**
 Shortcut to [DirectionalPad](/reference/client#property-directionalpad).
 
 
 */
-const DPad: function;
+DPad: function;
 
 /**
 Triggered when what we call the "analog pad" or "A-pad" is activated. 
@@ -218,26 +218,26 @@ Client.DirectionalPad = function(x, y)
 end
 
 */
-const AnalogPad: function;
+AnalogPad: function;
 
 /**
 Shortcut to [AnalogPad](/reference/client#property-analogpad).
 
 
 */
-const APad: function;
+APad: function;
 
 /**
 See [Fog].
 
 */
-const Fog: Fog;
+Fog: Fog;
 
 /**
 See [Inputs].
 
 */
-const Inputs: Inputs;
+Inputs: Inputs;
 
 /**
 Triggered when a message is submitted through the chat input. Receives the message ([string]) in parameter.
@@ -256,7 +256,7 @@ Client.OnChat = function(message)
 end
 
 */
-const OnChat: function;
+OnChat: function;
 
 /**
 Triggered when a player joins the game.
@@ -272,7 +272,7 @@ Client.OnPlayerJoin = function(player)
 end
 
 */
-const OnPlayerJoin: function;
+OnPlayerJoin: function;
 
 /**
 Triggered when a player leaves the game.
@@ -286,7 +286,7 @@ Client.OnPlayerLeave = function(player)
 end
 
 */
-const OnPlayerLeave: function;
+OnPlayerLeave: function;
 
 /**
 Triggered when the game starts.
@@ -304,13 +304,13 @@ Client.OnStart = function()
 end
 
 */
-const OnStart: function;
+OnStart: function;
 
 /**
 See [Player].
 
 */
-const Player: Player;
+Player: Player;
 
 /**
 Executed ~30 times per second. Provides the elapsed time in seconds as parameter.
@@ -325,19 +325,19 @@ Client.Tick = function(dt)
 end
 
 */
-const Tick: function;
+Tick: function;
 
 /**
 See [UI].
 
 */
-const UI: UI;
+UI: UI;
 
 /**
 See [Pointer].
 
 */
-const Pointer: Pointer;
+Pointer: Pointer;
 
 /**
 This function is triggered when the user is about to open the menu that offers to resume or leave the experience.
@@ -354,7 +354,7 @@ Client.WillOpenGameMenu = function()
 end
 
 */
-const WillOpenGameMenu: function;
+WillOpenGameMenu: function;
 
 
 /**
@@ -372,3 +372,5 @@ From there, players can exit or resume the game.
 */
 
 }
+
+export = Client;

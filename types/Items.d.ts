@@ -4,9 +4,11 @@ Items is a shortcut to [Config].Items.
 
 */
 
-declare namespace Items {
+declare interface Items {
 
 
 
 
 }
+
+export = Items;

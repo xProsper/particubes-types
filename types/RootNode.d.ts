@@ -6,7 +6,7 @@ It contains eerything UI (Labels, Buttons, etc)
 
 */
 
-declare namespace RootNode {
+declare interface RootNode {
 
 
 
@@ -16,7 +16,9 @@ Add a UI Node to the game's UI, at the top level of the hierarchy.
 
 
 */
-const AddChild = (button: Button): void => {};
-const AddChild = (label: Label): void => {};
+AddChild (button: Button): void;
+AddChild (label: Label): void;
 
 }
+
+export = RootNode;

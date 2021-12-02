@@ -3,7 +3,7 @@
 A Number3 contains 3 [number] values (X, Y & Z). It can represent different things in 3D space (points, vectors, forces).
 */
 
-declare namespace Number3 {
+declare interface Number3 {
 
 /**
 Creates a Number3 with values x, y and z.
@@ -14,7 +14,7 @@ local myNumber3 = Number3(1, 2, 3)
 
 
 */
-const constructor = (x: number, y: number, z: number) => Number3;
+constructor: (x: number, y: number, z: number) => Number3;
 
 
 
@@ -28,7 +28,7 @@ myNumber3.X = 42
 print(myNumber3.X)
 
 */
-const X: number;
+X: number;
 
 /**
 Y value of the Number3.
@@ -40,7 +40,7 @@ myNumber3.Y = 42
 print(myNumber3.Y)
 
 */
-const Y: number;
+Y: number;
 
 /**
 Z value of the Number3.
@@ -52,7 +52,7 @@ myNumber3.Z = 42
 print(myNumber3.Z)
 
 */
-const Z: number;
+Z: number;
 
 /**
 `Number3`'s length.
@@ -67,7 +67,7 @@ print(number3.Length) -- prints 13
 -- sqrt(3*3 + 4*4 + 12*12) = 13
 
 */
-const Length: number;
+Length: number;
 
 /**
 Reading `Number3.SquaredLength` is faster than reading `Number3.Length`.
@@ -91,7 +91,7 @@ end
 -- but it would have to internally compute 2 square roots for nothing.
 
 */
-const SquaredLength: number;
+SquaredLength: number;
 
 
 /**
@@ -113,7 +113,7 @@ n2.X = 10
 print(n1.X) -- n1.X is still 1
 
 */
-const Copy = (n: Number3): Number3 => {};
+Copy(n: Number3): Number3;
 
 /**
 Returns the cross product of both [Number3]s.
@@ -127,7 +127,7 @@ local n2 = Number3(1, 0, 0)
 local n3 = n1:Cross(n2)
 
 */
-const Cross = (n: Number3): Number3 => {};
+Cross(n: Number3): Number3;
 
 /**
 Returns the dot product of both [Number3]s.
@@ -141,7 +141,7 @@ local n2 = Number3(1, 0, 0)
 local dot = n1:Dot(n2)
 
 */
-const Dot = (n: Number3): number => {};
+Dot(n: Number3): number;
 
 /**
 Rotates the `Number3` using euler angles in parameters (in radians).
@@ -156,7 +156,7 @@ someNumber3:Rotate(Number3(0,pi,0))
 -- someNumber3 == Number3(0,0,-1), after a PI rotation around Y axis (180°)
 
 */
-const Rotate = (angles: Number3): void => {};
+Rotate(angles: Number3): void;
 
 /**
 Normalizes the `Number3`.
@@ -176,3 +176,5 @@ someNumber3.Length = 1.0
 */
 
 }
+
+export = Number3;

@@ -8,7 +8,7 @@ Labels are automatically displayed on the screen upon creation.
 
 */
 
-declare namespace Label {
+declare interface Label {
 
 /**
 Creates a Label with optional parameters:
@@ -21,7 +21,7 @@ Creates a Label with optional parameters:
 
 local myLabel = Label("❤❤❤")
 */
-const constructor = (text: string, hAnchor: Anchor, vAnchor: Anchor) => Label;
+constructor: (text: string, hAnchor: Anchor, vAnchor: Anchor) => Label;
 
 
 
@@ -35,7 +35,7 @@ Text that's being displayed by the Label.
 myLabel.Text = "❤❤"
 
 */
-const Text: string;
+Text: string;
 
 /**
 Label's text color.
@@ -46,7 +46,7 @@ myLabel.TextColor = Color(255, 0, 0)
 
 
 */
-const TextColor: Color;
+TextColor: Color;
 
 
 /**
@@ -65,6 +65,8 @@ Calling `Add` for a label that's already displayed has no effect.
 
 
 */
-const Add = (hAnchor: Anchor, vAnchor: Anchor): void => {};
+Add(hAnchor: Anchor, vAnchor: Anchor): void;
 
 }
+
+export = Label;

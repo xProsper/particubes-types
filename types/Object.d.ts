@@ -10,7 +10,7 @@ An `Object` can also take part in the physics simulation when setting [Object.Ph
 
 */
 
-declare namespace Object {
+declare interface Object {
 
 /**
 Creates an Object.
@@ -40,7 +40,7 @@ myObject.Acceleration = -Config.ConstantAcceleration
 -- Config.ConstantAcceleration, cancelling it.
 
 */
-const Acceleration: Number3;
+Acceleration: Number3;
 
 /**
 Collision groups the [This] belongs to. 
@@ -89,7 +89,7 @@ object.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups
 Player.CollidesWithGroups = Map.CollisionGroups + Player.CollisionGroups
 
 */
-const CollisionGroups: CollisionGroups;
+CollisionGroups: CollisionGroups;
 
 /**
 Collision groups the [This] collides with. 
@@ -137,7 +137,7 @@ object2.CollidesWithGroups = {1, 5} -- collides with Map + objects in group 5
 object1.CollidesWithGroups = Map.CollisionGroups + {5}
 
 */
-const CollidesWithGroups: CollisionGroups;
+CollidesWithGroups: CollisionGroups;
 
 /**
 Turns physic simulation on/off when set.
@@ -146,7 +146,7 @@ Turns physic simulation on/off when set.
 
 
 */
-const Physics: boolean;
+Physics: boolean;
 
 /**
 [nil] by default. Can be set to a function that will be triggered when the [This] collides with another [Object].
@@ -170,7 +170,7 @@ object.OnCollision = function(o1, o2, face)
 end
 
 */
-const OnCollision: function;
+OnCollision: function;
 
 /**
 [nil] by default. Can be set to a function that will be triggered when the [This] ends colliding with another [Object].
@@ -187,7 +187,7 @@ object.OnCollisionEnd = function(o1, o2)
 end
 
 */
-const OnCollisionEnd: function;
+OnCollisionEnd: function;
 
 /**
 Executed when the [Pointer] is dragged (moved while down). Receives a [PointerEvent] parameter, just like [Pointer.Drag](/reference/pointer#property-drag).
@@ -203,7 +203,7 @@ myObject.OnPointerDrag = function(pointerEvent)
 end
 
 */
-const OnPointerDrag: function;
+OnPointerDrag: function;
 
 /**
 Position of the [This] in the world.
@@ -217,7 +217,7 @@ local o = Object()
 o.Position = Player.Position
 
 */
-const Position: Number3;
+Position: Number3;
 
 /**
 `true` when the [This] is not falling.
@@ -226,7 +226,7 @@ const Position: Number3;
 
 
 */
-const IsOnGround: boolean;
+IsOnGround: boolean;
 
 /**
 Can be set to `true` for the [This] to be hidden.
@@ -234,7 +234,7 @@ Nothing else changes, the [This] remains in the scene and it keeps being affecte
 
 
 */
-const IsHidden: boolean;
+IsHidden: boolean;
 
 /**
 Position of the [This] in its parent.
@@ -242,7 +242,7 @@ In other words, `LocalPosition` refers to the position of the [This] relative to
 
 
 */
-const LocalPosition: Number3;
+LocalPosition: Number3;
 
 /**
 Rotation of the [This] in the world (as seen on screen).
@@ -264,7 +264,7 @@ o.Forward:Rotate({0, 0, math.pi / 2})
 o.Forward = Camera.Forward
 
 */
-const Rotation: Number3;
+Rotation: Number3;
 
 /**
 Tick is a [function] executed ~30 times per second when set ([nil] by default). Provides the [This] and elapsed time in seconds as parameters.
@@ -279,7 +279,7 @@ myObject.Tick = function(object, dt)
 end
 
 */
-const Tick: function;
+Tick: function;
 
 /**
 Rotation of the [This] in its parent.
@@ -288,7 +288,7 @@ Nested [Object] local rotations are combined to obtain the "world rotation" ([Ob
 
 
 */
-const LocalRotation: Number3;
+LocalRotation: Number3;
 
 /**
 Velocity of the [This] in world coordinates per second.
@@ -303,7 +303,7 @@ Velocity of the [This] in world coordinates per second.
 myObject.Velocity.Y = 100
 
 */
-const Velocity: Number3;
+Velocity: Number3;
 
 /**
 Be aware, this `Motion` property is a hack regarding laws of physics. (sorry Isaac)
@@ -328,7 +328,7 @@ myObject.Motion = Camera.Forward * speed
 -- If the Camera rotates after this, it won't change where myObject is heading.
 
 */
-const Motion: Number3;
+Motion: Number3;
 
 /**
 Scale of the [Object], in its parent.
@@ -349,49 +349,49 @@ topLevelObject:AddChild(o) -- o becomes a child of topLevelObject
 -- o ends up being displayed with a scale of 1
 
 */
-const LocalScale: number;
+LocalScale: number;
 
 /**
 Convenience property that attempts to match the actual world scale as much as it can. Note that [Object]s that have multiple levels of nested rotations and scales will return a skewed lossy scale.
 
 
 */
-const LossyScale: number;
+LossyScale: number;
 
 /**
 The mass of the [Object] determines how much a given force can move it and whether or not another object can be pushed by it. It cannot be zero, a neutral mass is a mass of 1.
 
 
 */
-const Mass: number;
+Mass: number;
 
 /**
 The combined friction of 2 [Object]s in contact represents how much the moving [Object] will be able to slide along the colliding [Object]. It is a rate between 0 (full stop on contact) and 1 (full slide, no friction), values higher than 1 are allowed and will create an increasing momentum, like sliding on ice.
 
 
 */
-const Friction: number;
+Friction: number;
 
 /**
 The combined bounciness of 2 [Object]s in contact represents how much of the moving [Object]'s velocity is produced after being in contact with colliding [Object], it is a rate between 0 (no bounce) and 1 (100% of the velocity bounced). Values higher than 1 are allowed and will create an increasing momentum at each bounce (try at your own risk).
 
 
 */
-const Bounciness: number;
+Bounciness: number;
 
 /**
 All [Object]s have a collision box that represents the space occupied in the scene with regards to collisions. For [Shape]s and [Player]s, the collision box is updated with their bounding box. For [Object]s, it is a 1-cube by default after physics was enabled for the first time.
 
 
 */
-const CollisionBox: Box;
+CollisionBox: Box;
 
 /**
 Returns number of child [Object]s.
 
 
 */
-const ChildrenCount: number;
+ChildrenCount: number;
 
 /**
 `Up` is a unit vector (vector with a length of 1). It determines which direction is "up" for the [This].
@@ -400,7 +400,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Up: Number3;
+Up: Number3;
 
 /**
 `Right` is a unit vector (vector with a length of 1). It determines which direction is "right" for the [This].
@@ -409,7 +409,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Right: Number3;
+Right: Number3;
 
 /**
 `Forward` is a unit vector (vector with a length of 1). It determines which direction is "forward" for the [This].
@@ -418,7 +418,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Forward: Number3;
+Forward: Number3;
 
 /**
 `Left` is a unit vector (vector with a length of 1). It determines which direction is "left" for the [This].
@@ -427,7 +427,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Left: Number3;
+Left: Number3;
 
 /**
 `Down` is a unit vector (vector with a length of 1). It determines which direction is "down" for the [This].
@@ -436,7 +436,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Down: Number3;
+Down: Number3;
 
 /**
 `Backward` is a unit vector (vector with a length of 1). It determines which direction is "backward" for the [This].
@@ -445,7 +445,7 @@ Setting it is a way to rotate the [This].
 
 
 */
-const Backward: Number3;
+Backward: Number3;
 
 
 /**
@@ -468,8 +468,8 @@ local myShape = Shape(Items.someuser.someitem)
 o:AddChild(myShape)
 
 */
-const AddChild = (child: Object): void => {};
-const AddChild = (child: Object, keepWorld: boolean): void => {};
+AddChild (child: Object): void;
+AddChild (child: Object, keepWorld: boolean): void;
 
 /**
 Unsets parent/child relationship with child parameter. The child ends up being deleted if it has no other references.
@@ -480,7 +480,7 @@ o:RemoveChild(someChildObject)
 
 
 */
-const RemoveChild = (child: Object): void => {};
+RemoveChild(child: Object): void;
 
 /**
 Unsets parent/child relationship with all children. Individual children end up being deleted if they have no other references.
@@ -503,7 +503,7 @@ if o.ChildrenCount > 0 then
 end
 
 */
-const GetChild = (index: number): void => {};
+GetChild(index: number): void;
 
 /**
 Get [This]'s parent.
@@ -533,8 +533,8 @@ o:SetParent(Map) -- o is now a child of the map
 -- (Map is an extension of Object)
 
 */
-const SetParent = (parent: Object): void => {};
-const SetParent = (parent: Object, keepWorld: boolean): void => {};
+SetParent (parent: Object): void;
+SetParent (parent: Object, keepWorld: boolean): void;
 
 /**
 Removes the [This] from its parent. Doesn't do anything if the [This] has no parent.
@@ -556,7 +556,7 @@ local p = Number3(1, 2, 3)
 local pInWorldCoords = myObject:PositionLocalToWorld(p)
 
 */
-const PositionLocalToWorld = (p: Number3): Number3 => {};
+PositionLocalToWorld(p: Number3): Number3;
 
 /**
 Converts a world position to local coordinate system.
@@ -568,35 +568,35 @@ local p = Number3(1, 2, 3)
 local pInLocalCoords = myObject:PositionWorldToLocal(p)
 
 */
-const PositionWorldToLocal = (p: Number3): Number3 => {};
+PositionWorldToLocal(p: Number3): Number3;
 
 /**
 Object:RotateLocal(number3) -- euler angles
 Object:RotateLocal(number3, number) -- axis angle
 
 */
-const RotateLocal = (angles: Number3): void => {};
-const RotateLocal = (axis: Number3, angle: number): void => {};
+RotateLocal (angles: Number3): void;
+RotateLocal (axis: Number3, angle: number): void;
 
 /**
 Object:RotateWorld(number3) -- euler angles
 Object:RotateWorld(number3, number) -- axis angle
 
 */
-const RotateWorld = (angles: Number3): void => {};
-const RotateWorld = (axis: Number3, angle: number): void => {};
+RotateWorld (angles: Number3): void;
+RotateWorld (axis: Number3, angle: number): void;
 
 /**
 Converts a local rotation to world coordinate system.
 
 */
-const RotationLocalToWorld = (p: Number3): Number3 => {};
+RotationLocalToWorld(p: Number3): Number3;
 
 /**
 Converts a world rotation to local coordinate system.
 
 */
-const RotationWorldToLocal = (p: Number3): Number3 => {};
+RotationWorldToLocal(p: Number3): Number3;
 
 /**
 Adds a text bubble at [Object]'s position. For a [Shape] or [Player], the text bubble will appear above its bounding box.
@@ -605,29 +605,31 @@ You may use a duration of `-1` to set a permanent text bubble.
 
 
 */
-const TextBubble = (text: string): void => {};
-const TextBubble = (text: string, duration: number): void => {};
-const TextBubble = (text: string, duration: number, offset: number): void => {};
-const TextBubble = (text: string, duration: number, offset: number, color: Color): void => {};
-const TextBubble = (text: string, duration: number, offset: number, color: Color, bgColor: Color): void => {};
-const TextBubble = (text: string, duration: number, offset: number, color: Color, bgColor: Color, tail: boolean): void => {};
+TextBubble (text: string): void;
+TextBubble (text: string, duration: number): void;
+TextBubble (text: string, duration: number, offset: number): void;
+TextBubble (text: string, duration: number, offset: number, color: Color): void;
+TextBubble (text: string, duration: number, offset: number, color: Color, bgColor: Color): void;
+TextBubble (text: string, duration: number, offset: number, color: Color, bgColor: Color, tail: boolean): void;
 
 /**
 Returns `true` if the two [Object]s may collide with each other.
 
 */
-const CollidesWith = (self: Object, other: Object): boolean => {};
+CollidesWith(self: Object, other: Object): boolean;
 
 /**
 Apply a force to [Object], taking into account its [Mass](/reference/object#property-mass).
 
 */
-const ApplyForce = (self: Object, value: Number3): void => {};
+ApplyForce(self: Object, value: Number3): void;
 
 /**
 Instantaneously remove any ongoing text bubble.
 
 */
-const ClearTextBubble = (self: Object): void => {};
+ClearTextBubble(self: Object): void;
 
 }
+
+export = Object;

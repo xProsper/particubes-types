@@ -8,7 +8,7 @@ Buttons are automatically displayed on the screen upon creation.
 
 */
 
-declare namespace Button {
+declare interface Button {
 
 /**
 Creates a Button with optional parameters:
@@ -26,7 +26,7 @@ local btn1 = Button("I'm a button")
 local btn2 = Button("I'm a button", Anchor.HCenter, Anchor.VCenter)
 
 */
-const constructor = (text: string, hAnchor: Anchor, vAnchor: Anchor) => Button;
+constructor: (text: string, hAnchor: Anchor, vAnchor: Anchor) => Button;
 
 
 
@@ -41,7 +41,7 @@ local btn = Button("test button")
 btn.Color = Color(255, 0, 0) -- make it red
 
 */
-const Color: Color;
+Color: Color;
 
 /**
 Function triggered when pressing the button.
@@ -56,7 +56,7 @@ btn.OnPress = function()
 end
 
 */
-const OnPress: function;
+OnPress: function;
 
 /**
 Function triggered when releasing the button.
@@ -71,7 +71,7 @@ btn.OnRelease = function()
 end
 
 */
-const OnRelease: function;
+OnRelease: function;
 
 /**
 Text being displayed by the Button.
@@ -84,7 +84,7 @@ local btn = Button()
 btn.Text = "test button"
 
 */
-const Text: string;
+Text: string;
 
 /**
 Button's text color.
@@ -97,7 +97,7 @@ local btn = Button()
 btn.TextColor = Color(100, 0, 0)
 
 */
-const TextColor: Color;
+TextColor: Color;
 
 
 /**
@@ -129,6 +129,8 @@ myButton:Remove()
 btn:Add(Anchor.Center, Anchor.Bottom)
 
 */
-const Add = (hAnchor: Anchor, vAnchor: Anchor): void => {};
+Add(hAnchor: Anchor, vAnchor: Anchor): void;
 
 }
+
+export = Button;

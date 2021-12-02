@@ -10,39 +10,41 @@ Builtin `Face` instances can be used, there's no way to create custom Faces.
 
 */
 
-declare namespace Face {
+declare interface Face {
 
 
 /**
 Top face.
 */
-readonly const Top: Face;
+readonly Top: Face;
 
 /**
 Bottom face.
 */
-readonly const Bottom: Face;
+readonly Bottom: Face;
 
 /**
 Front face.
 */
-readonly const Front: Face;
+readonly Front: Face;
 
 /**
 Back face.
 */
-readonly const Back: Face;
+readonly Back: Face;
 
 /**
 Left face.
 */
-readonly const Left: Face;
+readonly Left: Face;
 
 /**
 Right face.
 */
-readonly const Right: Face;
+readonly Right: Face;
 
 
 
 }
+
+export = Face;

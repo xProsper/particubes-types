@@ -1,5 +1,5 @@
 
-declare namespace PointerEvent {
+declare interface PointerEvent {
 
 
 
@@ -8,49 +8,49 @@ Horizontal position of the pointer when the event happens, in screen coordinates
 
 
 */
-const X: number;
+X: number;
 
 /**
 Vertical position of the pointer when the event happens, in screen coordinates. `{0,0}` represents the bottom left of the screen, and `{1,1}` the top right. `Y` is close to `0.5` when pointing the vertical center.
 
 
 */
-const Y: number;
+Y: number;
 
 /**
 Horizontal delta, not `0` when moving the pointer (see [Pointer].[Drag](/reference/pointer#property-drag) or [Pointer].[Drag2](/reference/pointer#property-drag2))
 
 
 */
-const DX: number;
+DX: number;
 
 /**
 Vertical delta, not `0` when moving the pointer (see [Pointer].[Drag](/reference/pointer#property-drag) or [Pointer].[Drag2](/reference/pointer#property-drag2))
 
 
 */
-const DY: number;
+DY: number;
 
 /**
 [PointerEvent]'s location, in world coordinate system.
 
 
 */
-const Position: Number3;
+Position: Number3;
 
 /**
 The direction in which a ray would go based on the [PointerEvent].
 
 
 */
-const Direction: Number3;
+Direction: Number3;
 
 /**
 Indicates whether the [This] represents a touch/click "down" event. If false, it represents a "up" event.
 
 
 */
-const Down: boolean;
+Down: boolean;
 
 
 /**
@@ -79,11 +79,13 @@ Pointer.Down = function( pointerEvent )
 end
 
 */
-const CastRay = (): Impact => {};
-const CastRay = (filterIn: CollisionGroups): Impact => {};
-const CastRay = (filterIn: Shape): Impact => {};
-const CastRay = (filterIn: nil, filterOut: Object): Impact => {};
-const CastRay = (filterIn: CollisionGroups, filterOut: Object): Impact => {};
-const CastRay = (filterIn: Shape, filterOut: Object): Impact => {};
+CastRay(): Impact;
+CastRay (filterIn: CollisionGroups): Impact;
+CastRay (filterIn: Shape): Impact;
+CastRay (filterIn: nil, filterOut: Object): Impact;
+CastRay (filterIn: CollisionGroups, filterOut: Object): Impact;
+CastRay (filterIn: Shape, filterOut: Object): Impact;
 
 }
+
+export = PointerEvent;
