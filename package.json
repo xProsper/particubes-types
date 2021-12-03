@@ -4,8 +4,9 @@
     "tsc": "tsc index.ts --declaration --emitDeclarationOnly",
     "build": "yaml2json ./particubes/lua-docs/content/reference --pretty --save --recursive",
     "move": "mv ./particubes/lua-docs/content/reference/*.json ./resources",
+    "gitsub": "git submodule update --init --recursive",
     "gitup": "git pull --rebase --recurse-submodules",
-    "up": "npm run gitup && npm run build && npm run move && node generateTypes.js"
+    "up": "npm run gitsub && npm run gitup && npm run build && npm run move && node generateTypes.js"
   },
   "dependencies": {
     "yamljs": "^0.3.0"
