@@ -62,11 +62,6 @@ end
 */
 Impact;
 CastRay(): void;
-CastRay (filterIn: CollisionGroups): Impact;
-CastRay (filterIn: Shape): Impact;
-CastRay (filterIn: nil, filterOut: Object): Impact;
-CastRay (filterIn: CollisionGroups, filterOut: Object): Impact;
-CastRay (filterIn: Shape, filterOut: Object): Impact;
 
 /**
 Puts Camera in "first person" mode. Looking at the world from `target`'s perspective.
@@ -83,9 +78,6 @@ Camera:SetModeFirstPerson(Player, 3.0)
 
 */
 SetModeFirstPerson(): void;
-SetModeFirstPerson (target: Object): void;
-SetModeFirstPerson (target: Object, offset: number): void;
-SetModeFirstPerson (target: Object, offset: Number3): void;
 
 /**
 Puts Camera in "third person" mode. (looking at Camera's target, from a behind-the-shoulder perspective)
@@ -106,9 +98,6 @@ Camera:SetModeThirdPerson(someShape)
 
 */
 SetModeThirdPerson(): void;
-SetModeThirdPerson (target: Object): void;
-SetModeThirdPerson (target: Object, minDist: number, maxDist: number, offset: number): void;
-SetModeThirdPerson (target: Object, minDist: number, maxDist: number, offset: Number3): void;
 
 /**
 When in that mode, the camera rotates around its target, maintaining its distance from it.
@@ -127,10 +116,6 @@ Camera:SetModeSatellite(Player, 10.0)
 
 */
 SetModeSatellite(): void;
-SetModeSatellite (target: Object): void;
-SetModeSatellite (target: Number3): void;
-SetModeSatellite (target: Object, distance: number): void;
-SetModeSatellite (target: Number3, distance: number): void;
 
 /**
 Fits the target to the screen.
@@ -153,4 +138,4 @@ FitToScreen(target: Shape, screenRatio: number, spherize: boolean): void;
 
 }
 
-export = Camera;
+export default Camera;

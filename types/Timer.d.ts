@@ -48,4 +48,4 @@ Cancels the [Timer].
 
 }
 
-export = Timer;
+export default Timer;

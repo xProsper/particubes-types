@@ -41,12 +41,12 @@ description ? `
 */
 ` : ``
 ,
-args && args.some(arg => arg === null) ? `constructor: () => ${t};
+args && args.some(arg => arg === null) || !args ? `constructor: () => ${t};
 ` : ``
 ,
 args ? `constructor: (` : ``
 ,
-args ? args.filter((arg => arg !== null)).flat().map(({name, type}, index) => [
+args ? args.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).flat().map(({name, type}, index) => [
 name && type && index > 0 ? `, ` : ``
 ,
 name && type ? `${name}: ${type}` : ``
@@ -73,7 +73,7 @@ type ? `${type};
 ].join("")).join("") : ``
 ,
 // properties
-p ? p.map(({ name, type, description, samples, hide }) => !hide ? [
+p ? p.map(({ name, type, description, samples, hide, types }) => !hide ? [
 description ? `
 /**
 ${description}
@@ -94,7 +94,13 @@ description ? `
 ,
 name ? `${name}: ` : ``
 ,
-type ? `${type};
+name !== "Recipients" && type ? `${type};
+` : ``
+,
+name === "Recipients" ? `(Player | OtherPlayers | Players | Server)[];
+` : ``
+,
+types ? `${types.join(" | ")};
 ` : ``
 ].join("") : ``).join("") : ``
 ,
@@ -120,9 +126,10 @@ description ? `
 ,
 !args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
 ,
-!args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
-,
 args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type};
+` : ``
+,
+name === "SendTo" ? `${name}(recipients: Event["Recipients"]): void;
 ` : ``
 ,
 args && args.some(arg => arg === null) ? `${name}(): void;
@@ -145,26 +152,26 @@ returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
 ].join("")
 :
 [
-`${name} (`
+argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `${name}(` : ``
 ,
-argSet.filter((arg => arg !== null)).map(({ name: innerName, type }, innerIndex) => [
+argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).map(({ name: innerName, type }, innerIndex) => [
 innerName && type && innerIndex > 0 ? `, ` : ``
 ,
 innerName && type ? `${innerName}: ${type}` : ``
 ].join("")).join("")
 ,
-`): `
+argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `): ` : ``
 ,
-returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
+argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void` : ``
 ,
-`;
-`
+argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `;
+` : ``
 ].join("")).join("") : ``
 ].join("") : ``).join("") : ``
 ,
 t ? `}
 
-export = ${t};` : ``
+export default ${t};` : ``
 ].join("\n");
 
 // Execution starts here
@@ -178,7 +185,7 @@ const getIndexTemplate = r => `${getModules(r).join("\n")}
 const getModules = ({ blocks }) => blocks
   .filter(block => Object.keys(block).includes("list"))[0]
   // .list.map(item => `/// <reference path="./${item.replace(/<[^>]+>/gi, "")}.d.ts" />`);
-  .list.map(item => `export * from "./types/${item.replace(/<[^>]+>/gi, "")}.d.ts";`);
+  .list.map(item => `import * as ${item.replace(/<[^>]+>/gi, "")} from "./types/${item.replace(/<[^>]+>/gi, "")}";`);
 
 readdirSync("./resources").forEach(file => {
   const r = JSON
@@ -191,7 +198,7 @@ readdirSync("./resources").forEach(file => {
 
   const typeTemplate = getTypeTemplate(r);
   if (!r.type) {
-    writeFileSync(`./index.d.ts`, getIndexTemplate(r));
+    writeFileSync(`./index.ts`, getIndexTemplate(r));
   } else {
     if (r.type.substring(0, 1) === r.type.substring(0, 1).toUpperCase())
       writeFileSync(`./types/${r.type}.d.ts`, typeTemplate);

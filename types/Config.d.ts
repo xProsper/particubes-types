@@ -77,4 +77,4 @@ PointerToggleAvailable: boolean;
 
 }
 
-export = Config;
+export default Config;

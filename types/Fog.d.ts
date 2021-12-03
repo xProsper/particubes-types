@@ -72,4 +72,4 @@ LightAbsorption: number;
 
 }
 
-export = Fog;
+export default Fog;

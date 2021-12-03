@@ -373,4 +373,4 @@ From there, players can exit or resume the game.
 
 }
 
-export = Client;
+export default Client;

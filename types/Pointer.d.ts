@@ -123,4 +123,4 @@ Pointer:Hide()
 
 }
 
-export = Pointer;
+export default Pointer;

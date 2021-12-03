@@ -33,7 +33,8 @@ constructor: (storeName: string) => KeyValueStore;
 
 
 */
-Name: 
+Name: string;
+
 
 /**
 Sets values for given keys.
@@ -57,9 +58,6 @@ store:Set("currentChallenge", "halloween", "jumpStrength", 10, function(success)
 end)
 
 */
-Set (key1: string, value: string, callback: function): void;
-Set (key1: string, value: number, callback: function): void;
-Set (key1: string, value: boolean, callback: function): void;
 
 /**
 Gets values for given keys.
@@ -83,8 +81,7 @@ store:Get("currentChallenge", "jumpStrength", function(success, results)
 end)
 
 */
-Get (key1: string, key2: string, callback: function): void;
 
 }
 
-export = KeyValueStore;
+export default KeyValueStore;

@@ -10,4 +10,4 @@ declare interface OtherPlayers {
 
 }
 
-export = OtherPlayers;
+export default OtherPlayers;

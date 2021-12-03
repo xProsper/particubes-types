@@ -47,4 +47,4 @@ readonly Right: Face;
 
 }
 
-export = Face;
+export default Face;

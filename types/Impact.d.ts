@@ -67,4 +67,4 @@ Shape: Shape;
 
 }
 
-export = Impact;
+export default Impact;

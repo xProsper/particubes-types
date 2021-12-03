@@ -49,4 +49,4 @@ Copy(b: Box): Box;
 
 }
 
-export = Box;
+export default Box;

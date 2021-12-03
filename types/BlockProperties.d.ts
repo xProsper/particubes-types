@@ -36,4 +36,4 @@ ID: number;
 
 }
 
-export = BlockProperties;
+export default BlockProperties;

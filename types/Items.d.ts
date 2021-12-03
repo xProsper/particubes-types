@@ -11,4 +11,4 @@ declare interface Items {
 
 }
 
-export = Items;
+export default Items;

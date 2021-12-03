@@ -67,4 +67,4 @@ On: boolean;
 
 }
 
-export = TimeCycle;
+export default TimeCycle;

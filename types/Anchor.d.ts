@@ -45,4 +45,4 @@ readonly Right: Anchor;
 
 }
 
-export = Anchor;
+export default Anchor;

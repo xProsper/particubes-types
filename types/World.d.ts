@@ -11,4 +11,4 @@ declare interface World {
 
 }
 
-export = World;
+export default World;

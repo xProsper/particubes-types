@@ -19,4 +19,4 @@ LocalPalette: Palette;
 
 }
 
-export = Map;
+export default Map;

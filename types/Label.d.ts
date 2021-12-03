@@ -69,4 +69,4 @@ Add(hAnchor: Anchor, vAnchor: Anchor): void;
 
 }
 
-export = Label;
+export default Label;

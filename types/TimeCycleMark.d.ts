@@ -66,4 +66,4 @@ Time: Time;
 
 }
 
-export = TimeCycleMark;
+export default TimeCycleMark;

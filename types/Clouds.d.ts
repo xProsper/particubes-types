@@ -33,4 +33,4 @@ Altitude: number;
 
 }
 
-export = Clouds;
+export default Clouds;

@@ -194,4 +194,4 @@ Replace(block: Block): void;
 
 }
 
-export = Block;
+export default Block;

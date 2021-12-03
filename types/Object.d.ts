@@ -22,6 +22,7 @@ local o = Object()
 World:AddChild(o) -- adds o to the [World] (top level object in the game scene)
 
 */
+constructor: () => Object;
 
 
 
@@ -468,8 +469,6 @@ local myShape = Shape(Items.someuser.someitem)
 o:AddChild(myShape)
 
 */
-AddChild (child: Object): void;
-AddChild (child: Object, keepWorld: boolean): void;
 
 /**
 Unsets parent/child relationship with child parameter. The child ends up being deleted if it has no other references.
@@ -533,8 +532,6 @@ o:SetParent(Map) -- o is now a child of the map
 -- (Map is an extension of Object)
 
 */
-SetParent (parent: Object): void;
-SetParent (parent: Object, keepWorld: boolean): void;
 
 /**
 Removes the [This] from its parent. Doesn't do anything if the [This] has no parent.
@@ -575,16 +572,12 @@ Object:RotateLocal(number3) -- euler angles
 Object:RotateLocal(number3, number) -- axis angle
 
 */
-RotateLocal (angles: Number3): void;
-RotateLocal (axis: Number3, angle: number): void;
 
 /**
 Object:RotateWorld(number3) -- euler angles
 Object:RotateWorld(number3, number) -- axis angle
 
 */
-RotateWorld (angles: Number3): void;
-RotateWorld (axis: Number3, angle: number): void;
 
 /**
 Converts a local rotation to world coordinate system.
@@ -605,12 +598,6 @@ You may use a duration of `-1` to set a permanent text bubble.
 
 
 */
-TextBubble (text: string): void;
-TextBubble (text: string, duration: number): void;
-TextBubble (text: string, duration: number, offset: number): void;
-TextBubble (text: string, duration: number, offset: number, color: Color): void;
-TextBubble (text: string, duration: number, offset: number, color: Color, bgColor: Color): void;
-TextBubble (text: string, duration: number, offset: number, color: Color, bgColor: Color, tail: boolean): void;
 
 /**
 Returns `true` if the two [Object]s may collide with each other.
@@ -632,4 +619,4 @@ ClearTextBubble(self: Object): void;
 
 }
 
-export = Object;
+export default Object;

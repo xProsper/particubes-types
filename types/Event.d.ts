@@ -21,6 +21,7 @@ e.someNumber = 42
 e:SendTo(OtherPlayers)
 
 */
+constructor: () => Event;
 
 
 
@@ -43,14 +44,15 @@ Server.DidReceiveEvent = function(event)
 end
 
 */
-Sender: 
+Sender: Server | Player;
+
 /**
 An array containing all recipients for that event.
 Recipients can contain individual [Player]s, [OtherPlayers], [Players] or [Server].
 
 
 */
-Recipients: array;
+Recipients: (Player | OtherPlayers | Players | Server)[];
 
 
 /**
@@ -67,8 +69,8 @@ e.someMessage = "Something I'd like to say!"
 e:SendTo(Player[2], Player[3]) -- send to player 2 & 3
 
 */
-SendTo (...: recipients): void;
+SendTo(recipients: Event["Recipients"]): void;
 
 }
 
-export = Event;
+export default Event;

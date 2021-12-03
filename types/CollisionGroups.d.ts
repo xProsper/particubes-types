@@ -15,6 +15,7 @@ Creates an empty [CollisionGroups].
 
 
 */
+constructor: () => CollisionGroups;
 
 /**
 Creates a [CollisionGroups] with given group numbers.
@@ -30,11 +31,11 @@ if groups1 == groups2 then
 end
 
 */
-constructor: (group1: number, group2: number, ...: number) => CollisionGroups;
+constructor: (group1: number, group2: number) => CollisionGroups;
 
 
 
 
 }
 
-export = CollisionGroups;
+export default CollisionGroups;

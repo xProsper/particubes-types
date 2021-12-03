@@ -177,4 +177,4 @@ someNumber3.Length = 1.0
 
 }
 
-export = Number3;
+export default Number3;

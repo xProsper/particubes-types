@@ -74,4 +74,4 @@ R: number;
 
 }
 
-export = Color;
+export default Color;

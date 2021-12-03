@@ -37,4 +37,4 @@ end
 
 }
 
-export = Dev;
+export default Dev;

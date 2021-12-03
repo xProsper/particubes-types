@@ -47,9 +47,6 @@ local newBlock = someMutableShape:AddBlock(block)
 -- but `newBlock` has a parent shape while `block` doesn't.
 
 */
-AddBlock (block: Block): Block;
-AddBlock (paletteIndex: number, position: Number3): Block;
-AddBlock (paletteIndex: number, X: number, Y: number, Z: number): Block;
 
 /**
 Gets a [Block] from the [This]. 
@@ -61,4 +58,4 @@ GetBlock(X: number, Y: number, Z: number): Block;
 
 }
 
-export = MutableShape;
+export default MutableShape;

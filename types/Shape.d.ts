@@ -95,22 +95,16 @@ Returns [nil] if there is no [Block] at those coordinates (i. e. if it's "air").
 
 
 */
-GetBlock (X: number, Y: number, Z: number): Block;
-GetBlock (coordinates: Number3): Block;
 
 /**
 Converts Block coordinates to world coordinate system.
 
 */
-BlockToWorld (b: Block): Number3;
-BlockToWorld (n: Number3): Number3;
 
 /**
 Converts Block coordinates to local coordinate system.
 
 */
-BlockToLocal (b: Block): Number3;
-BlockToLocal (n: Number3): Number3;
 
 /**
 Converts world coordinates to Block coordinate system.
@@ -126,4 +120,4 @@ LocalToBlock(n: Number3): Number3;
 
 }
 
-export = Shape;
+export default Shape;

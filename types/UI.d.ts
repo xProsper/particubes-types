@@ -54,4 +54,4 @@ RootBox: Box;
 
 }
 
-export = UI;
+export default UI;

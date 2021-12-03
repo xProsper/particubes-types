@@ -11,4 +11,4 @@ declare interface Palette {
 
 }
 
-export = Palette;
+export default Palette;

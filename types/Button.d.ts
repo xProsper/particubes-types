@@ -133,4 +133,4 @@ Add(hAnchor: Anchor, vAnchor: Anchor): void;
 
 }
 
-export = Button;
+export default Button;

@@ -137,4 +137,4 @@ S: number;
 
 }
 
-export = Time;
+export default Time;

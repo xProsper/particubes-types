@@ -32,13 +32,15 @@ Defines items colliding with the ray. [nil] by default, meaning the ray collides
 
 
 */
-FilterIn: 
+FilterIn: nil | CollisionGroups | Shape;
+
 /**
 [nil] by default. Can be set to an [Object] to filter it out from possible collisions.
 
 
 */
-FilterOut: 
+FilterOut: nil | Object;
+
 
 /**
 Casts a ray and returns an [Impact] (can be [nil]).
@@ -81,12 +83,7 @@ end
 */
 Impact;
 Cast(): void;
-Cast (filterIn: CollisionGroups): Impact;
-Cast (filterIn: Shape): Impact;
-Cast (filterIn: nil, filterOut: Object): Impact;
-Cast (filterIn: CollisionGroups, filterOut: Object): Impact;
-Cast (filterIn: Shape, filterOut: Object): Impact;
 
 }
 
-export = Ray;
+export default Ray;

@@ -16,9 +16,7 @@ Add a UI Node to the game's UI, at the top level of the hierarchy.
 
 
 */
-AddChild (button: Button): void;
-AddChild (label: Label): void;
 
 }
 
-export = RootNode;
+export default RootNode;
