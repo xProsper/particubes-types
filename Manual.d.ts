@@ -1,0 +1,1 @@
+export declare type _number = number;

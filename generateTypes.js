@@ -10,6 +10,14 @@ const getTypeTemplate = ({
   functions: f
 }) => 
 [
+// imports
+t === "Block" ? `
+import { _number } from "../Manual";
+import _Number3 from "./_Number3";
+import _BlockProperties from "./_BlockProperties";
+import _Face from "./_Face";
+` : ``
+,
 // description
 d ?
 `
@@ -19,7 +27,7 @@ ${d}
 ` : ``
 ,
 // type
-t ? `declare interface ${t} {`: ``
+t ? `declare interface _${t} {`: ``
 ,
 // constructors
 c ? c.map(({ description, arguments: args, samples }) => [
@@ -41,7 +49,7 @@ description ? `
 */
 ` : ``
 ,
-args && args.some(arg => arg === null) || !args ? `constructor: () => ${t};
+args && args.some(arg => arg === null) || !args ? `constructor: () => _${t};
 ` : ``
 ,
 args ? `constructor: (` : ``
@@ -49,10 +57,10 @@ args ? `constructor: (` : ``
 args ? args.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).flat().map(({name, type}, index) => [
 name && type && index > 0 ? `, ` : ``
 ,
-name && type ? `${name}: ${type}` : ``
+name && type ? `${name}: _${type}` : ``
 ].join("")).join("") : ``
 ,
-args ? `) => ${t};
+args ? `) => _${t};
 ` : ``
 ].join("")).join("") : ``
 ,
@@ -68,7 +76,7 @@ readOnly ? `readonly ` : ``
 ,
 name ? `${name}: ` : ``
 ,
-type ? `${type};
+type ? `_${type};
 ` : ``
 ].join("")).join("") : ``
 ,
@@ -94,13 +102,13 @@ description ? `
 ,
 name ? `${name}: ` : ``
 ,
-name !== "Recipients" && type ? `${type};
+name !== "Recipients" && type ? `_${type};
 ` : ``
 ,
-name === "Recipients" ? `(Player | OtherPlayers | Players | Server)[];
+name === "Recipients" ? `(_Player | _OtherPlayers | _Players | _Server)[];
 ` : ``
 ,
-types ? `${types.join(" | ")};
+types ? `${types.map(type => `_${type}`).join(" | ")};
 ` : ``
 ].join("") : ``).join("") : ``
 ,
@@ -124,13 +132,17 @@ description ? `
 */
 ` : ``
 ,
-(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type};
+(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type ? `${name}(): _${returns[0].type};
 ` : ``
 ,
-!(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type ? `${returns[0].type};
+!(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type &&
+![
+  "Box",
+  "Block"
+].includes(returns[0].type) ? `_${returns[0].type};
 ` : ``
 ,
-name === "SendTo" ? `${name}(recipients: Event["Recipients"]): void;
+name === "SendTo" ? `${name}(recipients: _Event["Recipients"]): void;
 ` : ``
 ,
 args && args.some(arg => arg === null) && !(returns && returns[0] && returns[0].type) ? `${name}(): void;
@@ -142,11 +154,11 @@ index === 0 ? `${name}(` : ``
 ,
 index > 0 ? `, ` : ``
 ,
-`${argSet.name}: ${argSet.type}`
+`${argSet.name}: _${argSet.type}`
 ,
 index === arr.length -1 ? [`): `
 ,
-returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
+returns && returns[0] && returns[0].type ? `_${returns[0].type}` : `void`
 ,
 `;
 `].join("") : ``
@@ -158,7 +170,7 @@ argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)
 argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).map(({ name: innerName, type }, innerIndex) => [
 innerName && type && innerIndex > 0 ? `, ` : ``
 ,
-innerName && type ? `${innerName}: ${type}` : ``
+innerName && type ? `${innerName}: _${type}` : ``
 ].join("")).join("")
 ,
 argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).length !== 0 ? `): ` : ``
@@ -172,7 +184,7 @@ argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)
 ,
 t ? `}
 
-export default ${t};` : ``
+export default _${t};` : ``
 ].join("\n");
 
 // Execution starts here
@@ -180,11 +192,12 @@ rmSync("./types", {recursive: true});
 mkdirSync("./types");
 
 const getIndexTemplate = r => `${getModules(r).join("\n")}
+import * as Manual from "./manual"
 `;
 
 const getModules = ({ blocks }) => blocks
   .filter(block => block && block.list)[0]
-  .list.map(item => `import * as ${item.replace(/<[^>]+>/gi, "")} from "./types/${item.replace(/<[^>]+>/gi, "")}";`);
+  .list.map(item => `import * as _${item.replace(/<[^>]+>/gi, "")} from "./types/_${item.replace(/<[^>]+>/gi, "")}";`);
 
 readdirSync("./resources").forEach(file => {
   const r = JSON
@@ -200,6 +213,6 @@ readdirSync("./resources").forEach(file => {
     writeFileSync(`./index.ts`, getIndexTemplate(r));
   } else {
     if (r.type.substring(0, 1) === r.type.substring(0, 1).toUpperCase())
-      writeFileSync(`./types/${r.type}.d.ts`, typeTemplate);
+      writeFileSync(`./types/_${r.type}.d.ts`, typeTemplate);
   };
 });
