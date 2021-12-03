@@ -4,7 +4,7 @@
     "build": "yaml2json ./particubes/lua-docs/content/reference --pretty --save --recursive",
     "move": "mv ./particubes/lua-docs/content/reference/*.json ./resources",
     "gitup": "git stash && git pull --rebase --recurse-submodules && git stash pop",
-    "up": "npm run gitup && npm run build && npm run move"
+    "up": "npm run gitup && npm run build && npm run move && node generateTypes.js"
   },
   "dependencies": {
     "yamljs": "^0.3.0"
