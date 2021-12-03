@@ -127,8 +127,12 @@ if impact ~= nil then
 end
 
 */
-Impact;
-CastRay(): void;
+CastRay(): Impact;
+CastRay(filterIn: CollisionGroups): Impact;
+CastRay(filterIn: Shape): Impact;
+CastRay(filterIn: nil, filterOut: Object): Impact;
+CastRay(filterIn: CollisionGroups, filterOut: Object): Impact;
+CastRay(filterIn: Shape, filterOut: Object): Impact;
 
 /**
 Equips an [Item], [Shape] or [MutableShape] on the back of the [Player].
@@ -136,6 +140,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
+EquipBackpack(item: Item): void;
+EquipBackpack(shape: Shape): void;
+EquipBackpack(shape: MutableShape): void;
+EquipBackpack(): void;
 
 /**
 Equips an Item, Shape or MutableShape on [Player]'s head.
@@ -143,6 +151,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
+EquipHat(Item: Item): void;
+EquipHat(shape: Shape): void;
+EquipHat(shape: MutableShape): void;
+EquipHat(): void;
 
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s left hand.
@@ -150,6 +162,10 @@ You can remove what's been equiped using [nil] argument
 
 
 */
+EquipLeftHand(item: Item): void;
+EquipLeftHand(shape: Shape): void;
+EquipLeftHand(shape: MutableShape): void;
+EquipLeftHand(): void;
 
 /**
 Puts an [Item], [Shape] or [MutableShape] in [Player]'s right hand.
@@ -173,6 +189,10 @@ Client.OnStart = function()
 end
 
 */
+EquipRightHand(item: Item): void;
+EquipRightHand(shape: Shape): void;
+EquipRightHand(shape: MutableShape): void;
+EquipRightHand(): void;
 
 /**
 Swaps [Player]'s hand held items.

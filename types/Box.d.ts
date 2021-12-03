@@ -45,6 +45,7 @@ Returns a copy of the [Box].
 
 
 */
+Box;
 Copy(b: Box): Box;
 
 }

@@ -124,15 +124,16 @@ description ? `
 */
 ` : ``
 ,
-!args && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type}` : ``
+(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type ? `${name}(): ${returns[0].type};
+` : ``
 ,
-args && args.some(arg => arg === null) && returns && returns[0] && returns[0].type ? `${returns[0].type};
+!(!args || args.some(arg => arg === null)) && returns && returns[0] && returns[0].type ? `${returns[0].type};
 ` : ``
 ,
 name === "SendTo" ? `${name}(recipients: Event["Recipients"]): void;
 ` : ``
 ,
-args && args.some(arg => arg === null) ? `${name}(): void;
+args && args.some(arg => arg === null) && !(returns && returns[0] && returns[0].type) ? `${name}(): void;
 ` : ``
 ,
 args ? args.filter((arg => arg !== null)).map((argSet, index, arr) => 
@@ -152,19 +153,19 @@ returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void`
 ].join("")
 :
 [
-argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `${name}(` : ``
+argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).length !== 0 ? `${name}(` : ``
 ,
-argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).map(({ name: innerName, type }, innerIndex) => [
+argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).map(({ name: innerName, type }, innerIndex) => [
 innerName && type && innerIndex > 0 ? `, ` : ``
 ,
 innerName && type ? `${innerName}: ${type}` : ``
 ].join("")).join("")
 ,
-argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `): ` : ``
+argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).length !== 0 ? `): ` : ``
 ,
-argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void` : ``
+argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).length !== 0 ? returns && returns[0] && returns[0].type ? `${returns[0].type}` : `void` : ``
 ,
-argSet.filter((arg => arg !== null && arg && arg.length && arg.indexOf("...") === -1)).length !== 0 ? `;
+argSet.filter((arg => arg !== null && JSON.stringify(arg).indexOf("...") === -1)).length !== 0 ? `;
 ` : ``
 ].join("")).join("") : ``
 ].join("") : ``).join("") : ``
@@ -175,7 +176,6 @@ export default ${t};` : ``
 ].join("\n");
 
 // Execution starts here
-
 rmSync("./types", {recursive: true});
 mkdirSync("./types");
 
@@ -183,8 +183,7 @@ const getIndexTemplate = r => `${getModules(r).join("\n")}
 `;
 
 const getModules = ({ blocks }) => blocks
-  .filter(block => Object.keys(block).includes("list"))[0]
-  // .list.map(item => `/// <reference path="./${item.replace(/<[^>]+>/gi, "")}.d.ts" />`);
+  .filter(block => block && block.list)[0]
   .list.map(item => `import * as ${item.replace(/<[^>]+>/gi, "")} from "./types/${item.replace(/<[^>]+>/gi, "")}";`);
 
 readdirSync("./resources").forEach(file => {

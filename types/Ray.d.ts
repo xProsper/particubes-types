@@ -81,8 +81,12 @@ Client.Action3 = function()
 end
 
 */
-Impact;
-Cast(): void;
+Cast(): Impact;
+Cast(filterIn: CollisionGroups): Impact;
+Cast(filterIn: Shape): Impact;
+Cast(filterIn: nil, filterOut: Object): Impact;
+Cast(filterIn: CollisionGroups, filterOut: Object): Impact;
+Cast(filterIn: Shape, filterOut: Object): Impact;
 
 }
 

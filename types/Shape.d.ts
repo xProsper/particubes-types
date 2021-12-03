@@ -95,27 +95,38 @@ Returns [nil] if there is no [Block] at those coordinates (i. e. if it's "air").
 
 
 */
+Block;
+GetBlock(X: number, Y: number, Z: number): Block;
+GetBlock(coordinates: Number3): Block;
 
 /**
 Converts Block coordinates to world coordinate system.
 
 */
+Number3;
+BlockToWorld(b: Block): Number3;
+BlockToWorld(n: Number3): Number3;
 
 /**
 Converts Block coordinates to local coordinate system.
 
 */
+Number3;
+BlockToLocal(b: Block): Number3;
+BlockToLocal(n: Number3): Number3;
 
 /**
 Converts world coordinates to Block coordinate system.
 
 */
+Number3;
 WorldToBlock(n: Number3): Number3;
 
 /**
 Converts local coordinates to Block coordinate system.
 
 */
+Number3;
 LocalToBlock(n: Number3): Number3;
 
 }

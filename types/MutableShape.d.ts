@@ -47,6 +47,10 @@ local newBlock = someMutableShape:AddBlock(block)
 -- but `newBlock` has a parent shape while `block` doesn't.
 
 */
+Block;
+AddBlock(block: Block): Block;
+AddBlock(paletteIndex: number, position: Number3): Block;
+AddBlock(paletteIndex: number, X: number, Y: number, Z: number): Block;
 
 /**
 Gets a [Block] from the [This]. 
@@ -54,6 +58,7 @@ Returns [nil] if there is no [Block] at the given coordinates (i. e. if it's "ai
 
 
 */
+Block;
 GetBlock(X: number, Y: number, Z: number): Block;
 
 }

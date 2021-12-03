@@ -113,6 +113,7 @@ n2.X = 10
 print(n1.X) -- n1.X is still 1
 
 */
+Number3;
 Copy(n: Number3): Number3;
 
 /**
@@ -127,6 +128,7 @@ local n2 = Number3(1, 0, 0)
 local n3 = n1:Cross(n2)
 
 */
+Number3;
 Cross(n: Number3): Number3;
 
 /**
@@ -141,6 +143,7 @@ local n2 = Number3(1, 0, 0)
 local dot = n1:Dot(n2)
 
 */
+number;
 Dot(n: Number3): number;
 
 /**

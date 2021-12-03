@@ -79,8 +79,12 @@ Pointer.Down = function( pointerEvent )
 end
 
 */
-Impact;
-CastRay(): void;
+CastRay(): Impact;
+CastRay(filterIn: CollisionGroups): Impact;
+CastRay(filterIn: Shape): Impact;
+CastRay(filterIn: nil, filterOut: Object): Impact;
+CastRay(filterIn: CollisionGroups, filterOut: Object): Impact;
+CastRay(filterIn: Shape, filterOut: Object): Impact;
 
 }
 

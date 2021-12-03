@@ -149,6 +149,7 @@ Client.Action2 = function()
 end
 
 */
+Block;
 AddNeighbor(block: Block, face: Face): Block;
 
 /**

@@ -48,7 +48,8 @@ Returns the current UTC time as a Unix Timestamp.
 
 
 */
-UnixTime(): number
+UnixTime(): number;
+
 }
 
 export default Server;
