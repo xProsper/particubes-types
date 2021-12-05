@@ -1,4 +1,10 @@
 
+import _Player from "./_Player";
+import _OtherPlayers from "./_OtherPlayers";
+import _Players from "./_Players";
+import _Server from "./_Server";
+
+import { _array } from "../Manual";
 
 /**
 Events are useful to establish communication between the [Server] and all connected [Player]s.
@@ -6,24 +12,6 @@ Events are useful to establish communication between the [Server] and all connec
 */
 
 declare interface _Event {
-
-/**
-Creates an empty event.
-
-Custom fields can then be set with [string], [number] and [boolean] values. (more value types will be supported soon)
-
-
-[Samples]
-
-local e = Event()
-
-e.someMessage = "Something I'd like to say!"
-e.someNumber = 42
-e:SendTo(OtherPlayers)
-
-*/
-constructor: () => _Event;
-
 
 
 /**

@@ -1,4 +1,7 @@
 
+import _Color from "./_Color";
+import { _boolean } from "../Manual";
+import { _number } from "../Manual";
 
 /**
 `BlockProperties` describes possible properties for a [Block].
@@ -12,7 +15,6 @@ Except entries in [Config.MapPaletteOverrides](/reference/config#property-mappal
 */
 
 declare interface _BlockProperties {
-
 
 
 /**

@@ -1,4 +1,6 @@
 
+import { _boolean } from "../Manual";
+import { _function } from "../Manual";
 
 /**
 Pointer is a shortcut to [Client].[Pointer].
@@ -10,7 +12,6 @@ The goal is to create an abstraction for world inputs to work on any platform. A
 */
 
 declare interface _Pointer {
-
 
 
 /**

@@ -1,11 +1,15 @@
 
+import _Number3 from "./_Number3";
+import { _array } from "../Manual";
+import { _boolean } from "../Manual";
+import { _string } from "../Manual";
+import { _table } from "../Manual";
 
 /**
 Config holds the configuration for your game. The items it depends on, the map that should be used and other important things.
 */
 
 declare interface _Config {
-
 
 
 /**

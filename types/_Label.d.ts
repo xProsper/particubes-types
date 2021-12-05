@@ -1,4 +1,7 @@
 
+import _Anchor from "./_Anchor";
+import _Color from "./_Color";
+import { _string } from "../Manual";
 
 /**
 Label is a shortcut to [Client].[UI].[Label].
@@ -10,20 +13,6 @@ Labels are automatically displayed on the screen upon creation.
 */
 
 declare interface _Label {
-
-/**
-Creates a Label with optional parameters:
-- `text` displayed text
-- `horizontal_anchor` possible values: `Anchor.Left`, `Anchor.HCenter`, `Anchor.Right` (defaut)
-- `vertical_anchor` possible values: `Anchor.Top` (defaut), `Anchor.VCenter`, `Anchor.Bottom`
-
-
-[Samples]
-
-local myLabel = Label("❤❤❤")
-*/
-constructor: (text: _string, hAnchor: _Anchor, vAnchor: _Anchor) => _Label;
-
 
 
 /**

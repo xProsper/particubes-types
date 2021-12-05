@@ -1,20 +1,13 @@
 
+import _Block from "./_Block";
+import _Number3 from "./_Number3";
+import { _number } from "../Manual";
 
 /**
 A [MutableShape] is an [Object] that carries and displays a set of [Block]s. The difference with [Shape] is that [MutableShape] [Block]s can be modified.
 */
 
 declare interface _MutableShape {
-
-/**
-Creates a MutableShape with imported [Item].
-
-[Samples]
-
-local s = MutableShape(R.username.itemName)
-*/
-constructor: (item: _Item) => _MutableShape;
-
 
 
 
@@ -48,9 +41,9 @@ local newBlock = someMutableShape:AddBlock(block)
 -- but `newBlock` has a parent shape while `block` doesn't.
 
 */
-AddBlock(block: _Block): Block;
-AddBlock(paletteIndex: _number, position: _Number3): Block;
-AddBlock(paletteIndex: _number, X: _number, Y: _number, Z: _number): Block;
+AddBlock(block: _Block): _Block;
+AddBlock(paletteIndex: _number, position: _Number3): _Block;
+AddBlock(paletteIndex: _number, X: _number, Y: _number, Z: _number): _Block;
 
 /**
 Gets a [Block] from the [This]. 

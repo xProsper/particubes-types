@@ -1,11 +1,11 @@
 
+import _Palette from "./_Palette";
 
 /**
 Map is a global variable that represents the game map.
 */
 
 declare interface _Map {
-
 
 
 /**

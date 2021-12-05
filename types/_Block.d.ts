@@ -1,9 +1,8 @@
 
-import { _number } from "../Manual";
-import _Number3 from "./_Number3";
 import _BlockProperties from "./_BlockProperties";
 import _Face from "./_Face";
-
+import _Number3 from "./_Number3";
+import { _number } from "../Manual";
 
 /**
 A `Block` represents one block in a [Shape] or [MutableShape] (like the [Map]).
@@ -15,34 +14,6 @@ A `Block` can be built with one of the [constructors](/reference/block#construct
 */
 
 declare interface _Block {
-
-/**
-Creates a `Block` with `{0,0,0}` coordinates. ([Block.Position](#property-position))
-
-[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).
-
-
-*/
-constructor: (paletteIndex: _number) => _Block;
-
-/**
-Creates a `Block` with `{x,y,z}` coordinates. ([Block.Position](#property-position))
-
-[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).
-
-
-*/
-constructor: (paletteIndex: _number, x: _number, y: _number, z: _number) => _Block;
-
-/**
-Creates a `Block` with `position` coordinates. ([Block.Position](#property-position))
-
-[Block.PaletteIndex](#property-paletteindex) is set to `paletteIndex`, but [Block.Properties](#property-properties) remains [nil] before the block is added to a [MutableShape] (owns the [Palette]).
-
-
-*/
-constructor: (paletteIndex: _number, position: _Number3) => _Block;
-
 
 
 /**

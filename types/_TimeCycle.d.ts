@@ -1,4 +1,8 @@
 
+import _Time from "./_Time";
+import { _array } from "../Manual";
+import { _boolean } from "../Manual";
+import { _number } from "../Manual";
 
 /**
 TimeCycle gives control over game time cycle properties.
@@ -6,7 +10,6 @@ TimeCycle gives control over game time cycle properties.
 */
 
 declare interface _TimeCycle {
-
 
 
 /**

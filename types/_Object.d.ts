@@ -1,4 +1,12 @@
 
+import _Box from "./_Box";
+import _CollisionGroups from "./_CollisionGroups";
+import _Color from "./_Color";
+import _Number3 from "./_Number3";
+import { _boolean } from "../Manual";
+import { _function } from "../Manual";
+import { _number } from "../Manual";
+import { _string } from "../Manual";
 
 /**
 An `Object` is the most basic thing that can be added to the game 3D scene.
@@ -12,19 +20,6 @@ An `Object` can also take part in the physics simulation when setting [Object.Ph
 */
 
 declare interface _Object {
-
-/**
-Creates an Object.
-
-[Samples]
-
-local o = Object()
-
-World:AddChild(o) -- adds o to the [World] (top level object in the game scene)
-
-*/
-constructor: () => _Object;
-
 
 
 /**
@@ -558,7 +553,6 @@ local p = Number3(1, 2, 3)
 local pInWorldCoords = myObject:PositionLocalToWorld(p)
 
 */
-_Number3;
 PositionLocalToWorld(p: _Number3): _Number3;
 
 /**
@@ -571,7 +565,6 @@ local p = Number3(1, 2, 3)
 local pInLocalCoords = myObject:PositionWorldToLocal(p)
 
 */
-_Number3;
 PositionWorldToLocal(p: _Number3): _Number3;
 
 /**
@@ -594,14 +587,12 @@ RotateWorld(axis: _Number3, angle: _number): void;
 Converts a local rotation to world coordinate system.
 
 */
-_Number3;
 RotationLocalToWorld(p: _Number3): _Number3;
 
 /**
 Converts a world rotation to local coordinate system.
 
 */
-_Number3;
 RotationWorldToLocal(p: _Number3): _Number3;
 
 /**

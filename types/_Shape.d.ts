@@ -1,24 +1,14 @@
 
+import _Block from "./_Block";
+import _Box from "./_Box";
+import _Number3 from "./_Number3";
+import { _number } from "../Manual";
 
 /**
 A [Shape] is an [Object] that carries and displays a set of [Block]s.
 */
 
 declare interface _Shape {
-
-/**
-Creates a Shape with imported [Item].
-
-[Samples]
-
-local myShape = Shape(Items.someuser.someitem)
-
-myShape.Position = { Map.Width * 0.5, Map.Height, Map.Depth * 0.5 }
-Map:AddChild(myShape) -- adds created shape in the map
-
-*/
-constructor: (item: _Item) => _Shape;
-
 
 
 /**
@@ -96,37 +86,33 @@ Returns [nil] if there is no [Block] at those coordinates (i. e. if it's "air").
 
 
 */
-GetBlock(X: _number, Y: _number, Z: _number): Block;
-GetBlock(coordinates: _Number3): Block;
+GetBlock(X: _number, Y: _number, Z: _number): _Block;
+GetBlock(coordinates: _Number3): _Block;
 
 /**
 Converts Block coordinates to world coordinate system.
 
 */
-_Number3;
-BlockToWorld(b: _Block): Number3;
-BlockToWorld(n: _Number3): Number3;
+BlockToWorld(b: _Block): _Number3;
+BlockToWorld(n: _Number3): _Number3;
 
 /**
 Converts Block coordinates to local coordinate system.
 
 */
-_Number3;
-BlockToLocal(b: _Block): Number3;
-BlockToLocal(n: _Number3): Number3;
+BlockToLocal(b: _Block): _Number3;
+BlockToLocal(n: _Number3): _Number3;
 
 /**
 Converts world coordinates to Block coordinate system.
 
 */
-_Number3;
 WorldToBlock(n: _Number3): _Number3;
 
 /**
 Converts local coordinates to Block coordinate system.
 
 */
-_Number3;
 LocalToBlock(n: _Number3): _Number3;
 
 }

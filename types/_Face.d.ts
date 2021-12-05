@@ -1,5 +1,6 @@
 
 
+
 /**
 A `Face` represents the face of a [Block].
 
@@ -12,7 +13,6 @@ Builtin `Face` instances can be used, there's no way to create custom Faces.
 */
 
 declare interface _Face {
-
 
 /**
 Top face.

@@ -1,4 +1,8 @@
 
+import _Anchor from "./_Anchor";
+import _Color from "./_Color";
+import { _function } from "../Manual";
+import { _string } from "../Manual";
 
 /**
 Buttons are user interface elements allowing users to take actions.
@@ -10,25 +14,6 @@ Buttons are automatically displayed on the screen upon creation.
 */
 
 declare interface _Button {
-
-/**
-Creates a Button with optional parameters:
-- `text` displayed text
-- `horizontal_anchor` possible values: `Anchor.Left`, `Anchor.HCenter`, `Anchor.Right` (defaut)
-- `vertical_anchor` possible values: `Anchor.Top` (defaut), `Anchor.VCenter`, `Anchor.Bottom`
-
-
-[Samples]
-
--- adds a button at top right of the screen
-
-local btn1 = Button("I'm a button")
--- adds a button at the center of the screen
-local btn2 = Button("I'm a button", Anchor.HCenter, Anchor.VCenter)
-
-*/
-constructor: (text: _string, hAnchor: _Anchor, vAnchor: _Anchor) => _Button;
-
 
 
 /**

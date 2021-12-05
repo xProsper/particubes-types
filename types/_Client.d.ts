@@ -1,4 +1,12 @@
 
+import _Camera from "./_Camera";
+import _Clouds from "./_Clouds";
+import _Fog from "./_Fog";
+import _Player from "./_Player";
+import _Pointer from "./_Pointer";
+import _UI from "./_UI";
+import { _Inputs } from "../Manual";
+import { _function } from "../Manual";
 
 /**
 Client is storing variables and running functions on all connected user devices (clients). It contains everything needed for the local simulation.
@@ -8,7 +16,6 @@ Client is nil in the [Server] execution context.
 */
 
 declare interface _Client {
-
 
 
 /**

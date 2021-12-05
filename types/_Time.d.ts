@@ -1,4 +1,5 @@
 
+import { _number } from "../Manual";
 
 /**
 Time represents a ingame time of day.
@@ -6,28 +7,6 @@ Time represents a ingame time of day.
 */
 
 declare interface _Time {
-
-/**
-Creates a Time object with given hours and minutes.
-
-*/
-constructor: (hours: _number, minutes: _number) => _Time;
-
-/**
-Creates a Time object with given hours.
-
-*/
-constructor: (hours: _number) => _Time;
-
-/**
-Creates a Time object with given hours, minutes and seconds.
-
-[Samples]
-
-local myTime = Time(12, 30)
-*/
-constructor: (hours: _number, minutes: _number, seconds: _number) => _Time;
-
 
 /**
 Current ingame day time.

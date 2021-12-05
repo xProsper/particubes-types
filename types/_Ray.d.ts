@@ -1,19 +1,12 @@
 
+import _CollisionGroups from "./_CollisionGroups";
+import _Impact from "./_Impact";
+import _Number3 from "./_Number3";
+import _Object from "./_Object";
+import _Shape from "./_Shape";
+import { _nil } from "../Manual";
 
 declare interface _Ray {
-
-/**
-Creates a Ray with an origin and a direction.
-
-[Samples]
-
-local ray = Ray(Camera.Position, Camera.Forward)
-
-local impact = ray:Cast()
-
-*/
-constructor: (origin: _Number3, direction: _Number3) => _Ray;
-
 
 
 /**
@@ -83,11 +76,11 @@ end
 
 */
 Cast(): _Impact;
-Cast(filterIn: _CollisionGroups): Impact;
-Cast(filterIn: _Shape): Impact;
-Cast(filterIn: _nil, filterOut: _Object): Impact;
-Cast(filterIn: _CollisionGroups, filterOut: _Object): Impact;
-Cast(filterIn: _Shape, filterOut: _Object): Impact;
+Cast(filterIn: _CollisionGroups): _Impact;
+Cast(filterIn: _Shape): _Impact;
+Cast(filterIn: _nil, filterOut: _Object): _Impact;
+Cast(filterIn: _CollisionGroups, filterOut: _Object): _Impact;
+Cast(filterIn: _Shape, filterOut: _Object): _Impact;
 
 }
 

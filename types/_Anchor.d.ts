@@ -1,5 +1,6 @@
 
 
+
 /**
 Anchor is a shortcut to [Client].[UI].Anchor.
 
@@ -10,7 +11,6 @@ A few builtin `Anchor` instances can be used, there's no way to create custom An
 */
 
 declare interface _Anchor {
-
 
 /**
 Top position Anchor.

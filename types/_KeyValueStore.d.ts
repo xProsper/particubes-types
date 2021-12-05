@@ -1,4 +1,8 @@
 
+import { _boolean } from "../Manual";
+import { _function } from "../Manual";
+import { _number } from "../Manual";
+import { _string } from "../Manual";
 
 /**
 [KeyValueStore]s can be used to store and retrieve user data.
@@ -6,27 +10,6 @@
 */
 
 declare interface _KeyValueStore {
-
-/**
-Creates a [KeyValueStore] with given store name.
-
-Several stores can be used in one single [World], it's useful to scope your data.
-
-
-[Samples]
-
-local store = KeyValueStore("settings")
-
-store:Get("currentChallenge", "jumpStrength", function(success, results)
-    if success then
-      -- do something with results.currentChallenge
-      -- and results.jumpStrength
-    end
-end)
-
-*/
-constructor: (storeName: _string) => _KeyValueStore;
-
 
 
 /**

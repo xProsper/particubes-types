@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "tsc": "tsc index.ts --declaration --emitDeclarationOnly",
+    "tsc": "tsc Particubes.d.ts",
     "build": "yaml2json ./particubes/lua-docs/content/reference --pretty --save --recursive",
     "move": "mv ./particubes/lua-docs/content/reference/*.json ./resources",
     "gitsub": "git submodule update --init --recursive",

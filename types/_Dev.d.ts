@@ -1,11 +1,11 @@
 
+import { _boolean } from "../Manual";
 
 /**
 Dev contains handy functions and attributes for developers.
 */
 
 declare interface _Dev {
-
 
 
 /**

@@ -1,7 +1,12 @@
 
+import _Block from "./_Block";
+import _Face from "./_Face";
+import _Object from "./_Object";
+import _Player from "./_Player";
+import _Shape from "./_Shape";
+import { _number } from "../Manual";
 
 declare interface _Impact {
-
 
 
 /**

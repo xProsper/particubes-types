@@ -1,4 +1,9 @@
 
+import _Anchor from "./_Anchor";
+import _Box from "./_Box";
+import _Button from "./_Button";
+import _Label from "./_Label";
+import { _boolean } from "../Manual";
 
 /**
 UI is a shortcut to [Client].[UI]
@@ -8,7 +13,6 @@ UI contains user interface accessors.
 */
 
 declare interface _UI {
-
 
 
 /**

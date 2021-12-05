@@ -1,4 +1,6 @@
 
+import { _boolean } from "../Manual";
+import { _number } from "../Manual";
 
 /**
 Clouds is a shortcut to [Client].[Clouds].
@@ -8,7 +10,6 @@ Clouds gives control over cloud settings.
 */
 
 declare interface _Clouds {
-
 
 
 /**

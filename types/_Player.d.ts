@@ -1,4 +1,17 @@
 
+import _Block from "./_Block";
+import _CollisionGroups from "./_CollisionGroups";
+import _Impact from "./_Impact";
+import _MutableShape from "./_MutableShape";
+import _Number3 from "./_Number3";
+import _Object from "./_Object";
+import _Shape from "./_Shape";
+import { _Item } from "../Manual";
+import { _array } from "../Manual";
+import { _boolean } from "../Manual";
+import { _nil } from "../Manual";
+import { _number } from "../Manual";
+import { _string } from "../Manual";
 
 /**
 Player is a shortcut to `Client.Player`.
@@ -7,7 +20,6 @@ Represents the local Player.
 */
 
 declare interface _Player {
-
 
 
 /**
@@ -129,11 +141,11 @@ end
 
 */
 CastRay(): _Impact;
-CastRay(filterIn: _CollisionGroups): Impact;
-CastRay(filterIn: _Shape): Impact;
-CastRay(filterIn: _nil, filterOut: _Object): Impact;
-CastRay(filterIn: _CollisionGroups, filterOut: _Object): Impact;
-CastRay(filterIn: _Shape, filterOut: _Object): Impact;
+CastRay(filterIn: _CollisionGroups): _Impact;
+CastRay(filterIn: _Shape): _Impact;
+CastRay(filterIn: _nil, filterOut: _Object): _Impact;
+CastRay(filterIn: _CollisionGroups, filterOut: _Object): _Impact;
+CastRay(filterIn: _Shape, filterOut: _Object): _Impact;
 
 /**
 Equips an [Item], [Shape] or [MutableShape] on the back of the [Player].

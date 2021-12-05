@@ -1,4 +1,7 @@
 
+import _Color from "./_Color";
+import _Time from "./_Time";
+import { _string } from "../Manual";
 
 /**
 TimeCycleMark exposes properties for each mark in the [TimeCycle].
@@ -6,20 +9,6 @@ TimeCycleMark exposes properties for each mark in the [TimeCycle].
 */
 
 declare interface _TimeCycleMark {
-
-/**
-Creates a new TimeCycleMark at given [Time] and adds it in the [TimeCycle].Marks array.
-
-
-[Samples]
-
-local mark = TimeCycleMark(Time(9, 0, 0)) -- 9am's mark
-
-mark.SkyColor = Color(255, 0, 0)
-
-*/
-constructor: (time: _Time) => _TimeCycleMark;
-
 
 
 /**

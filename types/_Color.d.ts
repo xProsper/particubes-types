@@ -1,27 +1,11 @@
 
+import { _number } from "../Manual";
 
 /**
 Represents a RGBA color (Red, Green, Blue, Alpha)
 */
 
 declare interface _Color {
-
-/**
-Creates a Color with given red, green, blue and (optional) alpha values.
-
-Parameters can be between 0.0 and 1.0 or between 0 and 255.
-
-
-[Samples]
-
-local red = Color(255, 0, 0)
-
-local alsoRed = Color(1.0, 0.0, 0.0)
-local semiTransparentRed = Color(1.0, 0.0, 0.0, 0.5)
-
-*/
-constructor: (red: _number, green: _number, blue: _number, alpha: _number) => _Color;
-
 
 
 /**

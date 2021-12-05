@@ -1,4 +1,6 @@
 
+import { _function } from "../Manual";
+import { _number } from "../Manual";
 
 /**
 The `Server` acts as a host and director for the game.
@@ -10,7 +12,6 @@ For example, if your game requires a minimum amount of players, it's a good idea
 */
 
 declare interface _Server {
-
 
 
 /**

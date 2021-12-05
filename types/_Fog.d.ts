@@ -1,4 +1,6 @@
 
+import { _boolean } from "../Manual";
+import { _number } from "../Manual";
 
 /**
 Fog is a shortcut to [Client].[Fog].
@@ -8,7 +10,6 @@ Fog gives control over distance fog settings.
 */
 
 declare interface _Fog {
-
 
 
 /**

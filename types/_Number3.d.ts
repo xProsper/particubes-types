@@ -1,22 +1,11 @@
 
+import { _number } from "../Manual";
 
 /**
 A Number3 contains 3 [number] values (X, Y & Z). It can represent different things in 3D space (points, vectors, forces).
 */
 
 declare interface _Number3 {
-
-/**
-Creates a Number3 with values x, y and z.
-
-[Samples]
-
-local myNumber3 = Number3(1, 2, 3)
-
-
-*/
-constructor: (x: _number, y: _number, z: _number) => _Number3;
-
 
 
 /**
@@ -114,7 +103,6 @@ n2.X = 10
 print(n1.X) -- n1.X is still 1
 
 */
-_Number3;
 Copy(n: _Number3): _Number3;
 
 /**
@@ -129,7 +117,6 @@ local n2 = Number3(1, 0, 0)
 local n3 = n1:Cross(n2)
 
 */
-_Number3;
 Cross(n: _Number3): _Number3;
 
 /**
